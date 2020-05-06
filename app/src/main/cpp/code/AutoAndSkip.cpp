@@ -11,6 +11,9 @@
 
 #include <stddef.h>
 #include <stdbool.h>
+#include <malloc.h>
+#include <math.h>
+#include "easytech.h"
 #include "CGameManager.h"
 #include "CScene.h"
 #include "CActionAI.h"
@@ -19,8 +22,6 @@
 #include "CGameSettings.h"
 #include "CFight.h"
 #include "GUI/GUIElement.h"
-#include <malloc.h>
-#include <math.h>
 
 static bool AIAction;
 static bool SkipMode;
@@ -233,16 +234,21 @@ void _ZN10CGameState6UpdateEf(struct CGameState *self, float time) {
 
 //Press end turn button
 //Also: in game save-load menu related input
-extern typeof(&_ZN10CGameState7OnEventERK5Event) _ZN10CGameState7OnEventERK5Event_ptr;
+def_easytech(_ZN10CGameState7OnEventERK5Event)
 
 bool __attribute__((weak))
-_ZN10CGameState14ShowInGameLoadEv(struct CGameState *self, const struct Event *event) {
-    return _ZN10CGameState7OnEventERK5Event_ptr(self, event);
+_ZN10CGameState13OpenLoadEventERK5Event(struct CGameState *self, const struct Event *event) {
+    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
 }
 
 bool __attribute__((weak))
-_ZN10CGameState12CloseSaveGUIEb(struct CGameState *self, bool confirm, const struct Event *event) {
-    return _ZN10CGameState7OnEventERK5Event_ptr(self, event);
+_ZN10CGameState14CloseLoadEventERK5Event(struct CGameState *self, const struct Event *event) {
+    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
+}
+
+bool __attribute__((weak))
+_ZN10CGameState15CancelLoadEventERK5Event(struct CGameState *self, const struct Event *event) {
+    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
 }
 
 bool _ZN10CGameState7OnEventERK5Event(struct CGameState *self, struct Event const *event) {
@@ -281,15 +287,14 @@ bool _ZN10CGameState7OnEventERK5Event(struct CGameState *self, struct Event cons
                     }
                     struct GUIPauseBox *PauseBox = self->PauseBoxGUI;
                     if ((struct GUIButton *) event->info.GUI.ptr == PauseBox->ButtonRestart) {
-                        return _ZN10CGameState14ShowInGameLoadEv(self, event);
+                        return _ZN10CGameState13OpenLoadEventERK5Event(self, event);
                     }
                     if (self->SaveGUI != NULL &&
-                        (struct GUIButton *) event->info.GUI.ptr ==
-                        self->SaveGUI->ButtonOK)//Load / Save: don't close
-                        return _ZN10CGameState12CloseSaveGUIEb(self, true, event);
+                        (struct GUIButton *) event->info.GUI.ptr == self->SaveGUI->ButtonOK)
+                        return _ZN10CGameState14CloseLoadEventERK5Event(self, event);
                     if (self->SaveGUI != NULL &&
                         (struct GUIButton *) event->info.GUI.ptr == self->SaveGUI->ButtonBack)
-                        return _ZN10CGameState12CloseSaveGUIEb(self, false, event);
+                        return _ZN10CGameState15CancelLoadEventERK5Event(self, event);
                     break;
                 }
                 default:
@@ -300,7 +305,7 @@ bool _ZN10CGameState7OnEventERK5Event(struct CGameState *self, struct Event cons
         default:
             break;
     }
-    return _ZN10CGameState7OnEventERK5Event_ptr(self, event);
+    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
 }
 
 //Don't move camera under skip mode
@@ -362,19 +367,19 @@ void _ZN9GUIBattle4InitERK7GUIRect() {}
 
 #include <ecLibrary.h>
 
-extern typeof(&_ZN10CCommander4SaveEv) _ZN10CCommander4SaveEv_ptr;
+def_easytech(_ZN10CCommander4SaveEv)
 
 void _ZN10CCommander4SaveEv(struct CCommander *self) {}
 
-extern typeof(&_Z12ecGameUpdatef) _Z12ecGameUpdatef_ptr;
+def_easytech(_Z12ecGameUpdatef)
 
 void _Z12ecGameUpdatef(float time) {
     static int medal = 50;
     if (medal != g_Commander.Medal) {
-        _ZN10CCommander4SaveEv_ptr(&g_Commander);
+        easytech(_ZN10CCommander4SaveEv)(&g_Commander);
         medal = g_Commander.Medal;
     }
-    _Z12ecGameUpdatef_ptr(time);
+    easytech(_Z12ecGameUpdatef)(time);
 }
 
 __END_DECLS

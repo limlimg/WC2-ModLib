@@ -21,7 +21,7 @@ add_library( # Sets the name of the library.
         code/Camera.c
         code/SelectArmy.c
         code/AutoAndSkip.cpp
-        #sample_code/InGameLoad.c
+        code/InGameLoad.c
         #sample_code/CampaignSize.cpp
         #sample_code/SelectCountry.cpp
         #sample_code/MapExtension.cpp

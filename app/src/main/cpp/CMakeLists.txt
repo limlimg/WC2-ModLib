@@ -20,7 +20,7 @@ add_library( # Sets the name of the library.
         code/AutoPicFormat.c
         code/Camera.c
         code/SelectArmy.c
-        #code/AutoAndSkip.c
+        code/AutoAndSkip.cpp
         #sample_code/InGameLoad.c
         #sample_code/CampaignSize.cpp
         #sample_code/SelectCountry.cpp

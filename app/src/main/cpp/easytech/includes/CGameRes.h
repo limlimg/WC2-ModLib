@@ -11,47 +11,47 @@ def__ZSt3map(string, Ss, struct ecImage*, P7ecImage)
 
 #endif
 struct CGameRes {
-    struct ecTextureRes ecTextureRes_army;
-    struct ecImage *PecImage_carrier;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_soldier;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_panzer;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_cannon;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_rocketlauncher;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_tank;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_heavytank;
-    struct ecImage *PecImage10_army_ne[10];
-    struct ecImage *PecImage4_unitbase_green[4];
-    struct ecImage *PecImage4_unitbase_blue[4];
-    struct ecImage *PecImage4_unitbase_red[4];
-    struct ecImage *PecImage4_unitbase_grey[4];
-    struct ecImage *PecImage4[4];
-    struct ecImage *PecImage5_commander_level[5];
-    struct ecImage *PecImage_medal;
-    struct ecImage *PecImage_medal_light;
-    _ZSt3map(Ss, P7ecImage) mapPecImageCountryMedal;
-    struct ecImage *PecImage6_mark_carriers[6];
-    struct ecImage *PecImage4_maek_carriers_color[4];
-    struct ecImage *PecImage_hpbar;
-    struct ecImage *PecImage_hpbar_bill;
-    struct ecImage *PecImage4_movementmark[4];
-    struct ecImage *PecImage3_cardmark[3];
-    struct ecImage *PecImage_arrow_green;
-    struct ecImage *PecImage_arrow_yellow;
-    struct ecImage *PecImage_arrow_red;
-    struct ecImage *PecImage_arrow_blue;
-    struct ecImage *PecImage_arrowshadow;
-    _ZSt3map(Ss, P7ecImage) mapPecImage_flag;
-    struct ecImage *PecImage4buildmark_installtion[4];
-    struct ecImage *PecImage4buildmark_city[4];
-    struct ecImage *PecImage3buildmark_factory[3];
-    struct ecImage *PecImage_buildmark_airport;
-    struct ecImage *PecImage_buildmark_port;
-    struct ecTextureRes ecTextureRes_cardtex;
-    struct ecImage *PecImage_card_shadow;
-    struct ecImage *PecImage_card_common;
-    struct ecImage *PecImage5card_research[5];
-    struct ecTextureRes ecTextureRes_battlebg;
-    struct ecTextureRes ecTextureRes_flag;
+    struct ecTextureRes TextureRes_army;
+    struct ecImage *Image_carrier;
+    _ZSt3map(Ss, P7ecImage) Image_soldier;
+    _ZSt3map(Ss, P7ecImage) Image_panzer;
+    _ZSt3map(Ss, P7ecImage) Image_cannon;
+    _ZSt3map(Ss, P7ecImage) Image_rocketlauncher;
+    _ZSt3map(Ss, P7ecImage) Image_tank;
+    _ZSt3map(Ss, P7ecImage) Image_heavytank;
+    struct ecImage *Image_army_ne[10];
+    struct ecImage *Image_unitbase_green[4];
+    struct ecImage *Image_unitbase_blue[4];
+    struct ecImage *Image_unitbase_red[4];
+    struct ecImage *Image_unitbase_grey[4];
+    struct ecImage *Image_unitlevelmark[4];
+    struct ecImage *Image_commander_level[5];
+    struct ecImage *Image_medal;
+    struct ecImage *Image_medal_light;
+    _ZSt3map(Ss, P7ecImage) ImageCountryMedal;
+    struct ecImage *Image_mark_carriers[6];
+    struct ecImage *Image_maek_carriers_color[4];
+    struct ecImage *Image_hpbar;
+    struct ecImage *Image_hpbar_fill;
+    struct ecImage *Image_movementmark[4];
+    struct ecImage *Image_cardmark[3];
+    struct ecImage *Image_arrow_green;
+    struct ecImage *Image_arrow_yellow;
+    struct ecImage *Image_arrow_red;
+    struct ecImage *Image_arrow_blue;
+    struct ecImage *Image_arrowshadow;
+    _ZSt3map(Ss, P7ecImage) Image_flag;
+    struct ecImage *Image_buildmark_installtion[4];
+    struct ecImage *Image_buildmark_city[4];
+    struct ecImage *Image_buildmark_factory[3];
+    struct ecImage *Image_buildmark_airport;
+    struct ecImage *Image_buildmark_port;
+    struct ecTextureRes TextureRes_cardtex;
+    struct ecImage *Image_card_shadow;
+    struct ecImage *Image_card_common;
+    struct ecImage *Image_card_research[5];
+    struct ecTextureRes TextureRes_battlebg;
+    struct ecTextureRes TextureRes_flag;
 };
 
 void _ZN8CGameResC1Ev(struct CGameRes *self);
@@ -119,6 +119,22 @@ void _ZN8CGameRes18RenderUIDefendArmyEPKcffiiiiiiib(struct CGameRes *self, const
                                                     float x, float y, int ArmyType, int HP,
                                                     int MaxHP, int Movement, int Cards, int Level,
                                                     int CommonType, bool AI);
+
+extern struct CGameRes g_GameRes;
+
+static inline unsigned long HpColor(int HP, int MaxHP) {
+    int r, g, b;
+    if (HP * 2 <= MaxHP) {
+        r = 0;
+        g = 255 - 255 * (MaxHP - 2 * HP) / MaxHP;
+        b = 255;
+    } else {
+        g = 255;
+        b = 255 - 255 * (2 * HP - MaxHP) / MaxHP;
+        r = 128 - (b >> 1);
+    }
+    return b + (g << 8) + (r << 16) - 0x1000000ul;
+}
 
 __END_DECLS
 

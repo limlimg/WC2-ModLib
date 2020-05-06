@@ -6,6 +6,7 @@
 #include "CStateManager/CGameState.h"
 #include "CGameManager.h"
 #include "CScene.h"
+#include "CGameRes.h"
 
 //control the showing of the side bar
 void _ZN10CGameState8TouchEndEffi(struct CGameState *self, float x, float y, int index) {
@@ -124,4 +125,58 @@ bool _ZN10GUISelArmy7OnEventERK5Event(struct GUISelArmy *self, const struct Even
         }
     }
     return _ZN10GUIElement7OnEventERK5Event((struct GUIElement *) self, event);
+}
+
+//Show AI medal on sidebar
+static void
+_ZN8CGameRes12RenderUIArmyEPKcffiiiiiiib(struct CGameRes *self, const char *CountryName, float x,
+                                         float y, int ArmyType, int HP, int MaxHP, int Movement,
+                                         int Cards, int Level, int CommonType, bool AI) {
+    struct ecImage *ArmyImage = _ZN8CGameRes12GetArmyImageEPKcib(self, CountryName, ArmyType,
+                                                                 false);
+    if (ArmyImage != NULL) {
+        _ZN7ecImage8SetColorEmi(ArmyImage, 0xFFFFFFFF, -1);
+        _ZN7ecImage8RenderExEfffff(ArmyImage, x, y, 0.0, -1.0, 1.0);
+    }
+    _ZN7ecImage6RenderEff(self->Image_hpbar, x - 30.0, y - 12.0);
+    _ZN7ecImage8SetColorEmi(self->Image_hpbar_fill, HpColor(HP, MaxHP), -1);
+    _ZN7ecImage8RenderExEfffff(self->Image_hpbar_fill, x - 11.0, y - 4.0, 0.0,
+                               (float) HP * 33.0 / (float) MaxHP, 1.0);
+    _ZN7ecImage6RenderEff(self->Image_movementmark[Movement], x - 23.0, y - 7.0);
+    if (Cards & 8) {
+        if (AI)
+            _ZN8CGameRes22RenderAICommanderMedalEiffPKci(&g_GameRes, 1, x, y + 10.0, CountryName,
+                                                         CommonType);
+        else
+            _ZN7ecImage6RenderEff(self->Image_commander_level[Level / 3], x + 8.0, y - 8.0);
+    } else if (Level > 0)
+        _ZN7ecImage6RenderEff(self->Image_unitlevelmark[Level - 1], x + 8.0, y - 8.0);
+    if (!Cards)
+        return;
+    y -= 20.0;
+    int i;
+    for (i = 0; i < 3; i++) {
+        if ((Cards >> i) & 1) {
+            _ZN7ecImage6RenderEff(self->Image_cardmark[i], x + 16.0, y);
+            y -= 15.0;
+        }
+    }
+}
+
+void _ZN11GUIArmyItem8OnRenderEv(struct GUIArmyItem *self) {
+    struct GUIRect rect;
+    _ZN10GUIElement10GetAbsRectER7GUIRect((struct GUIElement *) self, &rect);
+    if (self->Army == NULL)
+        return;
+    _ZN8CGameRes12RenderUIArmyEPKcffiiiiiiib(&g_GameRes, self->Army->Country->Name,
+                                             rect.Pos[0] + rect.Size[0] * 0.5,
+                                             rect.Pos[1] + rect.Size[1],
+                                             self->Army->BasicAbilities->ID, self->Army->Hp,
+                                             _ZN5CArmy14GetMaxStrengthEv(self->Army),
+                                             self->Army->Movement, self->Army->Cards,
+                                             (self->Army->Cards & 8)
+                                             ? _ZN8CCountry17GetCommanderLevelEv(
+                                                     self->Army->Country) : self->Army->Level,
+                                             self->Army->Country->Alliance,
+                                             self->Army->Country->AI);
 }

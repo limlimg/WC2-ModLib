@@ -27,7 +27,7 @@ def__ZNSt4list5emptyE(type, type_name)
 #ifndef __cplusplus
 #define def__ZNSt4list5emptyE(type, type_name) bool _ZNSt4list5emptyE(type_name)(_ZSt4list(type_name) *self);
 #else
-#define def__ZNSt4list5emptyE(type, type_name) inline bool _ZNSt4list5emptyE(type_name)(_ZSt4list(type_name) *self) {\
+#define def__ZNSt4list5emptyE(type, type_name) static inline bool _ZNSt4list5emptyE(type_name)(_ZSt4list(type_name) *self) {\
     return ((std::list<type> *)self)->empty();\
 }
 #endif

@@ -1,4 +1,5 @@
 //Allow to check army stacks of other country
+//allow to use card on select army side bar
 
 #include <math.h>
 #include <stdbool.h>
@@ -103,6 +104,7 @@ void _ZN10CGameState10SelectAreaEi(struct CGameState *self, int AreaID) {
 }
 
 //disallow to sort other countries' army
+//allow to use card on select army side bar
 bool _ZN10GUISelArmy7OnEventERK5Event(struct GUISelArmy *self, const struct Event *event) {
     if (event->type == Touch) {
         if (event->info.touch.type == 0 &&
@@ -115,7 +117,10 @@ bool _ZN10GUISelArmy7OnEventERK5Event(struct GUISelArmy *self, const struct Even
             int i;
             for (i = 0; i < 4; i++) {
                 if (event->info.GUI.ptr == (struct GUIElement *) self->ArmyItem[i]) {
-                    if (self->UseCard)
+                    struct CGameState *game = (struct CGameState *) (_ZN13CStateManager11GetStatePtrE6EState(
+                            _ZN13CStateManager8InstanceEv(), Game));
+                    if ((_ZN10GUIBuyCard10GetSelCardEv(game->BuyCardGUI) != NULL) &&
+                        game->BuyCardGUI->CardCanTarget && game->BuyCardGUI->CardTargetArmy)
                         _ZN10GUISelArmy10TargetArmyEi(self, i);
                     else
                         _ZN10GUISelArmy15MoveArmyToFrontEi(self, i);

@@ -6,7 +6,6 @@
 //Extra feature:
 //mark neutral countries as defeated to exclude them from turn cycle and win check
 //add player neutral country into defeat list
-//allow to use card on select army side bar
 //TODO: Fix AI bug caused by controlling player country
 
 #include <stddef.h>
@@ -170,7 +169,6 @@ bool _ZN8CCountry13IsLocalPlayerEv(struct CCountry *self) {
 }
 
 //Skip is implemented here
-//Also: allow to use card on select army side bar
 void _ZN10CGameState6UpdateEf(struct CGameState *self, float time) {
     if (self->IdleTimerEnabled) {
         self->IdleTimer -= time;
@@ -191,11 +189,6 @@ void _ZN10CGameState6UpdateEf(struct CGameState *self, float time) {
         }
         self->BuyingCard = false;
     }
-    //allow to use card on select army side bar
-    self->SelArmyGUI->UseCard =
-            (_ZN10GUIBuyCard10GetSelCardEv(self->BuyCardGUI) != NULL) &&
-            self->BuyCardGUI->CardCanTarget &&
-            self->BuyCardGUI->CardTargetArmy;
     do {
         if ((self->PauseBoxGUI->Flags & GUI_Shown)
             || (self->OptionsGUI && (self->OptionsGUI->Flags & GUI_Shown))

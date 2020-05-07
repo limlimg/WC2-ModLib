@@ -22,7 +22,7 @@ def__ZNSt6vector9push_backE(type, type_name)
 
 #define _ZNSt6vector4sizeE(type_name) _ZNSt6vectorI##type_name##SaI##type_name##EE4sizeE
 #ifndef __cplusplus
-#define def__ZNSt6vector4sizeE(type, type_name) size_t _ZNSt6vector4sizeE(type_name)(_ZSt6vector(type_name) *self);
+#define def__ZNSt6vector4sizeE(type, type_name)
 #else
 #define def__ZNSt6vector4sizeE(type, type_name) static inline size_t _ZNSt6vector4sizeE(type_name)(_ZSt6vector(type_name) *self) {\
     return ((std::vector<type> *)self)->size();\
@@ -31,7 +31,7 @@ def__ZNSt6vector9push_backE(type, type_name)
 
 #define _ZNSt6vectorixE(type_name) _ZNSt6vectorI##type_name##SaI##type_name##EEixE
 #ifndef __cplusplus
-#define def__ZNSt6vectorixE(type, type_name) type *_ZNSt6vectorixE(type_name)(_ZSt6vector(type_name) *self, size_t i);
+#define def__ZNSt6vectorixE(type, type_name)
 #else
 #define def__ZNSt6vectorixE(type, type_name) static inline type &_ZNSt6vectorixE(type_name)(_ZSt6vector(type_name) *self, size_t i) {\
     return ((std::vector<type> *)self)->operator[](i);\
@@ -40,7 +40,7 @@ def__ZNSt6vector9push_backE(type, type_name)
 
 #define _ZNSt6vector9push_backE(type_name) _ZNSt6vectorI##type_name##SaI##type_name##EE9push_backE
 #ifndef __cplusplus
-#define def__ZNSt6vector9push_backE(type, type_name) void _ZNSt6vector9push_backE(type_name)(_ZSt6vector(type_name) *self, type *e);
+#define def__ZNSt6vector9push_backE(type, type_name)
 #else
 #define def__ZNSt6vector9push_backE(type, type_name) static inline void _ZNSt6vector9push_backE(type_name)(_ZSt6vector(type_name) *self, type &e) {\
     ((std::vector<type> *)self)->push_back(e);\

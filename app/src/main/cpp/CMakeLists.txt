@@ -22,9 +22,16 @@ add_library( # Sets the name of the library.
         code/SelectArmy.c
         code/AutoAndSkip.cpp
         code/InGameLoad.c
-        #sample_code/CampaignSize.cpp
-        #sample_code/SelectCountry.cpp
+        code/CampaignSize.c
+        code/SelectCountry.cpp
         #sample_code/MapExtension.cpp
+
+        tinyxml/tinyxml.cpp
+        tinyxml/tinyxml.h
+        tinyxml/tinyxmlerror.cpp
+        tinyxml/tinyxmlparser.cpp
+        tinyxml/tinystr.cpp
+        tinyxml/tinystr.h
 
         easytech/src/${CMAKE_ANDROID_ARCH_ABI}/plt.c
         easytech/src/CActionAI.cpp
@@ -34,6 +41,7 @@ set_target_properties(modlibeasytech PROPERTIES C_VISIBILITY_PRESET protected)
 set_target_properties(modlibeasytech PROPERTIES CXX_VISIBILITY_PRESET protected)
 
 target_include_directories(modlibeasytech PRIVATE easytech/includes)
+target_include_directories(modlibeasytech PRIVATE tinyxml)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by

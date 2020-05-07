@@ -1,4 +1,3 @@
-//InGameLoad.cpp
 //Change the retry button into load button
 //auto-save a new game
 //don't close GUI after saving
@@ -71,5 +70,3 @@ void _ZN10CGameState6OnExitEv(struct CGameState *self) {
     InGameLoad = false;
     easytech(_ZN10CGameState6OnExitEv)(self);
 }
-
-//End of File InGameLoad.cpp

@@ -3,6 +3,17 @@
 
 #include "CCountry.h"
 
+#define ArmyType_Infantry 0
+#define ArmyType_Panzer 1
+#define ArmyType_Artillery 2
+#define ArmyType_Rocket 3
+#define ArmyType_Tank 4
+#define ArmyType_HeavyTank 5
+#define ArmyType_Destroyer 6
+#define ArmyType_Cruiser 7
+#define ArmyType_Battleship 8
+#define ArmyType_AircraftCarrier 9
+
 __BEGIN_DECLS
 
 struct SaveArmyInfo;

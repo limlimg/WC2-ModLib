@@ -24,7 +24,8 @@ add_library( # Sets the name of the library.
         code/InGameLoad.c
         code/CampaignSize.c
         code/SelectCountry.cpp
-        #sample_code/MapExtension.cpp
+        code/MapExtension.c
+        code/CustomGame.c
 
         tinyxml/tinyxml.cpp
         tinyxml/tinyxml.h

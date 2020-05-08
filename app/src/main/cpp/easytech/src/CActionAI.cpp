@@ -122,79 +122,14 @@ CActionAssist::CActionAssist() {}
 
 CActionAssist::~CActionAssist() {}
 
+int _ZN13CActionAssist13calcAreaValueEP5CArea(struct CActionAssist *self, struct CArea *area) {
+    if (area == NULL)
+        return -1;
+    const int TypeAdd[] = {0, 250, 80, 150, 80};
+    const int InstalltionAdd[] = {0, 20, 15, 10};
+    return _ZN5CArea10GetRealTaxEv(area) * 2 + _ZN5CArea11GetIndustryEv(area) * 3 +
+           ((area->AreaType < 5) ? TypeAdd[area->AreaType] : 0) +
+           ((area->InstalltionType < 4) ? InstalltionAdd[area->InstalltionType] : 0);
+}
+
 __END_DECLS
-
-/*
-safe_free_pointer<int8_t> HIDDEN g_SearchNodeTag;
-safe_free_pointer<int> HIDDEN g_SearchNodeQueue;
-
-int OVERRIDE CActionAssist::searchNodeByID(int AreaID, int ArmyIndex)
-{
-    unsigned int AreaCount = g_Scene.GetNumAreas();
-    g_SearchNodeTag = new int8_t[AreaCount];
-    memset((void*)g_SearchNodeTag, -1, AreaCount);
-    g_SearchNodeQueue = new int[AreaCount];
-    this->SearchNodeHead = -1;
-    this->SearchNodeTail = 0;
-    g_SearchNodeTag[AreaID] = 0;
-    g_SearchNodeQueue[0] = AreaID;
-    while(this->SearchNodeHead < this->SearchNodeTail)
-    {
-        if(this->searchNode(AreaID, ArmyIndex) != -1)
-            return g_Scene.GetAdjacentArea(AreaID, g_SearchNodeTag[this->SearchNodeTail])->ID;
-    }
-    return -1;
-}
-
-int OVERRIDE CActionAssist::searchNode(int AreaID, int ArmyIndex)
-{
-    int CurrentNodeAreaID = g_SearchNodeQueue[this->SearchNodeTail];
-    int AdAreaCount = g_Scene.GetNumAdjacentAreas(CurrentNodeAreaID);
-    int8_t i;
-    for(i = 0; i < AdAreaCount; i++)
-    {
-        CArea *SearchArea = g_Scene.GetAdjacentArea(CurrentNodeAreaID, i);
-        if(g_SearchNodeTag[SearchArea->ID] != -1)
-            continue;
-        if(!this->aiCheckMoveable(CurrentNodeAreaID, SearchArea->ID, ArmyIndex, AreaID))
-        //|| !this->aiCheckAttackable(CurrentNodeAreaID, SearchArea->ID, ArmyIndex, AreaID))
-            continue;
-        if(!SearchArea->Sea
-        && this->getAlliance(AreaID, SearchArea->ID, 256)
-        && !this->getAlliance(AreaID, SearchArea->ID, 1024))
-            continue;
-        if(CurrentNodeAreaID == AreaID)
-            g_SearchNodeTag[SearchArea->ID] = i;
-        else
-            g_SearchNodeTag[SearchArea->ID] = g_SearchNodeTag[CurrentNodeAreaID];
-        this->SearchNodeTail += 1;
-        if(this->getAlliance(AreaID, SearchArea->ID, 768))
-            continue;
-        if(g_Scene.GetArea(AreaID)->GetArmy(ArmyIndex)->IsNavy())
-        {
-            if(!SearchArea->Sea)
-            {
-                if(SearchArea->ArmyCount > 0)
-                    this->TargetNodeType = 3;
-                else
-                    this->TargetNodeType = 1;
-                return SearchArea->ID;
-            }
-            if(SearchArea->AreaType == 2)
-            {
-                this->TargetNodeType = 2;
-                return SearchArea->ID;
-            }
-        }
-        if(!SearchArea->Sea)
-        {
-            if(this->calcAreaValue(SearchArea) > 80)
-                this->TargetNodeType = 3;
-            else
-                this->TargetNodeType = (SearchArea->ArmyCount > 0)?2:1;
-            return SearchArea->ID;
-        }
-    }
-    return -1;
-}
-*/

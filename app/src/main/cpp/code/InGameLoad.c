@@ -2,7 +2,7 @@
 //auto-save a new game
 //don't close GUI after saving
 
-#include <malloc.h>
+#include "cxxnew.h"
 #include "easytech.h"
 #include "CStateManager/CGameState.h"
 #include "CGameManager.h"
@@ -10,7 +10,7 @@
 static bool InGameLoad = false;
 
 static void _ZN10CGameState11OpenSaveGUIEb(struct CGameState *self, bool load) {
-    self->SaveGUI = malloc(sizeof(struct GUISave));
+    self->SaveGUI = new(struct GUISave);
     _ZN7GUISaveC1Ev(self->SaveGUI);
     struct GUIRect rect = {0.0, 0.0, _ZN10ecGraphics8InstanceEv()->DisplaySize[0],
                            _ZN10ecGraphics8InstanceEv()->DisplaySize[1]};

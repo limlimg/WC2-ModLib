@@ -5,6 +5,11 @@
 
 __BEGIN_DECLS
 
+#define Card_Assault 0
+#define Card_Defence 1
+#define Card_Carrier 2
+#define Card_Commander 3
+
 struct AreaInfo;
 struct SaveAreaInfo;
 struct CArea {

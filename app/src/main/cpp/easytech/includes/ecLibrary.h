@@ -92,7 +92,7 @@ struct ecImageAttr *_ZN12ecTextureRes8GetImageEPKc(struct ecTextureRes *self, co
 
 struct ecTexture *_ZN12ecTextureRes10GetTextureEPKc(struct ecTextureRes *self, const char *name);
 
-bool LoadRes(struct ecTextureRes *self, const char *name, bool shrink);
+bool _ZN12ecTextureRes7LoadResEPKcb(struct ecTextureRes *self, const char *name, bool shrink);
 
 void _ZN12ecTextureRes7ReleaseEv(struct ecTextureRes *self);
 

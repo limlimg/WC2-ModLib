@@ -10,8 +10,8 @@
 
 #include <stddef.h>
 #include <stdbool.h>
-#include <malloc.h>
 #include <math.h>
+#include "cxxnew.h"
 #include "easytech.h"
 #include "CGameManager.h"
 #include "CScene.h"

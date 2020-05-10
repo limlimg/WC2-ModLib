@@ -378,6 +378,19 @@ got(_Z18GetConquestKeyNameiPc)
 got(_Z17GetBattleFileNameiiiiPc)
 got(_Z24GetNumMultiPlayerBattlesi)
 got(_Z24GetBattleBelligerentListPKcRSt4listI11BelligerentSaIS2_EEb)
+
+got(_ZN13TiXmlDocumentC1EPKc)
+
+got(_ZN13TiXmlDocument8LoadFileE13TiXmlEncoding)
+bss(_ZN11TiXmlString8nullrep_E, 12)
+
+got(_ZN9TiXmlNodeD2Ev)
+
+got(_ZN9TiXmlNode10FirstChildEPKc)
+
+got(_ZNK12TiXmlElement9AttributeEPKc)
+
+got(_ZNK12TiXmlElement17QueryIntAttributeEPKcPi)
 got(_ZN12CGameManagerC2Ev)
 got(_ZN12CGameManagerC1Ev)
 got(_ZN12CGameManager4InitEv)
@@ -409,8 +422,20 @@ got(_ZN12CGameManager21GetLocalPlayerCountryEv)
 got(_ZN12CGameManager15GetNumDialoguesEv)
 got(_ZN12CGameManager18GetDialogueByIndexEi)
 got(_ZN12CGameManager10SaveBattleEPKc)
+
+got(_ZN12TiXmlElementC1EPKc)
+
+got(_ZN12TiXmlElement12SetAttributeEPKci)
+
+got(_ZN12TiXmlElement12SetAttributeEPKcS1_)
+
+got(_ZN12TiXmlElement18SetDoubleAttributeEPKcd)
+
+got(_ZN9TiXmlNode12LinkEndChildEPS_)
 got(_ZN8CCountry16GetCommanderNameEv)
 got(_ZN6CScene11GetNumAreasEv)
+
+got(_ZNK13TiXmlDocument8SaveFileEv)
 got(_ZN12CGameManager14GetCurDialogueEv)
 got(_ZN12CGameManager20GetCurDialogueStringEPc)
 got(_ZN12CGameManager12NextDialogueEv)
@@ -449,6 +474,8 @@ got(_ZN7CCamera6SetPosEffb)
 got(_ZN5CArea8LoadAreaEPK12SaveAreaInfo)
 got(_ZN8CCountry7AddAreaEi)
 got(_ZN12CGameManager10LoadBattleEPKc)
+
+got(_ZNK12TiXmlElement20QueryDoubleAttributeEPKcPd)
 got(_ZN8CCountry12SetCommanderEPKc)
 got(_ZN14CPlayerManager21FindPlayerByCountryIDEPKc)
 got(_ZN6CScene14SetAreaCountryEiP8CCountry)
@@ -1671,6 +1698,376 @@ got(_ZN18ecSessionInterfaceD2Ev)
 got(_ZN18ecSessionInterface7ReleaseEv)
 got(_ZN18ecSessionInterface10DisconnectEPKc)
 got(_ZN18ecSessionInterface20SendPacketToAllPeersEPKvi)
+
+got(_ZN11TiXmlString7reserveEj)
+
+got(_ZN11TiXmlString6assignEPKcj)
+
+got(_ZN11TiXmlString6appendEPKcj)
+
+got(_ZNK9TiXmlNode10ToDocumentEv)
+
+got(_ZNK9TiXmlNode9ToElementEv)
+
+got(_ZNK9TiXmlNode9ToCommentEv)
+
+got(_ZNK9TiXmlNode9ToUnknownEv)
+
+got(_ZNK9TiXmlNode6ToTextEv)
+
+got(_ZNK9TiXmlNode13ToDeclarationEv)
+
+got(_ZN9TiXmlNode10ToDocumentEv)
+
+got(_ZN9TiXmlNode9ToElementEv)
+
+got(_ZN9TiXmlNode9ToCommentEv)
+
+got(_ZN9TiXmlNode9ToUnknownEv)
+
+got(_ZN9TiXmlNode6ToTextEv)
+
+got(_ZN9TiXmlNode13ToDeclarationEv)
+
+got(_ZNK12TiXmlElement9ToElementEv)
+
+got(_ZN12TiXmlElement9ToElementEv)
+
+got(_ZNK12TiXmlComment9ToCommentEv)
+
+got(_ZN12TiXmlComment9ToCommentEv)
+
+got(_ZNK9TiXmlText6ToTextEv)
+
+got(_ZN9TiXmlText6ToTextEv)
+
+got(_ZNK16TiXmlDeclaration13ToDeclarationEv)
+
+got(_ZN16TiXmlDeclaration13ToDeclarationEv)
+
+got(_ZNK12TiXmlUnknown9ToUnknownEv)
+
+got(_ZN12TiXmlUnknown9ToUnknownEv)
+
+got(_ZNK12TiXmlComment9StreamOutEP14TiXmlOutStream)
+
+got(_ZNK12TiXmlUnknown9StreamOutEP14TiXmlOutStream)
+
+got(_ZNK12TiXmlComment5PrintEP7__sFILEi)
+
+got(_ZNK12TiXmlUnknown5PrintEP7__sFILEi)
+
+got(_ZNK16TiXmlDeclaration5PrintEP7__sFILEi)
+
+got(_ZN9TiXmlBase9PutStringERK11TiXmlStringPS0_)
+
+got(_ZN9TiXmlBase9PutStringERK11TiXmlStringP14TiXmlOutStream)
+
+got(_ZNK9TiXmlText9StreamOutEP14TiXmlOutStream)
+
+got(_ZNK16TiXmlDeclaration9StreamOutEP14TiXmlOutStream)
+
+got(_ZNK9TiXmlText5PrintEP7__sFILEi)
+
+got(_ZN9TiXmlBase14StringToBufferC2ERK11TiXmlString)
+
+got(_ZN9TiXmlBase14StringToBufferC1ERK11TiXmlString)
+
+got(_ZN9TiXmlBase14StringToBufferD2Ev)
+
+got(_ZN9TiXmlBase14StringToBufferD1Ev)
+
+got(_ZN9TiXmlNodeC2ENS_8NodeTypeE)
+
+got(_ZN9TiXmlNodeC1ENS_8NodeTypeE)
+
+got(_ZN9TiXmlNodeD1Ev)
+
+got(_ZN12TiXmlUnknownD2Ev)
+
+got(_ZN12TiXmlUnknownD1Ev)
+
+got(_ZN12TiXmlUnknownD0Ev)
+
+got(_ZN16TiXmlDeclarationD2Ev)
+
+got(_ZN16TiXmlDeclarationD1Ev)
+
+got(_ZN9TiXmlTextD2Ev)
+
+got(_ZN9TiXmlTextD1Ev)
+
+got(_ZN9TiXmlTextD0Ev)
+
+got(_ZN12TiXmlCommentD2Ev)
+
+got(_ZN12TiXmlCommentD1Ev)
+
+got(_ZN12TiXmlCommentD0Ev)
+
+got(_ZN16TiXmlDeclarationD0Ev)
+
+got(_ZN9TiXmlNodeD0Ev)
+
+got(_ZNK9TiXmlNode6CopyToEPS_)
+
+got(_ZN9TiXmlNode5ClearEv)
+
+got(_ZN9TiXmlNode14InsertEndChildERKS_)
+
+got(_ZN9TiXmlNode17InsertBeforeChildEPS_RKS_)
+
+got(_ZN9TiXmlNode16InsertAfterChildEPS_RKS_)
+
+got(_ZN9TiXmlNode12ReplaceChildEPS_RKS_)
+
+got(_ZN9TiXmlNode11RemoveChildEPS_)
+
+got(_ZNK9TiXmlNode10FirstChildEPKc)
+
+got(_ZNK9TiXmlNode9LastChildEPKc)
+
+got(_ZN9TiXmlNode9LastChildEPKc)
+
+got(_ZNK9TiXmlNode15IterateChildrenEPKS_)
+
+got(_ZN9TiXmlNode15IterateChildrenEPS_)
+
+got(_ZNK9TiXmlNode11NextSiblingEPKc)
+
+got(_ZNK9TiXmlNode15IterateChildrenEPKcPKS_)
+
+got(_ZN9TiXmlNode11NextSiblingEPKc)
+
+got(_ZN9TiXmlNode15IterateChildrenEPKcPS_)
+
+got(_ZNK9TiXmlNode15PreviousSiblingEPKc)
+
+got(_ZN9TiXmlNode15PreviousSiblingEPKc)
+
+got(_ZNK9TiXmlNode17FirstChildElementEv)
+
+got(_ZN9TiXmlNode17FirstChildElementEv)
+
+got(_ZNK9TiXmlNode17FirstChildElementEPKc)
+
+got(_ZN9TiXmlNode17FirstChildElementEPKc)
+
+got(_ZNK9TiXmlNode18NextSiblingElementEv)
+
+got(_ZN9TiXmlNode18NextSiblingElementEv)
+
+got(_ZNK9TiXmlNode18NextSiblingElementEPKc)
+
+got(_ZN9TiXmlNode18NextSiblingElementEPKc)
+
+got(_ZNK9TiXmlNode11GetDocumentEv)
+
+got(_ZN9TiXmlNode11GetDocumentEv)
+
+got(_ZNK12TiXmlElement7GetTextEv)
+
+got(_ZN13TiXmlDocumentC2Ev)
+
+got(_ZN13TiXmlDocumentC1Ev)
+
+got(_ZN13TiXmlDocumentC2EPKc)
+
+got(_ZN13TiXmlDocument8LoadFileEP7__sFILE13TiXmlEncoding)
+
+got(_ZN13TiXmlDocument8SetErrorEiPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZN13TiXmlDocument8LoadFileEPKc13TiXmlEncoding)
+
+got(_ZNK13TiXmlDocument8SaveFileEP7__sFILE)
+
+got(_ZNK13TiXmlDocument8SaveFileEPKc)
+
+got(_ZNK13TiXmlDocument6CopyToEPS_)
+
+got(_ZN13TiXmlDocumentC2ERKS_)
+
+got(_ZN13TiXmlDocumentC1ERKS_)
+
+got(_ZN13TiXmlDocumentaSERKS_)
+
+got(_ZNK13TiXmlDocument5CloneEv)
+
+got(_ZNK13TiXmlDocument5PrintEP7__sFILEi)
+
+got(_ZNK13TiXmlDocument9StreamOutEP14TiXmlOutStream)
+
+got(_ZNK14TiXmlAttribute4NextEv)
+
+got(_ZNK12TiXmlElement5PrintEP7__sFILEi)
+
+got(_ZNK12TiXmlElement9StreamOutEP14TiXmlOutStream)
+
+got(_ZN14TiXmlAttribute4NextEv)
+
+got(_ZNK14TiXmlAttribute8PreviousEv)
+
+got(_ZN14TiXmlAttribute8PreviousEv)
+
+got(_ZNK14TiXmlAttribute5PrintEP7__sFILEi)
+
+got(_ZNK14TiXmlAttribute9StreamOutEP14TiXmlOutStream)
+
+got(_ZNK14TiXmlAttribute13QueryIntValueEPi)
+
+got(_ZNK14TiXmlAttribute16QueryDoubleValueEPd)
+
+got(_ZN14TiXmlAttribute11SetIntValueEi)
+
+got(_ZN14TiXmlAttribute14SetDoubleValueEd)
+
+got(_ZNK14TiXmlAttribute8IntValueEv)
+
+got(_ZNK14TiXmlAttribute11DoubleValueEv)
+
+got(_ZNK12TiXmlComment6CopyToEPS_)
+
+got(_ZN12TiXmlCommentC2ERKS_)
+
+got(_ZN12TiXmlCommentC1ERKS_)
+
+got(_ZN12TiXmlCommentaSERKS_)
+
+got(_ZNK12TiXmlComment5CloneEv)
+
+got(_ZNK9TiXmlText6CopyToEPS_)
+
+got(_ZNK9TiXmlText5CloneEv)
+
+got(_ZN16TiXmlDeclarationC2EPKcS1_S1_)
+
+got(_ZN16TiXmlDeclarationC1EPKcS1_S1_)
+
+got(_ZNK16TiXmlDeclaration6CopyToEPS_)
+
+got(_ZN16TiXmlDeclarationC2ERKS_)
+
+got(_ZN16TiXmlDeclarationC1ERKS_)
+
+got(_ZN16TiXmlDeclarationaSERKS_)
+
+got(_ZNK16TiXmlDeclaration5CloneEv)
+
+got(_ZNK12TiXmlUnknown6CopyToEPS_)
+
+got(_ZNK12TiXmlUnknown5CloneEv)
+
+got(_ZN17TiXmlAttributeSetC2Ev)
+
+got(_ZN17TiXmlAttributeSetC1Ev)
+
+got(_ZN17TiXmlAttributeSetD2Ev)
+
+got(_ZN17TiXmlAttributeSetD1Ev)
+
+got(_ZN12TiXmlElementC2EPKc)
+
+got(_ZN17TiXmlAttributeSet3AddEP14TiXmlAttribute)
+
+got(_ZN17TiXmlAttributeSet6RemoveEP14TiXmlAttribute)
+
+got(_ZN12TiXmlElement9ClearThisEv)
+
+got(_ZN12TiXmlElementD2Ev)
+
+got(_ZN12TiXmlElementD1Ev)
+
+got(_ZN12TiXmlElementD0Ev)
+
+got(_ZNK17TiXmlAttributeSet4FindERK11TiXmlString)
+
+got(_ZNK12TiXmlElement9AttributeEPKcPi)
+
+got(_ZNK12TiXmlElement9AttributeEPKcPd)
+
+got(_ZN17TiXmlAttributeSet4FindERK11TiXmlString)
+
+got(_ZN12TiXmlElement15RemoveAttributeEPKc)
+
+got(_ZNK12TiXmlElement6CopyToEPS_)
+
+got(_ZN12TiXmlElementC2ERKS_)
+
+got(_ZN12TiXmlElementC1ERKS_)
+
+got(_ZN12TiXmlElementaSERKS_)
+
+got(_ZNK12TiXmlElement5CloneEv)
+
+got(_ZNK11TiXmlHandle10FirstChildEv)
+
+got(_ZNK11TiXmlHandle10FirstChildEPKc)
+
+got(_ZNK11TiXmlHandle17FirstChildElementEv)
+
+got(_ZNK11TiXmlHandle17FirstChildElementEPKc)
+
+got(_ZNK11TiXmlHandle5ChildEi)
+
+got(_ZNK11TiXmlHandle5ChildEPKci)
+
+got(_ZNK11TiXmlHandle12ChildElementEi)
+
+got(_ZNK11TiXmlHandle12ChildElementEPKci)
+
+got(_ZN12TiXmlElement5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZN12TiXmlComment5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZN9TiXmlText5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZN16TiXmlDeclaration5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZN12TiXmlUnknown5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZNK13TiXmlDocument10ToDocumentEv)
+
+got(_ZN13TiXmlDocument10ToDocumentEv)
+
+got(_ZN14TiXmlAttributeD2Ev)
+
+got(_ZN14TiXmlAttributeD1Ev)
+
+got(_ZN13TiXmlDocumentD2Ev)
+
+got(_ZN13TiXmlDocumentD1Ev)
+
+got(_ZN13TiXmlDocumentD0Ev)
+
+got(_ZN14TiXmlAttributeD0Ev)
+
+got(_ZN9TiXmlBase18ConvertUTF32ToUTF8EmPcPi)
+
+got(_ZN9TiXmlBase7IsAlphaEh13TiXmlEncoding)
+
+got(_ZN9TiXmlBase10IsAlphaNumEh13TiXmlEncoding)
+
+got(_ZN16TiXmlParsingData5StampEPKc13TiXmlEncoding)
+
+got(_ZN9TiXmlBase14SkipWhiteSpaceEPKc13TiXmlEncoding)
+
+got(_ZN9TiXmlBase8ReadNameEPKcP11TiXmlString13TiXmlEncoding)
+
+got(_ZN9TiXmlBase9GetEntityEPKcPcPi13TiXmlEncoding)
+
+got(_ZN9TiXmlBase11StringEqualEPKcS1_b13TiXmlEncoding)
+
+got(_ZN9TiXmlBase8ReadTextEPKcP11TiXmlStringbS1_b13TiXmlEncoding)
+
+got(_ZN14TiXmlAttribute5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZN9TiXmlNode8IdentifyEPKc13TiXmlEncoding)
+
+got(_ZN13TiXmlDocument5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+got(_ZNK9TiXmlText5BlankEv)
+
+got(_ZN12TiXmlElement9ReadValueEPKcP16TiXmlParsingData13TiXmlEncoding)
 got(_ZNK9hgeVector5AngleEPKS_)
 got(_ZN7ecImageD2Ev)
 got(_ZN7ecImage4InitEP9ecTextureffff)
@@ -2131,6 +2528,12 @@ void __attribute__((visibility("hidden"))) resolvesymbol() {
     off(_Z17GetBattleFileNameiiiiPc, 323792)
     off(_Z24GetNumMultiPlayerBattlesi, 324176)
     off(_Z24GetBattleBelligerentListPKcRSt4listI11BelligerentSaIS2_EEb, 324256)
+    off(_ZN13TiXmlDocumentC1EPKc, 843216)
+    off(_ZN13TiXmlDocument8LoadFileE13TiXmlEncoding, 844384)
+    off(_ZN9TiXmlNodeD2Ev, 839648)
+    off(_ZN9TiXmlNode10FirstChildEPKc, 841184)
+    off(_ZNK12TiXmlElement9AttributeEPKc, 850272)
+    off(_ZNK12TiXmlElement17QueryIntAttributeEPKcPi, 850880)
     off(_ZN12CGameManagerC2Ev, 325200)
     off(_ZN12CGameManagerC1Ev, 325200)
     off(_ZN12CGameManager4InitEv, 325296)
@@ -2162,8 +2565,14 @@ void __attribute__((visibility("hidden"))) resolvesymbol() {
     off(_ZN12CGameManager15GetNumDialoguesEv, 328752)
     off(_ZN12CGameManager18GetDialogueByIndexEi, 328768)
     off(_ZN12CGameManager10SaveBattleEPKc, 328800)
+    off(_ZN12TiXmlElementC1EPKc, 849664)
+    off(_ZN12TiXmlElement12SetAttributeEPKci, 853104)
+    off(_ZN12TiXmlElement12SetAttributeEPKcS1_, 852192)
+    off(_ZN12TiXmlElement18SetDoubleAttributeEPKcd, 853248)
+    off(_ZN9TiXmlNode12LinkEndChildEPS_, 840560)
     off(_ZN8CCountry16GetCommanderNameEv, 625824)
     off(_ZN6CScene11GetNumAreasEv, 547840)
+    off(_ZNK13TiXmlDocument8SaveFileEv, 844768)
     off(_ZN12CGameManager14GetCurDialogueEv, 331328)
     off(_ZN12CGameManager20GetCurDialogueStringEPc, 331392)
     off(_ZN12CGameManager12NextDialogueEv, 331712)
@@ -2201,6 +2610,7 @@ void __attribute__((visibility("hidden"))) resolvesymbol() {
     off(_ZN5CArea8LoadAreaEPK12SaveAreaInfo, 600032)
     off(_ZN8CCountry7AddAreaEi, 621760)
     off(_ZN12CGameManager10LoadBattleEPKc, 337888)
+    off(_ZNK12TiXmlElement20QueryDoubleAttributeEPKcPd, 851280)
     off(_ZN8CCountry12SetCommanderEPKc, 624960)
     off(_ZN14CPlayerManager21FindPlayerByCountryIDEPKc, 532784)
     off(_ZN6CScene14SetAreaCountryEiP8CCountry, 548912)
@@ -3420,6 +3830,191 @@ void __attribute__((visibility("hidden"))) resolvesymbol() {
     off(_ZN18ecSessionInterface7ReleaseEv, 835152)
     off(_ZN18ecSessionInterface10DisconnectEPKc, 835232)
     off(_ZN18ecSessionInterface20SendPacketToAllPeersEPKvi, 835296)
+    off(_ZN11TiXmlString7reserveEj, 835376)
+    off(_ZN11TiXmlString6assignEPKcj, 835680)
+    off(_ZN11TiXmlString6appendEPKcj, 836032)
+    off(_ZNK9TiXmlNode10ToDocumentEv, 836624)
+    off(_ZNK9TiXmlNode9ToElementEv, 836640)
+    off(_ZNK9TiXmlNode9ToCommentEv, 836656)
+    off(_ZNK9TiXmlNode9ToUnknownEv, 836672)
+    off(_ZNK9TiXmlNode6ToTextEv, 836688)
+    off(_ZNK9TiXmlNode13ToDeclarationEv, 836704)
+    off(_ZN9TiXmlNode10ToDocumentEv, 836720)
+    off(_ZN9TiXmlNode9ToElementEv, 836736)
+    off(_ZN9TiXmlNode9ToCommentEv, 836752)
+    off(_ZN9TiXmlNode9ToUnknownEv, 836768)
+    off(_ZN9TiXmlNode6ToTextEv, 836784)
+    off(_ZN9TiXmlNode13ToDeclarationEv, 836800)
+    off(_ZNK12TiXmlElement9ToElementEv, 836816)
+    off(_ZN12TiXmlElement9ToElementEv, 836832)
+    off(_ZNK12TiXmlComment9ToCommentEv, 836848)
+    off(_ZN12TiXmlComment9ToCommentEv, 836864)
+    off(_ZNK9TiXmlText6ToTextEv, 836880)
+    off(_ZN9TiXmlText6ToTextEv, 836896)
+    off(_ZNK16TiXmlDeclaration13ToDeclarationEv, 836912)
+    off(_ZN16TiXmlDeclaration13ToDeclarationEv, 836928)
+    off(_ZNK12TiXmlUnknown9ToUnknownEv, 836944)
+    off(_ZN12TiXmlUnknown9ToUnknownEv, 836960)
+    off(_ZNK12TiXmlComment9StreamOutEP14TiXmlOutStream, 836976)
+    off(_ZNK12TiXmlUnknown9StreamOutEP14TiXmlOutStream, 837088)
+    off(_ZNK12TiXmlComment5PrintEP7__sFILEi, 837216)
+    off(_ZNK12TiXmlUnknown5PrintEP7__sFILEi, 837376)
+    off(_ZNK16TiXmlDeclaration5PrintEP7__sFILEi, 837520)
+    off(_ZN9TiXmlBase9PutStringERK11TiXmlStringPS0_, 837760)
+    off(_ZN9TiXmlBase9PutStringERK11TiXmlStringP14TiXmlOutStream, 838368)
+    off(_ZNK9TiXmlText9StreamOutEP14TiXmlOutStream, 838544)
+    off(_ZNK16TiXmlDeclaration9StreamOutEP14TiXmlOutStream, 838688)
+    off(_ZNK9TiXmlText5PrintEP7__sFILEi, 839040)
+    off(_ZN9TiXmlBase14StringToBufferC2ERK11TiXmlString, 839408)
+    off(_ZN9TiXmlBase14StringToBufferC1ERK11TiXmlString, 839408)
+    off(_ZN9TiXmlBase14StringToBufferD2Ev, 839488)
+    off(_ZN9TiXmlBase14StringToBufferD1Ev, 839488)
+    off(_ZN9TiXmlNodeC2ENS_8NodeTypeE, 839536)
+    off(_ZN9TiXmlNodeC1ENS_8NodeTypeE, 839536)
+    off(_ZN9TiXmlNodeD1Ev, 839648)
+    off(_ZN12TiXmlUnknownD2Ev, 839760)
+    off(_ZN12TiXmlUnknownD1Ev, 839760)
+    off(_ZN12TiXmlUnknownD0Ev, 839808)
+    off(_ZN16TiXmlDeclarationD2Ev, 839872)
+    off(_ZN16TiXmlDeclarationD1Ev, 839872)
+    off(_ZN9TiXmlTextD2Ev, 839984)
+    off(_ZN9TiXmlTextD1Ev, 839984)
+    off(_ZN9TiXmlTextD0Ev, 840032)
+    off(_ZN12TiXmlCommentD2Ev, 840096)
+    off(_ZN12TiXmlCommentD1Ev, 840096)
+    off(_ZN12TiXmlCommentD0Ev, 840144)
+    off(_ZN16TiXmlDeclarationD0Ev, 840208)
+    off(_ZN9TiXmlNodeD0Ev, 840336)
+    off(_ZNK9TiXmlNode6CopyToEPS_, 840384)
+    off(_ZN9TiXmlNode5ClearEv, 840480)
+    off(_ZN9TiXmlNode14InsertEndChildERKS_, 840608)
+    off(_ZN9TiXmlNode17InsertBeforeChildEPS_RKS_, 840672)
+    off(_ZN9TiXmlNode16InsertAfterChildEPS_RKS_, 840768)
+    off(_ZN9TiXmlNode12ReplaceChildEPS_RKS_, 840864)
+    off(_ZN9TiXmlNode11RemoveChildEPS_, 840992)
+    off(_ZNK9TiXmlNode10FirstChildEPKc, 841088)
+    off(_ZNK9TiXmlNode9LastChildEPKc, 841280)
+    off(_ZN9TiXmlNode9LastChildEPKc, 841376)
+    off(_ZNK9TiXmlNode15IterateChildrenEPKS_, 841472)
+    off(_ZN9TiXmlNode15IterateChildrenEPS_, 841504)
+    off(_ZNK9TiXmlNode11NextSiblingEPKc, 841536)
+    off(_ZNK9TiXmlNode15IterateChildrenEPKcPKS_, 841632)
+    off(_ZN9TiXmlNode11NextSiblingEPKc, 841712)
+    off(_ZN9TiXmlNode15IterateChildrenEPKcPS_, 841808)
+    off(_ZNK9TiXmlNode15PreviousSiblingEPKc, 841888)
+    off(_ZN9TiXmlNode15PreviousSiblingEPKc, 841984)
+    off(_ZNK9TiXmlNode17FirstChildElementEv, 842080)
+    off(_ZN9TiXmlNode17FirstChildElementEv, 842160)
+    off(_ZNK9TiXmlNode17FirstChildElementEPKc, 842240)
+    off(_ZN9TiXmlNode17FirstChildElementEPKc, 842352)
+    off(_ZNK9TiXmlNode18NextSiblingElementEv, 842464)
+    off(_ZN9TiXmlNode18NextSiblingElementEv, 842544)
+    off(_ZNK9TiXmlNode18NextSiblingElementEPKc, 842624)
+    off(_ZN9TiXmlNode18NextSiblingElementEPKc, 842736)
+    off(_ZNK9TiXmlNode11GetDocumentEv, 842848)
+    off(_ZN9TiXmlNode11GetDocumentEv, 842912)
+    off(_ZNK12TiXmlElement7GetTextEv, 842976)
+    off(_ZN13TiXmlDocumentC2Ev, 843024)
+    off(_ZN13TiXmlDocumentC1Ev, 843024)
+    off(_ZN13TiXmlDocumentC2EPKc, 843216)
+    off(_ZN13TiXmlDocument8LoadFileEP7__sFILE13TiXmlEncoding, 843456)
+    off(_ZN13TiXmlDocument8SetErrorEiPKcP16TiXmlParsingData13TiXmlEncoding, 858192)
+    off(_ZN13TiXmlDocument8LoadFileEPKc13TiXmlEncoding, 844160)
+    off(_ZNK13TiXmlDocument8SaveFileEP7__sFILE, 844544)
+    off(_ZNK13TiXmlDocument8SaveFileEPKc, 844672)
+    off(_ZNK13TiXmlDocument6CopyToEPS_, 844928)
+    off(_ZN13TiXmlDocumentC2ERKS_, 845072)
+    off(_ZN13TiXmlDocumentC1ERKS_, 845072)
+    off(_ZN13TiXmlDocumentaSERKS_, 845216)
+    off(_ZNK13TiXmlDocument5CloneEv, 845280)
+    off(_ZNK13TiXmlDocument5PrintEP7__sFILEi, 845376)
+    off(_ZNK13TiXmlDocument9StreamOutEP14TiXmlOutStream, 845488)
+    off(_ZNK14TiXmlAttribute4NextEv, 845552)
+    off(_ZNK12TiXmlElement5PrintEP7__sFILEi, 845600)
+    off(_ZNK12TiXmlElement9StreamOutEP14TiXmlOutStream, 846208)
+    off(_ZN14TiXmlAttribute4NextEv, 846608)
+    off(_ZNK14TiXmlAttribute8PreviousEv, 846640)
+    off(_ZN14TiXmlAttribute8PreviousEv, 846672)
+    off(_ZNK14TiXmlAttribute5PrintEP7__sFILEi, 846720)
+    off(_ZNK14TiXmlAttribute9StreamOutEP14TiXmlOutStream, 847104)
+    off(_ZNK14TiXmlAttribute13QueryIntValueEPi, 847408)
+    off(_ZNK14TiXmlAttribute16QueryDoubleValueEPd, 847488)
+    off(_ZN14TiXmlAttribute11SetIntValueEi, 847568)
+    off(_ZN14TiXmlAttribute14SetDoubleValueEd, 847744)
+    off(_ZNK14TiXmlAttribute8IntValueEv, 847936)
+    off(_ZNK14TiXmlAttribute11DoubleValueEv, 847984)
+    off(_ZNK12TiXmlComment6CopyToEPS_, 848032)
+    off(_ZN12TiXmlCommentC2ERKS_, 848080)
+    off(_ZN12TiXmlCommentC1ERKS_, 848080)
+    off(_ZN12TiXmlCommentaSERKS_, 848176)
+    off(_ZNK12TiXmlComment5CloneEv, 848240)
+    off(_ZNK9TiXmlText6CopyToEPS_, 848352)
+    off(_ZNK9TiXmlText5CloneEv, 848416)
+    off(_ZN16TiXmlDeclarationC2EPKcS1_S1_, 848576)
+    off(_ZN16TiXmlDeclarationC1EPKcS1_S1_, 848576)
+    off(_ZNK16TiXmlDeclaration6CopyToEPS_, 848832)
+    off(_ZN16TiXmlDeclarationC2ERKS_, 848960)
+    off(_ZN16TiXmlDeclarationC1ERKS_, 848960)
+    off(_ZN16TiXmlDeclarationaSERKS_, 849136)
+    off(_ZNK16TiXmlDeclaration5CloneEv, 849200)
+    off(_ZNK12TiXmlUnknown6CopyToEPS_, 849328)
+    off(_ZNK12TiXmlUnknown5CloneEv, 849376)
+    off(_ZN17TiXmlAttributeSetC2Ev, 849488)
+    off(_ZN17TiXmlAttributeSetC1Ev, 849488)
+    off(_ZN17TiXmlAttributeSetD2Ev, 849568)
+    off(_ZN17TiXmlAttributeSetD1Ev, 849568)
+    off(_ZN12TiXmlElementC2EPKc, 849664)
+    off(_ZN17TiXmlAttributeSet3AddEP14TiXmlAttribute, 849824)
+    off(_ZN17TiXmlAttributeSet6RemoveEP14TiXmlAttribute, 849856)
+    off(_ZN12TiXmlElement9ClearThisEv, 849936)
+    off(_ZN12TiXmlElementD2Ev, 850016)
+    off(_ZN12TiXmlElementD1Ev, 850016)
+    off(_ZN12TiXmlElementD0Ev, 850096)
+    off(_ZNK17TiXmlAttributeSet4FindERK11TiXmlString, 850144)
+    off(_ZNK12TiXmlElement9AttributeEPKcPi, 850672)
+    off(_ZNK12TiXmlElement9AttributeEPKcPd, 850768)
+    off(_ZN17TiXmlAttributeSet4FindERK11TiXmlString, 851680)
+    off(_ZN12TiXmlElement15RemoveAttributeEPKc, 851808)
+    off(_ZNK12TiXmlElement6CopyToEPS_, 853408)
+    off(_ZN12TiXmlElementC2ERKS_, 853584)
+    off(_ZN12TiXmlElementC1ERKS_, 853584)
+    off(_ZN12TiXmlElementaSERKS_, 853728)
+    off(_ZNK12TiXmlElement5CloneEv, 853792)
+    off(_ZNK11TiXmlHandle10FirstChildEv, 853936)
+    off(_ZNK11TiXmlHandle10FirstChildEPKc, 853968)
+    off(_ZNK11TiXmlHandle17FirstChildElementEv, 854048)
+    off(_ZNK11TiXmlHandle17FirstChildElementEPKc, 854128)
+    off(_ZNK11TiXmlHandle5ChildEi, 854208)
+    off(_ZNK11TiXmlHandle5ChildEPKci, 854272)
+    off(_ZNK11TiXmlHandle12ChildElementEi, 854400)
+    off(_ZNK11TiXmlHandle12ChildElementEPKci, 854528)
+    off(_ZN12TiXmlElement5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 863696)
+    off(_ZN12TiXmlComment5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 860768)
+    off(_ZN9TiXmlText5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 861056)
+    off(_ZN16TiXmlDeclaration5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 861744)
+    off(_ZN12TiXmlUnknown5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 860384)
+    off(_ZNK13TiXmlDocument10ToDocumentEv, 854656)
+    off(_ZN13TiXmlDocument10ToDocumentEv, 854672)
+    off(_ZN14TiXmlAttributeD2Ev, 854688)
+    off(_ZN14TiXmlAttributeD1Ev, 854688)
+    off(_ZN13TiXmlDocumentD2Ev, 854784)
+    off(_ZN13TiXmlDocumentD1Ev, 854784)
+    off(_ZN13TiXmlDocumentD0Ev, 854864)
+    off(_ZN14TiXmlAttributeD0Ev, 854944)
+    off(_ZN9TiXmlBase18ConvertUTF32ToUTF8EmPcPi, 855040)
+    off(_ZN9TiXmlBase7IsAlphaEh13TiXmlEncoding, 855312)
+    off(_ZN9TiXmlBase10IsAlphaNumEh13TiXmlEncoding, 855360)
+    off(_ZN16TiXmlParsingData5StampEPKc13TiXmlEncoding, 855408)
+    off(_ZN9TiXmlBase14SkipWhiteSpaceEPKc13TiXmlEncoding, 855728)
+    off(_ZN9TiXmlBase8ReadNameEPKcP11TiXmlString13TiXmlEncoding, 855968)
+    off(_ZN9TiXmlBase9GetEntityEPKcPcPi13TiXmlEncoding, 856224)
+    off(_ZN9TiXmlBase11StringEqualEPKcS1_b13TiXmlEncoding, 856960)
+    off(_ZN9TiXmlBase8ReadTextEPKcP11TiXmlStringbS1_b13TiXmlEncoding, 857216)
+    off(_ZN14TiXmlAttribute5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 858368)
+    off(_ZN9TiXmlNode8IdentifyEPKc13TiXmlEncoding, 859040)
+    off(_ZN13TiXmlDocument5ParseEPKcP16TiXmlParsingData13TiXmlEncoding, 859696)
+    off(_ZNK9TiXmlText5BlankEv, 863008)
+    off(_ZN12TiXmlElement9ReadValueEPKcP16TiXmlParsingData13TiXmlEncoding, 863168)
     off(_ZNK9hgeVector5AngleEPKS_, 905136)
     off(_ZN7ecImageD2Ev, 905600)
     off(_ZN7ecImage4InitEP9ecTextureffff, 905616)
@@ -3880,6 +4475,18 @@ plt(_Z18GetConquestKeyNameiPc)
 plt(_Z17GetBattleFileNameiiiiPc)
 plt(_Z24GetNumMultiPlayerBattlesi)
 plt(_Z24GetBattleBelligerentListPKcRSt4listI11BelligerentSaIS2_EEb)
+
+plt(_ZN13TiXmlDocumentC1EPKc)
+
+plt(_ZN13TiXmlDocument8LoadFileE13TiXmlEncoding)
+
+plt(_ZN9TiXmlNodeD2Ev)
+
+plt(_ZN9TiXmlNode10FirstChildEPKc)
+
+plt(_ZNK12TiXmlElement9AttributeEPKc)
+
+plt(_ZNK12TiXmlElement17QueryIntAttributeEPKcPi)
 plt(_ZN12CGameManagerC2Ev)
 plt(_ZN12CGameManagerC1Ev)
 plt(_ZN12CGameManager4InitEv)
@@ -3911,8 +4518,20 @@ plt(_ZN12CGameManager21GetLocalPlayerCountryEv)
 plt(_ZN12CGameManager15GetNumDialoguesEv)
 plt(_ZN12CGameManager18GetDialogueByIndexEi)
 plt(_ZN12CGameManager10SaveBattleEPKc)
+
+plt(_ZN12TiXmlElementC1EPKc)
+
+plt(_ZN12TiXmlElement12SetAttributeEPKci)
+
+plt(_ZN12TiXmlElement12SetAttributeEPKcS1_)
+
+plt(_ZN12TiXmlElement18SetDoubleAttributeEPKcd)
+
+plt(_ZN9TiXmlNode12LinkEndChildEPS_)
 plt(_ZN8CCountry16GetCommanderNameEv)
 plt(_ZN6CScene11GetNumAreasEv)
+
+plt(_ZNK13TiXmlDocument8SaveFileEv)
 plt(_ZN12CGameManager14GetCurDialogueEv)
 plt(_ZN12CGameManager20GetCurDialogueStringEPc)
 plt(_ZN12CGameManager12NextDialogueEv)
@@ -3950,6 +4569,8 @@ plt(_ZN7CCamera6SetPosEffb)
 plt(_ZN5CArea8LoadAreaEPK12SaveAreaInfo)
 plt(_ZN8CCountry7AddAreaEi)
 plt(_ZN12CGameManager10LoadBattleEPKc)
+
+plt(_ZNK12TiXmlElement20QueryDoubleAttributeEPKcPd)
 plt(_ZN8CCountry12SetCommanderEPKc)
 plt(_ZN14CPlayerManager21FindPlayerByCountryIDEPKc)
 plt(_ZN6CScene14SetAreaCountryEiP8CCountry)
@@ -5194,6 +5815,376 @@ plt(_ZN18ecSessionInterfaceD2Ev)
 plt(_ZN18ecSessionInterface7ReleaseEv)
 plt(_ZN18ecSessionInterface10DisconnectEPKc)
 plt(_ZN18ecSessionInterface20SendPacketToAllPeersEPKvi)
+
+plt(_ZN11TiXmlString7reserveEj)
+
+plt(_ZN11TiXmlString6assignEPKcj)
+
+plt(_ZN11TiXmlString6appendEPKcj)
+
+plt(_ZNK9TiXmlNode10ToDocumentEv)
+
+plt(_ZNK9TiXmlNode9ToElementEv)
+
+plt(_ZNK9TiXmlNode9ToCommentEv)
+
+plt(_ZNK9TiXmlNode9ToUnknownEv)
+
+plt(_ZNK9TiXmlNode6ToTextEv)
+
+plt(_ZNK9TiXmlNode13ToDeclarationEv)
+
+plt(_ZN9TiXmlNode10ToDocumentEv)
+
+plt(_ZN9TiXmlNode9ToElementEv)
+
+plt(_ZN9TiXmlNode9ToCommentEv)
+
+plt(_ZN9TiXmlNode9ToUnknownEv)
+
+plt(_ZN9TiXmlNode6ToTextEv)
+
+plt(_ZN9TiXmlNode13ToDeclarationEv)
+
+plt(_ZNK12TiXmlElement9ToElementEv)
+
+plt(_ZN12TiXmlElement9ToElementEv)
+
+plt(_ZNK12TiXmlComment9ToCommentEv)
+
+plt(_ZN12TiXmlComment9ToCommentEv)
+
+plt(_ZNK9TiXmlText6ToTextEv)
+
+plt(_ZN9TiXmlText6ToTextEv)
+
+plt(_ZNK16TiXmlDeclaration13ToDeclarationEv)
+
+plt(_ZN16TiXmlDeclaration13ToDeclarationEv)
+
+plt(_ZNK12TiXmlUnknown9ToUnknownEv)
+
+plt(_ZN12TiXmlUnknown9ToUnknownEv)
+
+plt(_ZNK12TiXmlComment9StreamOutEP14TiXmlOutStream)
+
+plt(_ZNK12TiXmlUnknown9StreamOutEP14TiXmlOutStream)
+
+plt(_ZNK12TiXmlComment5PrintEP7__sFILEi)
+
+plt(_ZNK12TiXmlUnknown5PrintEP7__sFILEi)
+
+plt(_ZNK16TiXmlDeclaration5PrintEP7__sFILEi)
+
+plt(_ZN9TiXmlBase9PutStringERK11TiXmlStringPS0_)
+
+plt(_ZN9TiXmlBase9PutStringERK11TiXmlStringP14TiXmlOutStream)
+
+plt(_ZNK9TiXmlText9StreamOutEP14TiXmlOutStream)
+
+plt(_ZNK16TiXmlDeclaration9StreamOutEP14TiXmlOutStream)
+
+plt(_ZNK9TiXmlText5PrintEP7__sFILEi)
+
+plt(_ZN9TiXmlBase14StringToBufferC2ERK11TiXmlString)
+
+plt(_ZN9TiXmlBase14StringToBufferC1ERK11TiXmlString)
+
+plt(_ZN9TiXmlBase14StringToBufferD2Ev)
+
+plt(_ZN9TiXmlBase14StringToBufferD1Ev)
+
+plt(_ZN9TiXmlNodeC2ENS_8NodeTypeE)
+
+plt(_ZN9TiXmlNodeC1ENS_8NodeTypeE)
+
+plt(_ZN9TiXmlNodeD1Ev)
+
+plt(_ZN12TiXmlUnknownD2Ev)
+
+plt(_ZN12TiXmlUnknownD1Ev)
+
+plt(_ZN12TiXmlUnknownD0Ev)
+
+plt(_ZN16TiXmlDeclarationD2Ev)
+
+plt(_ZN16TiXmlDeclarationD1Ev)
+
+plt(_ZN9TiXmlTextD2Ev)
+
+plt(_ZN9TiXmlTextD1Ev)
+
+plt(_ZN9TiXmlTextD0Ev)
+
+plt(_ZN12TiXmlCommentD2Ev)
+
+plt(_ZN12TiXmlCommentD1Ev)
+
+plt(_ZN12TiXmlCommentD0Ev)
+
+plt(_ZN16TiXmlDeclarationD0Ev)
+
+plt(_ZN9TiXmlNodeD0Ev)
+
+plt(_ZNK9TiXmlNode6CopyToEPS_)
+
+plt(_ZN9TiXmlNode5ClearEv)
+
+plt(_ZN9TiXmlNode14InsertEndChildERKS_)
+
+plt(_ZN9TiXmlNode17InsertBeforeChildEPS_RKS_)
+
+plt(_ZN9TiXmlNode16InsertAfterChildEPS_RKS_)
+
+plt(_ZN9TiXmlNode12ReplaceChildEPS_RKS_)
+
+plt(_ZN9TiXmlNode11RemoveChildEPS_)
+
+plt(_ZNK9TiXmlNode10FirstChildEPKc)
+
+plt(_ZNK9TiXmlNode9LastChildEPKc)
+
+plt(_ZN9TiXmlNode9LastChildEPKc)
+
+plt(_ZNK9TiXmlNode15IterateChildrenEPKS_)
+
+plt(_ZN9TiXmlNode15IterateChildrenEPS_)
+
+plt(_ZNK9TiXmlNode11NextSiblingEPKc)
+
+plt(_ZNK9TiXmlNode15IterateChildrenEPKcPKS_)
+
+plt(_ZN9TiXmlNode11NextSiblingEPKc)
+
+plt(_ZN9TiXmlNode15IterateChildrenEPKcPS_)
+
+plt(_ZNK9TiXmlNode15PreviousSiblingEPKc)
+
+plt(_ZN9TiXmlNode15PreviousSiblingEPKc)
+
+plt(_ZNK9TiXmlNode17FirstChildElementEv)
+
+plt(_ZN9TiXmlNode17FirstChildElementEv)
+
+plt(_ZNK9TiXmlNode17FirstChildElementEPKc)
+
+plt(_ZN9TiXmlNode17FirstChildElementEPKc)
+
+plt(_ZNK9TiXmlNode18NextSiblingElementEv)
+
+plt(_ZN9TiXmlNode18NextSiblingElementEv)
+
+plt(_ZNK9TiXmlNode18NextSiblingElementEPKc)
+
+plt(_ZN9TiXmlNode18NextSiblingElementEPKc)
+
+plt(_ZNK9TiXmlNode11GetDocumentEv)
+
+plt(_ZN9TiXmlNode11GetDocumentEv)
+
+plt(_ZNK12TiXmlElement7GetTextEv)
+
+plt(_ZN13TiXmlDocumentC2Ev)
+
+plt(_ZN13TiXmlDocumentC1Ev)
+
+plt(_ZN13TiXmlDocumentC2EPKc)
+
+plt(_ZN13TiXmlDocument8LoadFileEP7__sFILE13TiXmlEncoding)
+
+plt(_ZN13TiXmlDocument8SetErrorEiPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZN13TiXmlDocument8LoadFileEPKc13TiXmlEncoding)
+
+plt(_ZNK13TiXmlDocument8SaveFileEP7__sFILE)
+
+plt(_ZNK13TiXmlDocument8SaveFileEPKc)
+
+plt(_ZNK13TiXmlDocument6CopyToEPS_)
+
+plt(_ZN13TiXmlDocumentC2ERKS_)
+
+plt(_ZN13TiXmlDocumentC1ERKS_)
+
+plt(_ZN13TiXmlDocumentaSERKS_)
+
+plt(_ZNK13TiXmlDocument5CloneEv)
+
+plt(_ZNK13TiXmlDocument5PrintEP7__sFILEi)
+
+plt(_ZNK13TiXmlDocument9StreamOutEP14TiXmlOutStream)
+
+plt(_ZNK14TiXmlAttribute4NextEv)
+
+plt(_ZNK12TiXmlElement5PrintEP7__sFILEi)
+
+plt(_ZNK12TiXmlElement9StreamOutEP14TiXmlOutStream)
+
+plt(_ZN14TiXmlAttribute4NextEv)
+
+plt(_ZNK14TiXmlAttribute8PreviousEv)
+
+plt(_ZN14TiXmlAttribute8PreviousEv)
+
+plt(_ZNK14TiXmlAttribute5PrintEP7__sFILEi)
+
+plt(_ZNK14TiXmlAttribute9StreamOutEP14TiXmlOutStream)
+
+plt(_ZNK14TiXmlAttribute13QueryIntValueEPi)
+
+plt(_ZNK14TiXmlAttribute16QueryDoubleValueEPd)
+
+plt(_ZN14TiXmlAttribute11SetIntValueEi)
+
+plt(_ZN14TiXmlAttribute14SetDoubleValueEd)
+
+plt(_ZNK14TiXmlAttribute8IntValueEv)
+
+plt(_ZNK14TiXmlAttribute11DoubleValueEv)
+
+plt(_ZNK12TiXmlComment6CopyToEPS_)
+
+plt(_ZN12TiXmlCommentC2ERKS_)
+
+plt(_ZN12TiXmlCommentC1ERKS_)
+
+plt(_ZN12TiXmlCommentaSERKS_)
+
+plt(_ZNK12TiXmlComment5CloneEv)
+
+plt(_ZNK9TiXmlText6CopyToEPS_)
+
+plt(_ZNK9TiXmlText5CloneEv)
+
+plt(_ZN16TiXmlDeclarationC2EPKcS1_S1_)
+
+plt(_ZN16TiXmlDeclarationC1EPKcS1_S1_)
+
+plt(_ZNK16TiXmlDeclaration6CopyToEPS_)
+
+plt(_ZN16TiXmlDeclarationC2ERKS_)
+
+plt(_ZN16TiXmlDeclarationC1ERKS_)
+
+plt(_ZN16TiXmlDeclarationaSERKS_)
+
+plt(_ZNK16TiXmlDeclaration5CloneEv)
+
+plt(_ZNK12TiXmlUnknown6CopyToEPS_)
+
+plt(_ZNK12TiXmlUnknown5CloneEv)
+
+plt(_ZN17TiXmlAttributeSetC2Ev)
+
+plt(_ZN17TiXmlAttributeSetC1Ev)
+
+plt(_ZN17TiXmlAttributeSetD2Ev)
+
+plt(_ZN17TiXmlAttributeSetD1Ev)
+
+plt(_ZN12TiXmlElementC2EPKc)
+
+plt(_ZN17TiXmlAttributeSet3AddEP14TiXmlAttribute)
+
+plt(_ZN17TiXmlAttributeSet6RemoveEP14TiXmlAttribute)
+
+plt(_ZN12TiXmlElement9ClearThisEv)
+
+plt(_ZN12TiXmlElementD2Ev)
+
+plt(_ZN12TiXmlElementD1Ev)
+
+plt(_ZN12TiXmlElementD0Ev)
+
+plt(_ZNK17TiXmlAttributeSet4FindERK11TiXmlString)
+
+plt(_ZNK12TiXmlElement9AttributeEPKcPi)
+
+plt(_ZNK12TiXmlElement9AttributeEPKcPd)
+
+plt(_ZN17TiXmlAttributeSet4FindERK11TiXmlString)
+
+plt(_ZN12TiXmlElement15RemoveAttributeEPKc)
+
+plt(_ZNK12TiXmlElement6CopyToEPS_)
+
+plt(_ZN12TiXmlElementC2ERKS_)
+
+plt(_ZN12TiXmlElementC1ERKS_)
+
+plt(_ZN12TiXmlElementaSERKS_)
+
+plt(_ZNK12TiXmlElement5CloneEv)
+
+plt(_ZNK11TiXmlHandle10FirstChildEv)
+
+plt(_ZNK11TiXmlHandle10FirstChildEPKc)
+
+plt(_ZNK11TiXmlHandle17FirstChildElementEv)
+
+plt(_ZNK11TiXmlHandle17FirstChildElementEPKc)
+
+plt(_ZNK11TiXmlHandle5ChildEi)
+
+plt(_ZNK11TiXmlHandle5ChildEPKci)
+
+plt(_ZNK11TiXmlHandle12ChildElementEi)
+
+plt(_ZNK11TiXmlHandle12ChildElementEPKci)
+
+plt(_ZN12TiXmlElement5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZN12TiXmlComment5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZN9TiXmlText5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZN16TiXmlDeclaration5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZN12TiXmlUnknown5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZNK13TiXmlDocument10ToDocumentEv)
+
+plt(_ZN13TiXmlDocument10ToDocumentEv)
+
+plt(_ZN14TiXmlAttributeD2Ev)
+
+plt(_ZN14TiXmlAttributeD1Ev)
+
+plt(_ZN13TiXmlDocumentD2Ev)
+
+plt(_ZN13TiXmlDocumentD1Ev)
+
+plt(_ZN13TiXmlDocumentD0Ev)
+
+plt(_ZN14TiXmlAttributeD0Ev)
+
+plt(_ZN9TiXmlBase18ConvertUTF32ToUTF8EmPcPi)
+
+plt(_ZN9TiXmlBase7IsAlphaEh13TiXmlEncoding)
+
+plt(_ZN9TiXmlBase10IsAlphaNumEh13TiXmlEncoding)
+
+plt(_ZN16TiXmlParsingData5StampEPKc13TiXmlEncoding)
+
+plt(_ZN9TiXmlBase14SkipWhiteSpaceEPKc13TiXmlEncoding)
+
+plt(_ZN9TiXmlBase8ReadNameEPKcP11TiXmlString13TiXmlEncoding)
+
+plt(_ZN9TiXmlBase9GetEntityEPKcPcPi13TiXmlEncoding)
+
+plt(_ZN9TiXmlBase11StringEqualEPKcS1_b13TiXmlEncoding)
+
+plt(_ZN9TiXmlBase8ReadTextEPKcP11TiXmlStringbS1_b13TiXmlEncoding)
+
+plt(_ZN14TiXmlAttribute5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZN9TiXmlNode8IdentifyEPKc13TiXmlEncoding)
+
+plt(_ZN13TiXmlDocument5ParseEPKcP16TiXmlParsingData13TiXmlEncoding)
+
+plt(_ZNK9TiXmlText5BlankEv)
+
+plt(_ZN12TiXmlElement9ReadValueEPKcP16TiXmlParsingData13TiXmlEncoding)
 plt(_ZNK9hgeVector5AngleEPKS_)
 plt(_ZN7ecImageD2Ev)
 plt(_ZN7ecImage4InitEP9ecTextureffff)

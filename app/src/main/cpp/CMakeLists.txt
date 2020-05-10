@@ -28,13 +28,6 @@ add_library( # Sets the name of the library.
         code/bugfix.cpp
         code/CustomGame.cpp
 
-        tinyxml/tinyxml.cpp
-        tinyxml/tinyxml.h
-        tinyxml/tinyxmlerror.cpp
-        tinyxml/tinyxmlparser.cpp
-        tinyxml/tinystr.cpp
-        tinyxml/tinystr.h
-
         easytech/src/${CMAKE_ANDROID_ARCH_ABI}/plt.c
         easytech/src/CActionAI.cpp
         )

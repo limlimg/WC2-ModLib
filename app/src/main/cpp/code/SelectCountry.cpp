@@ -5,29 +5,29 @@
 #include "cxxlist.h"
 #include "CGameManager.h"
 #include "GUI/MenuGUI.h"
-#include "tinyxml.h"
 #include <cstring>
 
-__BEGIN_DECLS
-
-def__ZSt4list(Belligerent, 11Belligerent)
-void
-GetBattleBelligerentList(const char *FileName, _ZSt4list(11Belligerent) &result, bool IgnoreAI) {
-    TiXmlDocument xml(_Z7GetPathPKcS0_(FileName, NULL));
+/* TODO: fix TinyXml issue
+void GetBattleBelligerentList(const char *FileName, std::list<Belligerent> &result, bool IgnoreAI) {
+    Belligerent test = {"de", "de", "common3", 1};
+    result.push_back(test);
+    TiXmlDocument xml(GetPath(FileName, NULL));
     if (!xml.LoadFile())
-        return;
+        //return;
+    result.push_back(test);
     TiXmlNode *battle = xml.FirstChild("battle");
     if (battle == NULL)
         return;
+    result.push_back(test);
     TiXmlElement *list;
     bool CountryFound = false;
     bool UseAlliance = false;
-    do {
         for (list = battle->FirstChildElement(); list != NULL; list = list->NextSiblingElement()) {
-            const char *name;
-            name = list->Attribute("name");
-            if (name == NULL || strcmp(name, "country") != 0)
-                continue;
+        const char *name;
+        name = list->Attribute("name");
+        if (name == NULL || strcmp(name, "country") != 0)
+            continue;
+        do {
             TiXmlElement *country;
             for (country = list->FirstChildElement();
                  country != NULL; country = country->NextSiblingElement()) {
@@ -50,49 +50,50 @@ GetBattleBelligerentList(const char *FileName, _ZSt4list(11Belligerent) &result,
                     else
                         strncpy(item.commander, DefaultCommander, sizeof(item.commander) - 1);
                     if (alliance == NULL || strcmp(alliance, "n") == 0)
-                        item.alliance = NeutralID;
+                        item.alliance = CCountry::NeutralID;
                     else
-                        item.alliance = alliance[0] - 'a' + 1;
-                    _ZNSt4list9push_backE(11Belligerent)(&result, item);
+                        switch (alliance[0]) {
+                            case 'a':
+                                item.alliance = 1;
+                                break;
+                            case 'b':
+                                item.alliance = 2;
+                                break;
+                            case 'c':
+                                item.alliance = 3;
+                                break;
+                            default:
+                                item.alliance = CCountry::NeutralID;
+                        }
+                    result.push_back(item);
                     CountryFound = true;
                 }
             }
-        }
-        if (UseAlliance) {
-            if (!CountryFound)
+            if (UseAlliance)
                 return;
-            else
-                break;
-        }
-        UseAlliance = true;
-    } while (!CountryFound);
-}
+            UseAlliance = true;
+        } while (!CountryFound);
+        return;
+    }
+}*/
 
-void _ZN14GUICountryItem4InitEPKcS1_RK7GUIRect(struct GUICountryItem *self, const char *name,
-                                               const char *id, const struct GUIRect *rect) {
-    self->Rect.Pos[0] = rect->Pos[0];
-    self->Rect.Pos[1] = rect->Pos[1];
-    self->Rect.Size[0] = rect->Size[0];
-    self->Rect.Size[1] = rect->Size[1];
-    strncpy(self->name, name, sizeof(self->name) - 1);
-    strncpy(self->id, id, sizeof(self->id) - 1);
+void GUICountryItem::Init(const char *name, const char *id, const GUIRect &rect) {
+    this->Rect = rect;
+    strncpy(this->name, name, sizeof(this->name) - 1);
+    strncpy(this->id, id, sizeof(this->id) - 1);
     char ButtonName[32];
     sprintf(ButtonName, "button_%s.png", id);
-    ecImageAttr *imageAttr = _ZN12ecTextureRes8GetImageEPKc(&_ZN10GUIElement12s_TextureResE,
-                                                            ButtonName);
+    ecImageAttr *imageAttr = _ZN10GUIElement12s_TextureResE.GetImage(ButtonName);
     if (imageAttr == NULL) {
         sprintf(ButtonName, "button_%s.png", name);
-        imageAttr = _ZN12ecTextureRes8GetImageEPKc(&_ZN10GUIElement12s_TextureResE, ButtonName);
+        imageAttr = _ZN10GUIElement12s_TextureResE.GetImage(ButtonName);
     }
-    self->Image_button = new ecImage;
-    _ZN7ecImageC1EP11ecImageAttr(self->Image_button, imageAttr);
-    imageAttr = _ZN12ecTextureRes8GetImageEPKc(&_ZN10GUIElement12s_TextureResE,
-                                               "small_rankstar.png");
-    self->Image_small_rankstar = new ecImage;
-    _ZN7ecImageC1EP11ecImageAttr(self->Image_small_rankstar, imageAttr);
-    self->Touched = false;
-    self->Selected = false;
-    self->RankStar = 0;
+    this->Image_button = new ecImage;
+    _ZN7ecImageC1EP11ecImageAttr(this->Image_button, imageAttr);
+    imageAttr = _ZN10GUIElement12s_TextureResE.GetImage("small_rankstar.png");
+    this->Image_small_rankstar = new ecImage;
+    _ZN7ecImageC1EP11ecImageAttr(this->Image_small_rankstar, imageAttr);
+    this->Touched = false;
+    this->Selected = false;
+    this->RankStar = 0;
 }
-
-__END_DECLS

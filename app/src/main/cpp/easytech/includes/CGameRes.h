@@ -3,22 +3,15 @@
 
 #include "ecLibrary.h"
 
-__BEGIN_DECLS
-
-#ifndef def__ZSt3map_Ss_P7ecImage
-#define def__ZSt3map_Ss_P7ecImage
-def__ZSt3map(string, Ss, struct ecImage*, P7ecImage)
-
-#endif
 struct CGameRes {
     struct ecTextureRes TextureRes_army;
     struct ecImage *Image_carrier;
-    _ZSt3map(Ss, P7ecImage) Image_soldier;
-    _ZSt3map(Ss, P7ecImage) Image_panzer;
-    _ZSt3map(Ss, P7ecImage) Image_cannon;
-    _ZSt3map(Ss, P7ecImage) Image_rocketlauncher;
-    _ZSt3map(Ss, P7ecImage) Image_tank;
-    _ZSt3map(Ss, P7ecImage) Image_heavytank;
+    map(string, ecImage*) Image_soldier;
+    map(string, ecImage*) Image_panzer;
+    map(string, ecImage*) Image_cannon;
+    map(string, ecImage*) Image_rocketlauncher;
+    map(string, ecImage*) Image_tank;
+    map(string, ecImage*) Image_heavytank;
     struct ecImage *Image_army_ne[10];
     struct ecImage *Image_unitbase_green[4];
     struct ecImage *Image_unitbase_blue[4];
@@ -28,7 +21,7 @@ struct CGameRes {
     struct ecImage *Image_commander_level[5];
     struct ecImage *Image_medal;
     struct ecImage *Image_medal_light;
-    _ZSt3map(Ss, P7ecImage) ImageCountryMedal;
+    map(string, ecImage*) ImageCountryMedal;
     struct ecImage *Image_mark_carriers[6];
     struct ecImage *Image_maek_carriers_color[4];
     struct ecImage *Image_hpbar;
@@ -40,7 +33,7 @@ struct CGameRes {
     struct ecImage *Image_arrow_red;
     struct ecImage *Image_arrow_blue;
     struct ecImage *Image_arrowshadow;
-    _ZSt3map(Ss, P7ecImage) Image_flag;
+    map(string, ecImage*) Image_flag;
     struct ecImage *Image_buildmark_installtion[4];
     struct ecImage *Image_buildmark_city[4];
     struct ecImage *Image_buildmark_factory[3];
@@ -52,8 +45,59 @@ struct CGameRes {
     struct ecImage *Image_card_research[5];
     struct ecTextureRes TextureRes_battlebg;
     struct ecTextureRes TextureRes_flag;
+#ifdef __cplusplus
+
+    void Load();
+
+    void Release();
+
+    ecImage *GetArmyImage(const char *CountryName, int ArmyType, bool Sea);
+
+    ecImageAttr *GetBattleBG(const char *name);
+
+    ecImageAttr *GetFlagImage(const char *name);
+
+    void RenderAICommanderMedal(int ArmyCount, float x, float y, const char *CountryName,
+                                int CommonType);
+
+    void
+    RenderArmy(const char *CountryName, int Alliance, int ArmyCount, float x, float y, int ArmyType,
+               unsigned long Color, bool Sea, float Direction);
+
+    void RenderArmyHP(float x, float y, int HP, int MaxHP);
+
+    void RenderArmyInfo(int ArmyCount, float x, float y, int HP, int MaxHP, int Movement, int Cards,
+                        int Level);
+
+    void RenderArmyLevel(float x, float y, int Level);
+
+    void RenderArmyMovementNum(float x, float y, int Movement);
+
+    void RenderCommanderMedal(int ArmyCount, float x, float y, int CommanderLevel);
+
+    void RenderConstruction(int Type, int Level, float x, float y);
+
+    void RenderFlag(const char *CountryName, float x, float y);
+
+    void RenderInstallation(int Type, float x, float y);
+
+    void RenderPort(float x, float y);
+
+    void RenderUIArmy(const char *CountryName, float x, float y, int ArmyType, bool Sea, int HP,
+                      int MaxHP, int Movement, int Cards, int Level);
+
+    void
+    RenderUIAttackArmy(const char *CountryName, float x, float y, int ArmyType, int HP, int MaxHP,
+                       int Movement, int Cards, int Level, int CommonType, bool AI);
+
+    void
+    RenderUIDefendArmy(const char *CountryName, float x, float y, int ArmyType, int HP, int MaxHP,
+                       int Movement, int Cards, int Level, int CommonType, bool AI);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN8CGameResC1Ev(struct CGameRes *self);
 
 void _ZN8CGameResC2Ev(struct CGameRes *self);
@@ -121,21 +165,6 @@ void _ZN8CGameRes18RenderUIDefendArmyEPKcffiiiiiiib(struct CGameRes *self, const
                                                     int CommonType, bool AI);
 
 extern struct CGameRes g_GameRes;
-
-static inline unsigned long HpColor(int HP, int MaxHP) {
-    int r, g, b;
-    if (HP * 2 <= MaxHP) {
-        r = 0;
-        g = 255 - 255 * (MaxHP - 2 * HP) / MaxHP;
-        b = 255;
-    } else {
-        g = 255;
-        b = 255 - 255 * (2 * HP - MaxHP) / MaxHP;
-        r = 128 - (b >> 1);
-    }
-    return b + (g << 8) + (r << 16) - 0x1000000ul;
-}
-
 __END_DECLS
 
 #endif //EASYTECH_CGAMERES_H

@@ -3,10 +3,8 @@
 
 #define EASYTECH_CACTIONAI_H
 
-#include "CArea.h"
+#include "CScene.h"
 #include "cxxvector.h"
-
-__BEGIN_DECLS
 
 struct CActionNode {
     int CardID;
@@ -35,9 +33,11 @@ struct CActionAI {
     int Unused;
     bool Action;
     int CurrentCountryIndex;
-};
 
-void _ZN9CActionAI18setActionNodeClearEv(struct CActionAI *self);
+    void InitAI();
+
+    void setActionNodeClear();
+};
 
 struct NODE {
     int ActionToNextAreaTargetId;
@@ -63,6 +63,8 @@ struct CActionAssist {
     struct CActionNode ActionNode;
     std::vector<NODE> ActionToNextAreaTargetIdList;
     struct NODE TargetNode;
+
+    int calcAreaValue(CArea *area);
 };
 
 extern struct CActionAssist *_ZN13CActionAssist9_instanceE;
@@ -81,31 +83,31 @@ CActionAI *CActionAI::Instance() {
 }
 
 CActionAI::CActionAI() {
-    _ZN9CActionAI18setActionNodeClearEv(this);
+    this->setActionNodeClear();
     memset(this->CurrentCountryName, 0, 0x10u);
     this->CurrentCountryIndex = -1;
 }
 
 CActionAI::~CActionAI() {
-    _ZN9CActionAI18setActionNodeClearEv(this);
+    this->setActionNodeClear();
 }
 
-void _ZN9CActionAI6InitAIEv(struct CActionAI *self) {
-    self->TotalAIArmyAreaCount = 0;
-    self->TurnBeginActiveAreaCount = 0;
+void CActionAI::InitAI() {
+    this->TotalAIArmyAreaCount = 0;
+    this->TurnBeginActiveAreaCount = 0;
     CActionAssist::Instance()->TotalSeaAreaCount = 0;
     int i;
-    for (i = 0; i < _ZN6CScene11GetNumAreasEv(&g_Scene); i++) {
-        struct CArea *area = _ZN6CScene7GetAreaEi(&g_Scene, i);
+    for (i = 0; i < g_Scene.GetNumAreas(); i++) {
+        CArea *area = g_Scene.GetArea(i);
         if (area->Enable) {
             if (area->Sea)
                 CActionAssist::Instance()->TotalSeaAreaCount += 1;
-            struct CCountry *country = area->Country;
+            CCountry *country = area->Country;
             if (country != NULL && country->AI && area->ArmyCount > 0)
-                self->TotalAIArmyAreaCount += 1;
+                this->TotalAIArmyAreaCount += 1;
         }
     }
-    self->AIProgressPercentage = 1;
+    this->AIProgressPercentage = 1;
 }
 
 CActionAssist *_ZN13CActionAssist9_instanceE = NULL;
@@ -122,7 +124,7 @@ CActionAssist::CActionAssist() {}
 
 CActionAssist::~CActionAssist() {}
 
-int _ZN13CActionAssist13calcAreaValueEP5CArea(struct CActionAssist *self, struct CArea *area) {
+int CActionAssist::calcAreaValue(CArea *area) {
     if (area == NULL)
         return -1;
     const int TypeAdd[] = {0, 250, 80, 150, 80};
@@ -131,5 +133,3 @@ int _ZN13CActionAssist13calcAreaValueEP5CArea(struct CActionAssist *self, struct
            ((area->AreaType < 5) ? TypeAdd[area->AreaType] : 0) +
            ((area->InstalltionType < 4) ? InstalltionAdd[area->InstalltionType] : 0);
 }
-
-__END_DECLS

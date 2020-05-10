@@ -18,7 +18,7 @@
 
 #define off(name, offset) easytech(name) = BaseAddress + offset;
 
-const char GameLib[] = "libeasytech.so";
+static const char GameLib[] = "libeasytech.so";
 
 void __attribute__((naked)) __attribute__((visibility("hidden"))) lazybind() {
     asm(

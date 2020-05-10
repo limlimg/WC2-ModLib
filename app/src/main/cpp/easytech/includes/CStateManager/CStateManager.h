@@ -3,15 +3,13 @@
 
 #include "../GUI/GUIElement.h"
 
-__BEGIN_DECLS
-
 enum EState {
     Logo, Menu, Match, Load, Game, Edit
 };
 
 struct CBaseState;
 
-struct CBaseState_vtable {
+struct _ZTV10CBaseState {
     void (*D1)(struct CBaseState *self);
 
     void (*D0)(struct CBaseState *self);
@@ -43,15 +41,40 @@ struct CBaseState_vtable {
     void (*EnterForeground)(struct CBaseState *self);
 };
 
-struct CBaseState {
-#define CBaseState_field\
-    struct CBaseState_vtable *vtable_CBaseState;\
+#define struct_CBaseState \
+    struct _ZTV10CBaseState *vtable_CBaseState;\
     enum EState StateID;\
-    bool Exist
+    bool Exist;
 
-    CBaseState_field;
+struct CBaseState {
+    struct_CBaseState
+#define __base_CBaseState struct_CBaseState
+#ifdef __cplusplus
+
+    void OnEnter();
+
+    void OnExit();
+
+    void TouchBegin(float x, float y, int index);
+
+    void TouchMove(float x, float y, int index);
+
+    void TouchEnd(float x, float y, int index);
+
+    void BackPressed();
+
+    void KeyDown(int);
+
+    void ScrollWheel(float, float, float);
+
+    void EnterBackground();
+
+    void EnterForeground();
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN10CBaseState7OnEnterEv(struct CBaseState *self);
 
 void _ZN10CBaseState6OnExitEv(struct CBaseState *self);
@@ -72,13 +95,51 @@ void _ZN10CBaseState15EnterBackgroundEv(struct CBaseState *self);
 
 void _ZN10CBaseState15EnterForegroundEv(struct CBaseState *self);
 
+__END_DECLS
+
 struct CStateManager {
     struct CBaseState *States[6];
     enum EState CurrentStateID;
     enum EState NextUpdateStateID;
     struct CBaseState *CurrentState;
+#ifdef __cplusplus
+
+    static CStateManager *Instance();
+
+    void Init();
+
+    void Term();
+
+    void Update(float time);
+
+    void Render();
+
+    void TouchBegin(float x, float y, int index);
+
+    void TouchMove(float x, float y, int index);
+
+    void TouchEnd(float x, float y, int index);
+
+    void BackPressed();
+
+    void KeyDown(int);
+
+    void ScrollWheel(float, float, float);
+
+    void EnterBackground();
+
+    void EnterForeground();
+
+    CBaseState *GetStatePtr(EState);
+
+    void RegisterState(CBaseState *);
+
+    void SetCurState(EState);
+
+#endif
 };
 
+__BEGIN_DECLS
 struct CStateManager *_ZN13CStateManager8InstanceEv();
 
 void _ZN13CStateManagerC1Ev(struct CStateManager *self);
@@ -120,6 +181,8 @@ _ZN13CStateManager13RegisterStateEP10CBaseState(struct CStateManager *self, stru
 
 void _ZN13CStateManager11SetCurStateE6EState(struct CStateManager *self, enum EState);
 
+__END_DECLS
+
 //Smoothens touch pattern
 struct CTouchInertia {
     float x0Unused;
@@ -134,8 +197,30 @@ struct CTouchInertia {
     float Trackpoint[5][3];
     int TrackPointIndex;
     int TrackPointCount;
+#ifdef  __cplusplus
+
+    void Init();
+
+    void AddTrackPoint(float x, float y);
+
+    bool GetSpeed(float &x, float &y);
+
+    float *GetStartPoint();
+
+    void Stop();
+
+    bool TouchBegin(float x, float y, int index);
+
+    bool TouchMove(float x, float y, int index);
+
+    bool TouchEnd(float x, float y, int index);
+
+    void Update(float time);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN13CTouchInertiaC1Ev(struct CTouchInertia *self);
 
 void _ZN13CTouchInertiaC2Ev(struct CTouchInertia *self);

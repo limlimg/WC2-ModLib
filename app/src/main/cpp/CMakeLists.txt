@@ -17,15 +17,16 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        code/AutoPicFormat.c
-        code/Camera.c
-        code/SelectArmy.c
+        code/AutoPicFormat.cpp
+        code/Camera.cpp
+        code/SelectArmy.cpp
         code/AutoAndSkip.cpp
-        code/InGameLoad.c
-        code/CampaignSize.c
+        code/InGameLoad.cpp
+        code/CampaignSize.cpp
         code/SelectCountry.cpp
-        code/MapExtension.c
-        code/CustomGame.c
+        code/MapExtension.cpp
+        code/bugfix.cpp
+        code/CustomGame.cpp
 
         tinyxml/tinyxml.cpp
         tinyxml/tinyxml.h

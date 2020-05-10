@@ -8,10 +8,9 @@
 //add player neutral country into defeat list
 //TODO: Fix AI bug caused by controlling player country
 
-#include <stddef.h>
-#include <stdbool.h>
-#include <math.h>
-#include "cxxnew.h"
+#include <cstddef>
+#include <cmath>
+#include <malloc.h>
 #include "easytech.h"
 #include "CGameManager.h"
 #include "CScene.h"
@@ -19,193 +18,184 @@
 #include "CStateManager/CGameState.h"
 #include "CFightTextMgr.h"
 #include "CGameSettings.h"
-#include "CFight.h"
 #include "GUI/GUIElement.h"
+#include "modObject.h"
 
 static bool AIAction;
 static bool SkipMode;
 
-__BEGIN_DECLS
-
 //Initialize Auto and Skip flags
 //Also: mark neutral countries as defeated to exclude them from turn cycle and win check
 //Also: add player neutral country into defeat list
-void _ZN12CGameManager10InitBattleEv(struct CGameManager *self) {
-    if (self->IsNewGame) {
-        _ZN12CGameManager10LoadBattleEPKc(self, self->BattleFileName);
-        self->CurrentDialogueIndex = 0;
-        self->CurrentTurnNumMinusOne = 0;
-        self->RandomRewardMedal = 0;
-        _ZN12CGameManager24MovePlayerCountryToFrontEv(self);
-        struct CCountry *PlayerCountry = _ZN12CGameManager16GetPlayerCountryEv(self);
+void CGameManager::InitBattle() {
+    if (this->IsNewGame) {
+        this->LoadBattle(this->BattleFileName);
+        this->CurrentDialogueIndex = 0;
+        this->CurrentTurnNumMinusOne = 0;
+        this->RandomRewardMedal = 0;
+        this->MovePlayerCountryToFront();
+        CCountry *PlayerCountry = this->GetPlayerCountry();
         if (PlayerCountry != NULL)
-            _ZN12CGameManager20SetPlayercountrynameEiPKc(self, 0, PlayerCountry->Name);
+            this->SetPlayercountryname(0, PlayerCountry->Name);
         size_t i;
-        for (i = 0; i < _ZNSt6vector4sizeE(P8CCountry)(&self->Country); i++) {
-            struct CCountry *Country = _ZNSt6vectorixE(P8CCountry)(&self->Country, i);
-            if (self->GameMode == 2
-                && PlayerCountry != NULL
-                && Country->Alliance == PlayerCountry->Alliance)
+        for (i = 0; i < this->Country.size(); i++) {
+            CCountry *Country = this->Country[i];
+            if (this->GameMode == CGameManager::Conquest && PlayerCountry != NULL &&
+                Country->Alliance == PlayerCountry->Alliance)
                 Country->TaxRate = 1.0;
-            if (Country->Alliance == NeutralID) {
+            if (Country->Alliance == CCountry::NeutralID) {
                 if (Country->AI)
                     Country->Defeated = true;
                 else
-                    _ZNSt6vector9push_backE(P8CCountry)(&self->DefeatCountry, Country);
+                    this->DefeatCountry.push_back(Country);
             }
         }
-        _ZN12CGameManager13InitCameraPosEv(self);
+        this->InitCameraPos();
     } else
-        _ZN12CGameManager12RealLoadGameEPKc(self, self->LoadFileName);
-    self->Result = false;
-    self->CampaignRewardMedal = 0;
-    self->LocalHost = true;
+        this->RealLoadGame(this->LoadFileName);
+    this->Result = false;
+    this->CampaignRewardMedal = 0;
+    this->LocalHost = true;
     AIAction = false;
     SkipMode = false;
-    _ZN6CScene20AllAreasEncirclementEv(&g_Scene);
-    _ZN9CActionAI6InitAIEv(_ZN9CActionAI8InstanceEv());
+    g_Scene.AllAreasEncirclement();
+    CActionAI::Instance()->InitAI();
 }
 
-void _ZN12CGameManager9TurnBeginEv(struct CGameManager *self) {
-    struct CCountry *Country = _ZN12CGameManager13GetCurCountryEv(self);
+void CGameManager::TurnBegin() {
+    CCountry *Country = this->GetCurCountry();
     if (Country == NULL)
         return;
-    _ZN8CCountry9TurnBeginEv(Country);
+    Country->TurnBegin();
     AIAction = false;
-    struct CGameState *game = (struct CGameState *) (_ZN13CStateManager11GetStatePtrE6EState(
-            _ZN13CStateManager8InstanceEv(), Game));
+    CGameState *game = static_cast<CGameState *>(CStateManager::Instance()->GetStatePtr(Game));
     if (Country->AI) {
-        _ZN10GUIElement4ShowEv((struct GUIElement *) game->AIProgressGUI);
+        game->AIProgressGUI->Show();
     } else {
-        _ZN10CGameState14HideAIProgressEv(game);
-        if (self->GameMode != 5)
-            _ZN10CGameState18PlayerCountryBeginEv(game);
+        game->HideAIProgress();
+        if (this->GameMode != CGameManager::Tutorial)
+            game->PlayerCountryBegin();
         SkipMode = false;
-        int AreaID = _ZN8CCountry19GetHighestValueAreaEv(Country);
+        int AreaID = Country->GetHighestValueArea();
         if (AreaID >= 0) {
-            struct CountryAction action = {6, 0, 0, AreaID, 0};
-            _ZN8CCountry6ActionERK13CountryAction(Country, &action);
+            CountryAction action = {CountryAction::CameraMoveAction, NoCard, 0, AreaID, 0};
+            Country->Action(action);
         }
     }
 }
 
 //Auto is implemented here
-void _ZN12CGameManager10GameUpdateEf(struct CGameManager *self, float time) {
-    if (!self->LocalHost)
+void CGameManager::GameUpdate(float time) {
+    if (!this->LocalHost)
         return;
-    if (self->Result)
+    if (this->Result)
         return;
-    struct CCountry *Country = _ZN12CGameManager13GetCurCountryEv(self);
+    CCountry *Country = this->GetCurCountry();
     if (Country == NULL)
         return;
-    _ZN8CCountry6UpdateEf(Country, time);
-    if (!_ZN8CCountry14IsActionFinishEv(Country))
+    Country->Update(time);
+    if (!Country->IsActionFinish())
         return;
-    struct CCountry *DefeatedCountry = _ZN12CGameManager21GetNewDefeatedCountryEv(self);
-    struct CGameState *GameState = (struct CGameState *) (_ZN13CStateManager11GetStatePtrE6EState(
-            _ZN13CStateManager8InstanceEv(),
-            Game));
+    CCountry *DefeatedCountry = this->GetNewDefeatedCountry();
+    CGameState *GameState = static_cast<CGameState *>(CStateManager::Instance()->GetStatePtr(Game));
     if (DefeatedCountry != NULL) {
-        _ZN10CGameState12ShowDefeatedEP8CCountry(GameState, DefeatedCountry);
+        GameState->ShowDefeated(DefeatedCountry);
         return;
     }
     if (Country->AI) {
-        _ZN10CGameState16UpdateAIProgressEv(GameState);
+        GameState->UpdateAIProgress();
         AIAction = true;
     }
     if (!AIAction)
         return;
-    _ZN12CGameManager4NextEv(self);
+    this->Next();
 }
 
-void _ZN12CGameManager4NextEv(struct CGameManager *self) {
-    struct CCountry *Country = _ZN12CGameManager13GetCurCountryEv(self);
+void CGameManager::Next() {
+    CCountry *Country = this->GetCurCountry();
     if (Country == NULL)
         return;
     if (!AIAction)
         return;
     //! set neutral to be defeated in InitBattle so that their turns are skipped
-    if (_ZNSt4list5emptyE(i)(&Country->AreaIDList) || Country->Defeated) {
-        _ZN12CGameManager7EndTurnEv(self);
+    if (Country->AreaIDList.empty() || Country->Defeated) {
+        this->EndTurn();
         return;
     }
-    struct CActionNode *ActionNode = _ZN9CActionAI16setCpuDriverbyIdEii(_ZN9CActionAI8InstanceEv(),
-                                                                        self->CurrentCountryIndex,
-                                                                        self->AlwaysZero);
+    CActionNode *ActionNode = CActionAI::Instance()->setCpuDriverbyId(this->CurrentCountryIndex,
+                                                                      this->AlwaysZero);
     if (ActionNode == NULL) {
-        _ZN12CGameManager7EndTurnEv(self);
+        this->EndTurn();
         return;
     }
-    struct CountryAction Action = {0,
-                                   ActionNode->CardID,
-                                   ActionNode->StartAreaID,
-                                   ActionNode->TargetAreaID,
-                                   ActionNode->ArmyIndex};
+    CountryAction Action = {CountryAction::NoAction,
+                            ActionNode->CardID,
+                            ActionNode->StartAreaID,
+                            ActionNode->TargetAreaID,
+                            ActionNode->ArmyIndex};
     switch (ActionNode->ActionType) {
         default:
             return;
-        case 0x10010:
-            Action.ActionType = 5;
+        case CActionNode::UseCardNode:
+            Action.ActionType = CountryAction::UseCardAction;
             Action.ArmyIndex = 0;
             break;
-        case 0x10020:
+        case CActionNode::ArmyMoveNode:
             if (ActionNode->StartAreaID == ActionNode->TargetAreaID)
-                Action.ActionType = 2;
+                Action.ActionType = CountryAction::ArmyInactiveAction;
             else
-                Action.ActionType = 1;
+                Action.ActionType = CountryAction::ArmyMoveAction;
             break;
-        case 0x10030:
-            Action.ActionType = 3;
+        case CActionNode::ArmyAttackNode:
+            Action.ActionType = CountryAction::ArmyAttackAction;
             break;
-        case 0x10050:
-            Action.ActionType = 4;
+        case CActionNode::ArmyMoveFrontNode:
+            Action.ActionType = CountryAction::ArmyMoveFrontAction;
     }
-    _ZN8CCountry6ActionERK13CountryAction(Country, &Action);
+    Country->Action(Action);
 }
 
 //Move camera while ai is controlling player country
-bool _ZN8CCountry13IsLocalPlayerEv(struct CCountry *self) {
+bool CCountry::IsLocalPlayer() {
     return !AIAction;
 }
 
 //Skip is implemented here
-void _ZN10CGameState6UpdateEf(struct CGameState *self, float time) {
-    if (self->IdleTimerEnabled) {
-        self->IdleTimer -= time;
-        if (self->IdleTimer <= 0.0) {
-            self->IdleTimer = 0.0;
-            self->IdleTimerEnabled = false;
+void CGameState::Update(float time) {
+    if (this->IdleTimerEnabled) {
+        this->IdleTimer -= time;
+        if (this->IdleTimer <= 0.0) {
+            this->IdleTimer = 0.0;
+            this->IdleTimerEnabled = false;
         }
     }
-    if (self->BuyingCard &&
-        _ZN8CCountry14IsActionFinishEv(_ZN12CGameManager16GetPlayerCountryEv(&g_GameManager))) {
-        if (_ZN10GUIBuyCard13CanBuySelCardEv(self->BuyCardGUI))
-            _ZN10GUIBuyCard15ResetCardTargetEv(self->BuyCardGUI);
+    if (this->BuyingCard && g_GameManager.GetPlayerCountry()->IsActionFinish()) {
+        if (this->BuyCardGUI->CanBuySelCard())
+            this->BuyCardGUI->ResetCardTarget();
         else {
-            _ZN10GUIBuyCard13ReleaseTargetEv(self->BuyCardGUI);
-            _ZN10GUIElement4HideEv((struct GUIElement *) self->GameButtonCardRemove);
-            _ZN10GUIElement4ShowEv((struct GUIElement *) self->GameButtonCard);
-            _ZN10GUIElement4HideEv((struct GUIElement *) self->SmallCardGUI);
+            this->BuyCardGUI->ReleaseTarget();
+            this->GameButtonCardRemove->Hide();
+            this->GameButtonCard->Show();
+            this->SmallCardGUI->Hide();
         }
-        self->BuyingCard = false;
+        this->BuyingCard = false;
     }
     do {
-        if ((self->PauseBoxGUI->Flags & GUI_Shown)
-            || (self->OptionsGUI && (self->OptionsGUI->Flags & GUI_Shown))
-            || (self->SaveGUI && (self->SaveGUI->Flags & GUI_Shown))
-            || (self->WarningGUI && (self->WarningGUI->Flags & GUI_Shown))
-            || (self->DialogueGUI && (self->DialogueGUI->Flags & GUI_Shown)))
+        if ((this->PauseBoxGUI->Flags & GUIElement::Shown)
+            || (this->OptionsGUI && (this->OptionsGUI->Flags & GUIElement::Shown))
+            || (this->SaveGUI && (this->SaveGUI->Flags & GUIElement::Shown))
+            || (this->WarningGUI && (this->WarningGUI->Flags & GUIElement::Shown))
+            || (this->DialogueGUI && (this->DialogueGUI->Flags & GUIElement::Shown)))
             break;
-        if (_ZN12CGameManager12IsManipulateEv(&g_GameManager)) {
+        if (g_GameManager.IsManipulate()) {
             float speed[2];
-            _ZN13CTouchInertia6UpdateEf(&self->CTouchInertia, time);
-            if (_ZN13CTouchInertia8GetSpeedERfS0_(&self->CTouchInertia, &speed[0], &speed[1])) {
-                if (_ZN6CScene4MoveEii(&g_Scene, (int) (-speed[0] * time),
-                                       (int) (-speed[1] * time)))
-                    _ZN13CTouchInertia4StopEv(&self->CTouchInertia);
-            } else if (self->ShouldCameraAutoFixPos) {
-                _ZN7CCamera13SetAutoFixPosEb(&g_Scene.CCamera, true);
-                self->ShouldCameraAutoFixPos = false;
+            this->CTouchInertia.Update(time);
+            if (this->CTouchInertia.GetSpeed(speed[0], speed[1])) {
+                if (g_Scene.Move((int) (-speed[0] * time), (int) (-speed[1] * time)))
+                    this->CTouchInertia.Stop();
+            } else if (this->ShouldCameraAutoFixPos) {
+                g_Scene.CCamera.SetAutoFixPos(true);
+                this->ShouldCameraAutoFixPos = false;
             }
         } else {
             if (SkipMode)
@@ -213,15 +203,14 @@ void _ZN10CGameState6UpdateEf(struct CGameState *self, float time) {
             else if (g_GameSettings.Speed > 2)
                 time *= (g_GameSettings.Speed == 3) ? 1.5 : 2.0;
         }
-        _ZN15ecEffectManager6UpdateEf(_ZN15ecEffectManager8InstanceEv(), time);
-        _ZN6CScene6UpdateEf(&g_Scene, time);
-        _ZN13CFightTextMgr6UpdateEf(&g_FightTextMgr, time);
-        if ((self->DefeatedGUI && (self->DefeatedGUI->Flags & GUI_Shown))
-            || !self->GameNotInterrupted
-            || g_GameManager.Result)
+        ecEffectManager::Instance()->Update(time);
+        g_Scene.Update(time);
+        g_FightTextMgr.Update(time);
+        if ((this->DefeatedGUI && (this->DefeatedGUI->Flags & GUIElement::Shown)) ||
+            !this->GameNotInterrupted || g_GameManager.Result)
             break;
-        if (!_ZN6CScene9IsBombingEv(&g_Scene))
-            _ZN12CGameManager10GameUpdateEf(&g_GameManager, time);
+        if (!g_Scene.IsBombing())
+            g_GameManager.GameUpdate(time);
     } while (SkipMode);
 }
 
@@ -229,48 +218,32 @@ void _ZN10CGameState6UpdateEf(struct CGameState *self, float time) {
 //Also: in game save-load menu related input
 def_easytech(_ZN10CGameState7OnEventERK5Event)
 
-bool __attribute__((weak))
-_ZN10CGameState13OpenLoadEventERK5Event(struct CGameState *self, const struct Event *event) {
-    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
-}
-
-bool __attribute__((weak))
-_ZN10CGameState14CloseLoadEventERK5Event(struct CGameState *self, const struct Event *event) {
-    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
-}
-
-bool __attribute__((weak))
-_ZN10CGameState15CancelLoadEventERK5Event(struct CGameState *self, const struct Event *event) {
-    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
-}
-
-bool _ZN10CGameState7OnEventERK5Event(struct CGameState *self, struct Event const *event) {
-    switch (event->type) {
-        case GUI : {
-            switch (event->info.GUI.type) {
-                case Button : {
-                    if ((struct GUIButton *) event->info.GUI.ptr == self->GameButtonRound) {
-                        if (_ZN12CGameManager12IsManipulateEv(&g_GameManager)) {
-                            if (self->BuyCardGUI->CardCanTarget) {
-                                _ZN10GUIBuyCard13ReleaseTargetEv(self->BuyCardGUI);
-                                _ZN10GUIElement4HideEv(
-                                        (struct GUIElement *) self->GameButtonCardRemove);
-                                _ZN10GUIElement4ShowEv((struct GUIElement *) self->GameButtonCard);
-                                _ZN10GUIElement4HideEv((struct GUIElement *) self->SmallCardGUI);
-                                self->BuyingCard = false;
+bool CGameState::OnEvent(const Event &event) {
+    switch (event.type) {
+        case Event::GUI : {
+            switch (event.info.GUI.type) {
+                case Event::info::GUI::Button : {
+                    if (event.info.GUI.ptr == this->GameButtonRound) {
+                        if (g_GameManager.IsManipulate()) {
+                            if (this->BuyCardGUI->CardCanTarget) {
+                                this->BuyCardGUI->ReleaseTarget();
+                                this->GameButtonCardRemove->Hide();
+                                this->GameButtonCard->Show();
+                                this->SmallCardGUI->Hide();
+                                this->BuyingCard = false;
                             }
-                            _ZN10GUIElement4HideEv((struct GUIElement *) self->GameButtonCard);
-                            _ZN10CGameState15ResetTouchStateEv(self);
-                            _ZN10CGameState12UnselectAreaEv(self);
-                            _ZN7CCamera13SetAutoFixPosEb(&g_Scene.CCamera, true);
-                            self->ShouldCameraAutoFixPos = false;
+                            this->GameButtonCard->Hide();
+                            this->ResetTouchState();
+                            this->UnselectArea();
+                            g_Scene.CCamera.SetAutoFixPos(true);
+                            this->ShouldCameraAutoFixPos = false;
                             g_Scene.NewRoundFlashing = false;
                             if (g_GameSettings.BattleAnimation) {
                                 AIAction = true;
                             } else {
-                                _ZN12CGameManager7EndTurnEv(&g_GameManager);
-                                _ZN9CActionAI6InitAIEv(_ZN9CActionAI8InstanceEv());
-                                _ZN10CGameState16UpdateAIProgressEv(self);
+                                g_GameManager.EndTurn();
+                                CActionAI::Instance()->InitAI();
+                                this->UpdateAIProgress();
                             }
                         } else {
                             if (AIAction)
@@ -278,16 +251,14 @@ bool _ZN10CGameState7OnEventERK5Event(struct CGameState *self, struct Event cons
                         }
                         return false;
                     }
-                    struct GUIPauseBox *PauseBox = self->PauseBoxGUI;
-                    if ((struct GUIButton *) event->info.GUI.ptr == PauseBox->ButtonRestart) {
-                        return _ZN10CGameState13OpenLoadEventERK5Event(self, event);
+                    GUIPauseBox *PauseBox = this->PauseBoxGUI;
+                    if (event.info.GUI.ptr == PauseBox->ButtonRestart) {
+                        return static_cast<mod::CGameState *>(this)->OpenLoadEvent(event);
                     }
-                    if (self->SaveGUI != NULL &&
-                        (struct GUIButton *) event->info.GUI.ptr == self->SaveGUI->ButtonOK)
-                        return _ZN10CGameState14CloseLoadEventERK5Event(self, event);
-                    if (self->SaveGUI != NULL &&
-                        (struct GUIButton *) event->info.GUI.ptr == self->SaveGUI->ButtonBack)
-                        return _ZN10CGameState15CancelLoadEventERK5Event(self, event);
+                    if (this->SaveGUI != NULL && event.info.GUI.ptr == this->SaveGUI->ButtonOK)
+                        return static_cast<mod::CGameState *>(this)->CloseLoadEvent(event);
+                    if (this->SaveGUI != NULL && event.info.GUI.ptr == this->SaveGUI->ButtonBack)
+                        return static_cast<mod::CGameState *>(this)->CancelLoadEvent(event);
                     break;
                 }
                 default:
@@ -298,75 +269,92 @@ bool _ZN10CGameState7OnEventERK5Event(struct CGameState *self, struct Event cons
         default:
             break;
     }
-    return easytech(_ZN10CGameState7OnEventERK5Event)(self, event);
+    return easytech(_ZN10CGameState7OnEventERK5Event)(this, &event);
 }
 
 //Don't move camera under skip mode
-void _ZN7CCamera5UpateEf(struct CCamera *self, float time) {
-    if (!self->IsMoving) return;
+void CCamera::Upate(float time) {
+    if (!this->IsMoving) return;
     if (SkipMode) {
-        self->Speed[0] = 0.0;
-        self->Speed[1] = 0.0;
-        self->IsMoving = false;
-        self->AutoFixPos = false;
+        this->Speed[0] = 0.0;
+        this->Speed[1] = 0.0;
+        this->IsMoving = false;
+        this->AutoFixPos = false;
         return;
     }
     int i;
     for (i = 0; i < 2; i++) {
-        if (self->Speed[i] == 0.0) continue;
-        if (fabs(self->TargetPos[i] - self->CenterPos[i]) < fabs(self->Speed[i] * 30.0 * time)) {
-            self->CenterPos[i] = self->TargetPos[i];
-            self->Speed[i] = 0.0;
+        if (this->Speed[i] == 0.0) continue;
+        if (fabs(this->TargetPos[i] - this->CenterPos[i]) < fabs(this->Speed[i] * 30.0 * time)) {
+            this->CenterPos[i] = this->TargetPos[i];
+            this->Speed[i] = 0.0;
         } else {
-            self->CenterPos[i] += self->Speed[i] * 30.0 * time;
+            this->CenterPos[i] += this->Speed[i] * 30.0 * time;
         }
     }
-    if (self->Speed[0] == 0.0 && self->Speed[1] == 0.0) {
-        self->IsMoving = false;
-        self->AutoFixPos = false;
+    if (this->Speed[0] == 0.0 && this->Speed[1] == 0.0) {
+        this->IsMoving = false;
+        this->AutoFixPos = false;
     }
 }
 
 //Disables battle animation
-void
-_ZN10CGameState12StartBattaleEiiib(struct CGameState *self, int StartAreaID, int TargetAreaID,
-                                   int a3,
-                                   bool Animation) {
-    struct CFight fight;
+void CGameState::StartBattale(int StartAreaID, int TargetAreaID, int a3, bool Animation) {
+    CFight fight;
     _ZN6CFightC1Ev(&fight);
-    _ZN6CFight11FirstAttackEii(&fight, StartAreaID, TargetAreaID);
-    _ZN6CFight11ApplyResultEv(&fight);
+    fight.FirstAttack(StartAreaID, TargetAreaID);
+    fight.ApplyResult();
     if (fight.StartArmySecondAttack || fight.TargetArmySecondAttack) {
-        _ZN6CFight12SecondAttackEv(&fight);
-        _ZN6CFight11ApplyResultEv(&fight);
+        fight.SecondAttack();
+        fight.ApplyResult();
     }
     _ZN6CFightD1Ev(&fight);
 }
 
-void _ZN9GUIBattleC1Ev(struct GUIBattle *self) { _ZN10GUIElementC1Ev((struct GUIElement *) self); }
-void _ZN9GUIBattleC2Ev(struct GUIBattle *self) __attribute__ ((alias("_ZN9GUIBattleC1Ev")));
-
-void _ZN9GUIBattleD1Ev(struct GUIBattle *self) { _ZN10GUIElementD1Ev((struct GUIElement *) self); }
-void _ZN9GUIBattleD2Ev(struct GUIBattle *self) __attribute__ ((alias("_ZN9GUIBattleD1Ev")));
-void _ZN9GUIBattleD0Ev(struct GUIBattle *self) {
+__BEGIN_DECLS
+void _ZN9GUIBattleC1Ev(GUIBattle *self) { _ZN10GUIElementC1Ev((struct GUIElement *) self); }
+void _ZN9GUIBattleC2Ev(GUIBattle *self) __attribute__ ((alias("_ZN9GUIBattleC1Ev")));
+void _ZN9GUIBattleD1Ev(GUIBattle *self) { _ZN10GUIElementD1Ev((struct GUIElement *) self); }
+void _ZN9GUIBattleD2Ev(GUIBattle *self) __attribute__ ((alias("_ZN9GUIBattleD1Ev")));
+void _ZN9GUIBattleD0Ev(GUIBattle *self) {
     _ZN9GUIBattleD1Ev(self);
     free(self);
 }
-
 void _ZN9GUIBattle4InitERK7GUIRect() {}
+__END_DECLS
+
+/*WIP: Fix Auto AI
+int calcAreaArmyHp(CArea *Area, bool TopOnly) {
+    if (Area == NULL)
+        return -1;
+    if (Area->ArmyCount <= 0)
+        return 0;
+    CArmy *army;
+    if (TopOnly) {
+        army = Area->GetArmy(0);
+        return (army != NULL) ? army->Hp : -1;
+    }
+    int i, s = 0;
+    for (i = 0; i < Area->ArmyCount; i++) {
+        army = Area->GetArmy(i);
+        if (army == NULL)
+            return -1;
+        s += army->Hp;
+    }
+    return s;
+}*/
 
 //Stop the game from saving commander data on game closing, which is suspected to cause data loss
 //Now it will save whenever a change in medal number is detected
 
 #include <ecLibrary.h>
 
+void CCommander::Save() {}
+
 def_easytech(_ZN10CCommander4SaveEv)
-
-void _ZN10CCommander4SaveEv(struct CCommander *self) {}
-
 def_easytech(_Z12ecGameUpdatef)
 
-void _Z12ecGameUpdatef(float time) {
+void ecGameUpdate(float time) {
     static int medal = 50;
     if (medal != g_Commander.Medal) {
         easytech(_ZN10CCommander4SaveEv)(&g_Commander);
@@ -374,5 +362,3 @@ void _Z12ecGameUpdatef(float time) {
     }
     easytech(_Z12ecGameUpdatef)(time);
 }
-
-__END_DECLS

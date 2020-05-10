@@ -1,41 +1,40 @@
 #ifndef EASYTECH_COBJECTDEF_H
 #define EASYTECH_COBJECTDEF_H
 
-#include "DECLS.h"
+#include "cxx.h"
 #include "cxxmap.h"
 #include "cxxstring.h"
 
-__BEGIN_DECLS
-
 enum CARD_ID {
-    Infantry,
-    Armour,
-    Artillery,
-    Rocket,
-    Tank,
-    Heavy_Tank,
-    Destroyer,
-    Cruiser,
-    BattleShip,
-    Aircraft_Carrier,
-    Airstrike,
-    Bomber,
-    Airborne_Force,
-    Nuclear_Bomb,
-    City,
-    Industry,
-    Airport,
-    Land_Fort,
-    Entrenchment,
-    Antiaircraft,
-    Radar,
-    Research,
-    Carrier,
-    Assault_Art,
-    Defend_Art,
-    Commander,
-    Supply_Line,
-    Ace_Forces
+    NoCard,
+    InfantryCard = 0,
+    ArmourCard,
+    ArtilleryCard,
+    RocketCard,
+    TankCard,
+    HeavyTankCard,
+    DestroyerCard,
+    CruiserCard,
+    BattleShipCard,
+    AircraftCarrierCard,
+    AirStrikeCard,
+    BomberCard,
+    AirborneForceCard,
+    NuclearBombCard,
+    CityCard,
+    IndustryCard,
+    AirportCard,
+    LandFortCard,
+    EntrenchmentCard,
+    AntiaircraftCard,
+    RadarCard,
+    ResearchCard,
+    CarrierCard,
+    AssaultArtCard,
+    DefendArtCard,
+    CommanderCard,
+    SupplyLineCard,
+    AceForcesCard
 };
 
 //Game data definition
@@ -53,7 +52,18 @@ struct CardDef {
 
 struct ArmyDef {
     string Name;
-    int ID;
+    enum ArmyType {
+        Infantry,
+        Panzer,
+        Artillery,
+        Rocket,
+        Tank,
+        HeavyTank,
+        Destroyer,
+        Cruiser,
+        Battleship,
+        AircraftCarrier
+    } ID;
     int Hp;
     int Movement;
     int MinAttack;
@@ -73,56 +83,80 @@ struct GeneralPhoto;
 struct BattleDef;
 struct ConquestDef;
 
-struct N10CObjectDef11ArmyDefListE {
-    struct ArmyDef *PArmyDef15[15];
-};
-
-#ifndef def__ZSt3map_KSs_PN10CObjectDef11ArmyDefListE
-#define def__ZSt3map_KSs_PN10CObjectDef11ArmyDefListE
-def__ZSt3map(string const, KSs, struct N10CObjectDef11ArmyDefListE*, PN10CObjectDef11ArmyDefListE)
-
-#endif
-#ifndef def__ZSt3map_KSs_P10UnitMotions
-#define def__ZSt3map_KSs_P10UnitMotions
-def__ZSt3map(string const, KSs, struct UnitMotions*, P10UnitMotions)
-
-#endif
-#ifndef def__ZSt3map_KSs_P13UnitPositions
-#define def__ZSt3map_KSs_P13UnitPositions
-def__ZSt3map(string const, KSs, struct UnitPositions*, P13UnitPositions)
-
-#endif
-#ifndef def__ZSt3map_KSs_P12CommanderDef
-#define def__ZSt3map_KSs_P12CommanderDef
-def__ZSt3map(string const, KSs, struct CommanderDef*, P12CommanderDef)
-
-#endif
-#ifndef def__ZSt3map_KSs_P12GeneralPhoto
-#define def__ZSt3map_KSs_P12GeneralPhoto
-def__ZSt3map(string const, KSs, struct GeneralPhoto*, P12GeneralPhoto)
-
-#endif
-#ifndef def__ZSt3map_KSs_P9BattleDef
-#define def__ZSt3map_KSs_P9BattleDef
-def__ZSt3map(string const, KSs, struct BattleDef*, P9BattleDef)
-
-#endif
-#ifndef def__ZSt3map_KSs_P11ConquestDef
-#define def__ZSt3map_KSs_P11ConquestDef
-def__ZSt3map(string const, KSs, struct ConquestDef*, P11ConquestDef)
-
-#endif
 struct CObjectDef {
-    _ZSt3map(KSs, PN10CObjectDef11ArmyDefListE) mapArmyDefList;
+    struct ArmyDefList {
+        struct ArmyDef *Def[15];
+    };
+    map(const string, ArmyDefList*) mapArmyDefList;
     struct CardDef CardDef28[28];
-    _ZSt3map(KSs, P10UnitMotions) mapUnitMotions;
-    _ZSt3map(KSs, P13UnitPositions) mapUnitPos;
-    _ZSt3map(KSs, P12CommanderDef) mapCommanderDef;
-    _ZSt3map(KSs, P12GeneralPhoto) mapGeneralPhotos;
-    _ZSt3map(KSs, P9BattleDef) mapBattleDef;
-    _ZSt3map(KSs, P11ConquestDef) mapConquestList;
+    map(const string, UnitMotions*) mapUnitMotions;
+    map(const string, UnitPositions*) mapUnitPos;
+    map(const string, CommanderDef*) mapCommanderDef;
+    map(const string, GeneralPhoto*) mapGeneralPhotos;
+    map(const string, BattleDef*) mapBattleDef;
+    map(const string, ConquestDef*) mapConquestList;
+#ifdef __cplusplus
+
+    static CObjectDef *Instance();
+
+    void Init();
+
+    void Release();
+
+    void Destroy();
+
+    ArmyDef *GetArmyDef(int ArmyType, const char *CountryName);
+
+    BattleDef *GetBattleDef(const char *key);
+
+    CardDef *GetCardDef(CARD_ID);
+
+    int GetCardTargetType(CardDef *);
+
+    CommanderDef *GetCommanderDef(const char *name);
+
+    ConquestDef *GetConquestDef(const char *name);
+
+    GeneralPhoto *GetGeneralPhoto(const char *name);
+
+    UnitMotions *GetUnitMotions(const char *, const char *);
+
+    UnitPositions *GetUnitPositions(const char *);
+
+    void LoadArmyDef();
+
+    void LoadBattleList();
+
+    void LoadCardDef();
+
+    void LoadCommanderDef();
+
+    void LoadConquestList();
+
+    void LoadGeneralPhotos();
+
+    void LoadUnitMotions();
+
+    void LoadUnitPositons();
+
+    void ReleaseArmyDef();
+
+    void ReleaseBattleList();
+
+    void ReleaseCommanderDef();
+
+    void ReleaseConquestList();
+
+    void ReleaseGeneralPhotos();
+
+    void ReleaseUnitMotions();
+
+    void ReleaseUnitPositions();
+
+#endif
 };
 
+__BEGIN_DECLS
 struct CObjectDef *_ZN10CObjectDef8InstanceEv();
 
 void _ZN10CObjectDefC1Ev(struct CObjectDef *self);
@@ -192,7 +226,6 @@ void _ZN10CObjectDef18ReleaseUnitMotionsEv(struct CObjectDef *self);
 void _ZN10CObjectDef20ReleaseUnitPositionsEv(struct CObjectDef *self);
 
 extern struct CObjectDef *_ZN10CObjectDef10m_InstanceE;
-
 __END_DECLS
 
 #endif //EASYTECH_COBJECTDEF_H

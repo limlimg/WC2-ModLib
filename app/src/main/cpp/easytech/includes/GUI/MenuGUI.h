@@ -3,10 +3,7 @@
 
 #include "GUIElement.h"
 
-__BEGIN_DECLS
-
-struct GUICountryItem {
-    GUIElement_field;
+__sub_struct(GUICountryItem, GUIElement)
     char name[16];
     char id[16];
     int RankStar;
@@ -14,8 +11,22 @@ struct GUICountryItem {
     struct ecImage *Image_small_rankstar;
     bool Touched;
     bool Selected;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void OnUpdate(float time);
+
+    void Init(const char *name, const char *id, const GUIRect &rect);
+
+    void SetSelected(bool selected);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN14GUICountryItemC1Ev(struct GUICountryItem *self);
 
 void _ZN14GUICountryItemC2Ev(struct GUICountryItem *self);

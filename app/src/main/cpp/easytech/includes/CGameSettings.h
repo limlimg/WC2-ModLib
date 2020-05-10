@@ -1,11 +1,7 @@
 #ifndef EASYTECH_CGAMESETTINGS_H
 #define EASYTECH_CGAMESETTINGS_H
 
-#include "CCountry.h"
-
-__BEGIN_DECLS
-
-typedef signed char int8_t;
+#include "CGameManager.h"
 
 struct CGameSettings {
     int MusicVolume;
@@ -14,8 +10,16 @@ struct CGameSettings {
     bool BattleAnimation;
     int AlwaysZero;
     bool FullScreen;
+#ifdef __cplusplus
+
+    void LoadSettings();
+
+    void SaveSettings();
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN13CGameSettingsC1Ev(struct CGameSettings *self);
 
 void _ZN13CGameSettingsC2Ev(struct CGameSettings *self);
@@ -29,8 +33,10 @@ void _ZN13CGameSettings12LoadSettingsEv(struct CGameSettings *self);
 void _ZN13CGameSettings12SaveSettingsEv(struct CGameSettings *self);
 
 extern struct CGameSettings g_GameSettings;
+__END_DECLS
 
 struct CommanderData;
+
 struct CCommander {
     bool CanSave;
     int Level;
@@ -39,8 +45,46 @@ struct CCommander {
     int WarMedal[6];
     int CampaignProgress[4];
     int CampaignStar[4][20];
+#ifdef __cplusplus
+
+    void BuyMedal(int medal);
+
+    bool CheckUpgarde();
+
+    bool CheckUpgradeWarMedal(WARMEDAL_ID);
+
+    void GetCommanderData(CommanderData &);
+
+    int GetNeedUpgradeMedal(WARMEDAL_ID);
+
+    int GetNumBattleStars(int SeriesID, int LevelID);
+
+    int GetNumPlayedBatttles(int CampaignSeriesID);
+
+    int GetUpgradeMedal();
+
+    int GetWarMedalLevel(WARMEDAL_ID);
+
+    bool IsMaxLevel();
+
+    void Load();
+
+    void Save();
+
+    void SetBattlePlayed(int SeriesID, int LevelID);
+
+    void SetNumBattleStars(int SeriesID, int LevelID, int star);
+
+    void SetNumPlayedBatttles(int CampaignSeriesID, int num);
+
+    void Upgrade();
+
+    void UpgradeWarMedal(WARMEDAL_ID);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN10CCommanderC1Ev(struct CCommander *self);
 
 void _ZN10CCommanderC2Ev(struct CCommander *self);
@@ -87,7 +131,6 @@ void _ZN10CCommander7UpgradeEv(struct CCommander *self);
 void _ZN10CCommander15UpgradeWarMedalE11WARMEDAL_ID(struct CCommander *self, enum WARMEDAL_ID);
 
 extern struct CCommander g_Commander;
-
 __END_DECLS
 
 #endif //EASYTECH_CGAMESETTINGS_H

@@ -3,20 +3,26 @@
 
 #include "../ecLibrary.h"
 
-__BEGIN_DECLS
-
 struct Event;
 
 struct GUIRect {
     float Pos[2];
     float Size[2];
-};
+#ifdef __cplusplus
 
-#define GUI_Shown (1<<17)
+    GUIRect &operator=(const GUIRect &a) {
+        this->Pos[0] = a.Pos[0];
+        this->Pos[1] = a.Pos[1];
+        this->Size[0] = a.Size[0];
+        this->Size[1] = a.Size[1];
+    }
+
+#endif
+};
 
 struct GUIElement;
 
-struct GUIElement_vtable {
+struct _ZTV10GUIElement {
     void (*D1)(struct GUIElement *self);
 
     void (*D0)(struct GUIElement *self);
@@ -28,9 +34,8 @@ struct GUIElement_vtable {
     void (*OnUpdate)(struct GUIElement *self, float time);
 };
 
-struct GUIElement {
-#define GUIElement_field\
-    struct GUIElement_vtable *vtable_GUIElement;\
+#define struct_GUIElement \
+    struct _ZTV10GUIElement *vtable_GUIElement;\
     struct GUIElement *Parent;\
     struct GUIElement *FirstChild;\
     struct GUIElement *LastChild;\
@@ -39,11 +44,65 @@ struct GUIElement {
     int ChildCount;\
     struct GUIRect Rect;\
     unsigned int Flags;\
-    unsigned int Handle
+    unsigned int Handle;
 
-    GUIElement_field;
+struct GUIElement {
+    struct_GUIElement
+#define __base_GUIElement struct_GUIElement
+
+#ifdef __cplusplus
+    static const int Shown = 1 << 17;
+
+    bool OnEvent(const Event &event);
+
+    void OnRender();
+
+    void OnUpdate(float time);
+
+    void AddChild(GUIElement *, bool push_back);
+
+    void CenterEv();
+
+    bool CheckInRect(float x, float y);
+
+    bool CheckInRect(float x, float y, const struct GUIRect &);
+
+    GUIElement *FindByHandle(unsigned long);
+
+    void FreeAllChild();
+
+    void FreeChild(GUIElement *);
+
+    void GetAbsRect(struct GUIRect &);
+
+    void GetPos(float &x, float &y);
+
+    void Hide();
+
+    void Move(float x, float y);
+
+    bool MoveToFront(GUIElement *);
+
+    bool PostEvent(const Event &);
+
+    bool RemoveChild(GUIElement *);
+
+    void Render();
+
+    void SetEnable(bool enable);
+
+    void SetPos(float x, float y);
+
+    void SetVisible(bool visible);
+
+    void Show();
+
+    void Update(float time);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN10GUIElementC1Ev(struct GUIElement *self);
 
 void _ZN10GUIElementC2Ev(struct GUIElement *self);
@@ -102,44 +161,33 @@ void _ZN10GUIElement4ShowEv(struct GUIElement *self);
 void _ZN10GUIElement6UpdateEf(struct GUIElement *self, float time);
 
 extern struct ecTextureRes _ZN10GUIElement12s_TextureResE;
-
-enum Event_type {
-    GUI, Touch, BackPressed
-};
-
-enum Event_info_GUI_type {
-    Button, ScrollBar, Warning, FadeIn, FadeOut, Other
-};
-
-struct Event_info_GUI {
-    enum Event_info_GUI_type type;
-    struct GUIElement *ptr;
-    int info;
-};
-
-enum Event_info_Touch_type {
-    begin, move, end
-};
-
-struct Event_info_Touch {
-    enum Event_info_Touch_type type;
-    float pos[2];
-    int index;
-};
-
-union Event_info {
-    struct Event_info_GUI GUI;//When a GUIElement is touched
-    struct Event_info_Touch touch;
-};
+__END_DECLS
 
 struct Event {
-    enum Event_type type;
-    union Event_info info;
+    enum EventType {
+        GUI, Touch, BackPressed
+    } type;
+    union info {
+        struct GUI {
+            enum GUIType {
+                Button, ScrollBar, Warning, FadeIn, FadeOut, Other
+            } type;
+            struct GUIElement *ptr;
+            int info;
+        } GUI;//When a GUIElement is touched
+        struct Touch {
+            enum TouchType {
+                begin, move, end
+            } type;
+            float pos[2];
+            int index;
+        } touch;
+    } info;
 };
 
 struct IEventReceiver;
 
-struct IEventReceiver_vtable {
+struct _ZTV14IEventReceiver {
     void (*D1)(struct IEventReceiver *self);
 
     void (*D0)(struct IEventReceiver *self);
@@ -147,17 +195,16 @@ struct IEventReceiver_vtable {
     bool (*OnEvent)(struct IEventReceiver *self, const struct Event *event);
 };
 
-struct IEventReceiver {
-#define IEventReceiver_field\
-    struct IEventReceiver_vtable *vtable_IEventReceiver
+#define struct_IEventReceiver \
+    struct _ZTV14IEventReceiver *vtable_IEventReceiver;
 
-    IEventReceiver_field;
+struct IEventReceiver {
+    struct_IEventReceiver
+#define __base_IEventReceiver struct_IEventReceiver
 };
 
 //Button that can be pressed
-struct GUIButton {
-#define GUIButton_field\
-    GUIElement_field;\
+#define struct_GUIButton \
     struct ecUniFont *TexttFont;\
     struct ecText *Text;\
     int TextHeight;\
@@ -173,11 +220,41 @@ struct GUIButton {
     bool GreyEnable;\
     bool Sound_btn;\
     float TextOffset[2];\
-    int TextAlign
+    int TextAlign;
 
-    GUIButton_field;
-};
+__sub_struct(GUIButton, GUIElement)
+    struct_GUIButton
+#define __base_GUIButton __base_GUIElement struct_GUIButton
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void Init(const char *, const char *, const GUIRect &, struct ecUniFont *);
+
+    void SetAlpha(float alhpa);
+
+    void SetBackground(const char *ImageName);
+
+    void SetGlow(const char *ImageName);
+
+    void SetText(const char *text);
+
+    void SetText(const wchar_t *text);
+
+    void SetTextAlign(int);
+
+    void SetTextColor(color_t color);
+
+    void SetTextImage(const char *ImageName);
+
+    void SetTextOffset(float x, float y);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN9GUIButtonC1Ev(struct GUIButton *self);
 
 void _ZN9GUIButtonC2Ev(struct GUIButton *self);
@@ -214,13 +291,22 @@ void _ZN9GUIButton12SetTextImageEPKc(struct GUIButton *self, const char *ImageNa
 
 void _ZN9GUIButton13SetTextOffsetEff(struct GUIButton *self, float x, float y);
 
+__END_DECLS
+
 //Button with images as text
-struct GUIButtonEx {
-    GUIButton_field;
+__sub_struct(GUIButtonEx, GUIButton)
     struct ecImage *ImageText[2];
     float TextPos[2];
-};
+#ifdef __cplusplus
 
+    void OnRender();
+
+    void SetImageText(const char *, const char *);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN11GUIButtonExC1Ev(struct GUIButtonEx *self);
 
 void _ZN11GUIButtonExC2Ev(struct GUIButtonEx *self);
@@ -235,15 +321,19 @@ void _ZN11GUIButtonEx8OnRenderEv(struct GUIButtonEx *self);
 
 void _ZN11GUIButtonEx12SetImageTextEPKcS1_(struct GUIButtonEx *self, const char *, const char *);
 
+__END_DECLS
+
 //Buttons that can be selected
-struct GUIRadioButton {
-#define GUIRadioButton_field\
-    GUIButton_field;\
-    bool Selected
+__sub_struct(GUIRadioButton, GUIButton)
+    bool Selected;
+#ifdef __cplusplus
 
-    GUIRadioButton_field;
-};
+    void OnRender();
 
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN14GUIRadioButtonC1Ev(struct GUIRadioButton *self);
 
 void _ZN14GUIRadioButtonC2Ev(struct GUIRadioButton *self);
@@ -256,13 +346,24 @@ void _ZN14GUIRadioButtonD2Ev(struct GUIRadioButton *self);
 
 void _ZN14GUIRadioButton8OnRenderEv(struct GUIRadioButton *self);
 
-struct GUILevelSel {
-    GUIElement_field;
+__END_DECLS
+
+__sub_struct(GUILevelSel, GUIElement)
     struct ecImage *Image_block;
     int CurrentLevel;
     int TotalLevel;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void Init(const GUIRect &, int TotalLevel);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN11GUILevelSelC1Ev(struct GUILevelSel *self);
 
 void _ZN11GUILevelSelC2Ev(struct GUILevelSel *self);
@@ -280,12 +381,13 @@ void _ZN11GUILevelSel8OnRenderEv(struct GUILevelSel *self);
 void
 _ZN11GUILevelSel4InitERK7GUIRecti(struct GUILevelSel *self, const struct GUIRect *, int TotalLevel);
 
+__END_DECLS
+
 struct GUIImage;
 struct GUIScrollBar;
 
 //default final grandparent of elements
-struct GUIManager {
-    GUIElement_field;
+__sub_struct(GUIManager, GUIElement)
     size_t x34;
     size_t x38;
     struct IEventReceiver *CurrentState;
@@ -293,8 +395,47 @@ struct GUIManager {
     float FadeTimer;
     int Fading;
     int FadeInfo;
-};
+#ifdef __cplusplus
 
+    static GUIManager *Instance();
+
+    bool OnEvent(const Event &);
+
+    void Init(const GUIRect &);
+
+    GUIButton *AddButton(const char *, const char *, const GUIRect &, GUIElement *, ecUniFont *);
+
+    GUIImage *AddImage(const char *ImageName, const GUIRect &, GUIElement *);
+
+    GUIImage *
+    AddImage(const char *ImageName, const ecTextureRect &, const GUIRect &, GUIElement *, bool);
+
+    GUIScrollBar *
+    AddScrollBar(const GUIRect &, GUIElement *, const char *, const char *, int, int, int, int,
+                 int);
+
+    void FadeIn(int info);
+
+    void FadeOut(int info, GUIElement *);
+
+    void LoadTextureRes(const char *name, bool);
+
+    bool PostEvent(const Event &);
+
+    void ReleaseTexureRes();
+
+    void Render();
+
+    void SafeFreeChild(GUIElement *);
+
+    void UnloadTextureRes(const char *name);
+
+    void Update(float time);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 struct GUIManager *_ZN10GUIManager8InstanceEv();
 
 void _ZN10GUIManagerC1Ev(struct GUIManager *self);

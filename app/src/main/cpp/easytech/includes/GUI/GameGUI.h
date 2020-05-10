@@ -2,13 +2,11 @@
 #define EASYTECH_GAMEGUI_H
 
 #include "GUIElement.h"
-#include "../CArmy.h"
-
-__BEGIN_DECLS
+#include "../CScene.h"
 
 struct GUIGold;
-struct GUITax {
-    GUIElement_field;
+
+__sub_struct(GUITax, GUIElement)
     struct ecImage *Image_income_board;
     struct ecImage *Image_income_board2;
     struct ecImage *ImageCommander;
@@ -19,8 +17,22 @@ struct GUITax {
     struct ecImage *Image_stamp[4];
     int InstalltionType;
     struct CCountry *Country;
-};
+#ifdef __cplusplus
 
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+    void SetArea(int AreaID);
+
+    void SetIndustry(int industry);
+
+    void SetMoney(int money);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN6GUITaxC1Ev(struct GUITax *self);
 
 void _ZN6GUITaxC2Ev(struct GUITax *self);
@@ -41,9 +53,41 @@ void _ZN6GUITax11SetIndustryEi(struct GUITax *self, int industry);
 
 void _ZN6GUITax8SetMoneyEi(struct GUITax *self, int money);
 
-struct GUISmallCard;
-struct GUIAttackBox {
-    GUIElement_field;
+__END_DECLS
+
+__sub_struct(GUISmallCard, GUIElement)
+    struct ecImage *CardImage;
+#ifdef __cplusplus
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+    void SetCard(CardDef *);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
+void _ZN12GUISmallCardC1Ev(struct GUISmallCard *self);
+
+void _ZN12GUISmallCardC2Ev(struct GUISmallCard *self);
+
+void _ZN12GUISmallCardD0Ev(struct GUISmallCard *self);
+
+void _ZN12GUISmallCardD1Ev(struct GUISmallCard *self);
+
+void _ZN12GUISmallCardD2Ev(struct GUISmallCard *self);
+
+void _ZN12GUISmallCard8OnRenderEv(struct GUISmallCard *self);
+
+void _ZN12GUISmallCard4InitERK7GUIRect(struct GUISmallCard *self, const struct GUIRect *);
+
+void _ZN12GUISmallCard7SetCardEP7CardDef(struct GUISmallCard *self, struct CardDef *);
+
+__END_DECLS
+
+__sub_struct(GUIAttackBox, GUIElement)
     struct GUIButton *x34PGUIElementButtonOK;
     struct GUIButton *x38PGUIElementButtonCancel;
     struct ecImage *Image_attack_board;
@@ -51,11 +95,27 @@ struct GUIAttackBox {
     struct ecImage *ImageTargetCountry;
     int StartAreaID;
     int TargetAreaID;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+    void SetAttack(int StartAreaID, int TargetAreaID);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN12GUIAttackBoxC1Ev(struct GUIAttackBox *self);
 
 void _ZN12GUIAttackBoxC2Ev(struct GUIAttackBox *self);
+
+void _ZN12GUIAttackBoxD0Ev(struct GUIAttackBox *self);
+
+void _ZN12GUIAttackBoxD1Ev(struct GUIAttackBox *self);
 
 void _ZN12GUIAttackBoxD2Ev(struct GUIAttackBox *self);
 
@@ -67,8 +127,9 @@ void _ZN12GUIAttackBox4InitERK7GUIRect(struct GUIAttackBox *self, const struct G
 
 void _ZN12GUIAttackBox9SetAttackEii(struct GUIAttackBox *self, int StartAreaID, int TargetAreaID);
 
-struct GUIPauseBox {
-    GUIElement_field;
+__END_DECLS
+
+__sub_struct(GUIPauseBox, GUIElement)
     struct GUIButton *ButtonResume;
     struct GUIButton *ButtonSave;
     struct GUIButton *ButtonOption;
@@ -76,8 +137,18 @@ struct GUIPauseBox {
     struct GUIButton *ButtonQuit;
     struct ecTexture *ecTexture;
     struct ecImage *ImageMenuBox;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN11GUIPauseBoxC1Ev(struct GUIPauseBox *self);
 
 void _ZN11GUIPauseBoxC2Ev(struct GUIPauseBox *self);
@@ -94,12 +165,14 @@ void _ZN11GUIPauseBox8OnRenderEv(struct GUIPauseBox *self);
 
 void _ZN11GUIPauseBox4InitERK7GUIRect(struct GUIPauseBox *self, const struct GUIRect *);
 
+__END_DECLS
+
 struct GUICardTab;
 struct GUITech;
 struct GUIMedal;
 struct GUICardList;
-struct GUIBuyCard {
-    GUIElement_field;
+
+__sub_struct(GUIBuyCard, GUIElement)
     struct GUIButton *ButtonBack;
     struct GUIButton *ButtonOK;
     struct GUICardTab *CardTab;
@@ -121,8 +194,32 @@ struct GUIBuyCard {
     int Unknown2;
     bool CardCanTarget;
     bool CardTargetArmy;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+    bool CanBuySelCard();
+
+    struct CardDef *GetSelCard();
+
+    void ReleaseTarget();
+
+    void ResetCardState();
+
+    void ResetCardTarget();
+
+    void SelCard(int CardTab, int index);
+
+    void SetSelCardIntro();
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN10GUIBuyCardC1Ev(struct GUIBuyCard *self);
 
 void _ZN10GUIBuyCardC2Ev(struct GUIBuyCard *self);
@@ -153,8 +250,9 @@ void _ZN10GUIBuyCard7SelCardEii(struct GUIBuyCard *self, int CardTab, int index)
 
 void _ZN10GUIBuyCard15SetSelCardIntroEv(struct GUIBuyCard *self);
 
-struct GUIOptions {
-    GUIElement_field;
+__END_DECLS
+
+__sub_struct(GUIOptions, GUIElement)
     struct GUIButton *ButtonBack;
     struct GUIButton *ButtonOK;
     struct GUIScrollBar *ScrollBar1;
@@ -167,8 +265,18 @@ struct GUIOptions {
     struct ecTexture *x58PecTexture_board_options;
     struct ecImage *x5CPecImage_board_options;
     float x60fWidth;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN10GUIOptionsC1Ev(struct GUIOptions *self);
 
 void _ZN10GUIOptionsC2Ev(struct GUIOptions *self);
@@ -185,9 +293,11 @@ void _ZN10GUIOptions8OnRenderEv(struct GUIOptions *self);
 
 void _ZN10GUIOptions4InitERK7GUIRect(struct GUIOptions *self, const struct GUIRect *);
 
+__END_DECLS
+
 struct GUISaveItem;
-struct GUISave {
-    GUIElement_field;
+
+__sub_struct(GUISave, GUIElement)
     struct GUIButton *ButtonBack;
     struct GUIButton *ButtonOK;
     struct GUISaveItem *SaveItem[7];
@@ -196,8 +306,20 @@ struct GUISave {
     int GameMode;
     bool Load;
     int SelectedItem;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const struct Event &);
+
+    void OnRender();
+
+    void Init(const struct GUIRect &, int GameMode, bool Load);
+
+    void SelItem(int index);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN7GUISaveC1Ev(struct GUISave *self);
 
 void _ZN7GUISaveC2Ev(struct GUISave *self);
@@ -217,10 +339,12 @@ void _ZN7GUISave4InitERK7GUIRectib(struct GUISave *self, const struct GUIRect *,
 
 void _ZN7GUISave7SelItemEi(struct GUISave *self, int index);
 
+__END_DECLS
+
 struct GUIBattle;
 struct GUIResult;
-struct GUIDefeated {
-    GUIElement_field;
+
+__sub_struct(GUIDefeated, GUIElement)
     struct GUIButtonEx *ButtonOK;
     struct ecTexture *x38;
     struct ecImage *Image_country_defeat;
@@ -233,13 +357,93 @@ struct GUIDefeated {
     float x9C;
     float xA0;
     int xA4;
-};
-struct GUIAIProgress;
-struct GUIArmyItem {
-    GUIButton_field;
-    struct CArmy *Army;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &);
+
+    void OnRender();
+
+    void OnUpdate(float time);
+
+    void Init(const GUIRect &);
+
+    void HideDefeated();
+
+    void ShowDefeated(CCountry *country);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
+void _ZN11GUIDefeatedC1Ev(struct GUIDefeated *self);
+
+void _ZN11GUIDefeatedC2Ev(struct GUIDefeated *self);
+
+void _ZN11GUIDefeatedD0Ev(struct GUIDefeated *self);
+
+void _ZN11GUIDefeatedD1Ev(struct GUIDefeated *self);
+
+void _ZN11GUIDefeatedD2Ev(struct GUIDefeated *self);
+
+bool _ZN11GUIDefeated7OnEventERK5Event(struct GUIDefeated *self, const struct Event *event);
+
+void _ZN11GUIDefeated8OnRenderEv(struct GUIDefeated *self);
+
+void _ZN11GUIDefeated8OnUpdateEf(struct GUIDefeated *self, float time);
+
+void _ZN11GUIDefeated4InitERK7GUIRect(struct GUIDefeated *self, const struct GUIRect *rect);
+
+void _ZN11GUIDefeated12HideDefeatedEv(struct GUIDefeated *self);
+
+void _ZN11GUIDefeated12ShowDefeatedEP8CCountry(struct GUIDefeated *self, struct CCountry *country);
+
+__END_DECLS
+
+__sub_struct(GUIAIProgress, GUIElement)
+    struct ecImage *Image_aiprogress;
+    struct ecImage *Image_progressbar;
+    struct ecImage *Image_flag;
+    int ProgressCount;
+#ifdef __cplusplus
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+    void SetCurCountryName(const char *CountryName);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
+void _ZN13GUIAIProgressC1Ev(struct GUIAIProgress *self);
+
+void _ZN13GUIAIProgressC2Ev(struct GUIAIProgress *self);
+
+void _ZN13GUIAIProgressD0Ev(struct GUIAIProgress *self);
+
+void _ZN13GUIAIProgressD1Ev(struct GUIAIProgress *self);
+
+void _ZN13GUIAIProgressD2Ev(struct GUIAIProgress *self);
+
+void _ZN13GUIAIProgress8OnRenderEv(struct GUIAIProgress *self);
+
+void _ZN13GUIAIProgress4InitERK7GUIRect(struct GUIAIProgress *self, const struct GUIRect *);
+
+void _ZN13GUIAIProgress17SetCurCountryNameEPKc(struct GUIAIProgress *self, const char *CountryName);
+
+__END_DECLS
+
+__sub_struct(GUIArmyItem, GUIButton)
+    struct CArmy *Army;
+#ifdef __cplusplus
+
+    void OnRender();
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN11GUIArmyItemC1Ev(struct GUIArmyItem *self);
 
 void _ZN11GUIArmyItemC2Ev(struct GUIArmyItem *self);
@@ -252,16 +456,33 @@ void _ZN11GUIArmyItemD2Ev(struct GUIArmyItem *self);
 
 void _ZN11GUIArmyItem8OnRenderEv(struct GUIArmyItem *self);
 
-struct GUISelArmy {
-    GUIElement_field;
+__END_DECLS
+
+__sub_struct(GUISelArmy, GUIElement)
     struct ecImage *Image_broad;
     struct GUIArmyItem *ArmyItem[4];
     int ArmyCount;
     int AreaID;
     int TargetArmyIndex;
     bool UseCard;
-};
+#ifdef __cplusplus
 
+    bool OnEvent(const Event &event);
+
+    void OnRender();
+
+    void Init(const GUIRect &);
+
+    void MoveArmyToFront(int index);
+
+    void SetArea(int AreaID);
+
+    void TargetArmy(int index);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
 void _ZN10GUISelArmyC1Ev(struct GUISelArmy *self);
 
 void _ZN10GUISelArmyC2Ev(struct GUISelArmy *self);
@@ -284,13 +505,15 @@ void _ZN10GUISelArmy7SetAreaEi(struct GUISelArmy *self, int AreaID);
 
 void _ZN10GUISelArmy10TargetArmyEi(struct GUISelArmy *self, int index);
 
+__END_DECLS
+
 struct GUIBegin;
 struct GUIBattleIntro;
 struct GUIVictory;
 struct GUITutorails;
 struct GUIIap;
-struct GUIDialogue {
-    GUIElement_field;
+
+__sub_struct(GUIDialogue, GUIElement)
     struct ecTexture *TextureGeneral;
     struct ecImage *ImageGeneral;
     struct ecTexture *Texture_dlgboard;
@@ -298,9 +521,31 @@ struct GUIDialogue {
     struct ecUniFont font;
     struct ecText text;
     int eq0;
-};
+#ifdef __cplusplus
+
+    bool OnEvent(const Event &event);
+
+    void OnRender();
+
+    void OnUpdate(float time);
+
+    void Init(const GUIRect &);
+
+    void HideDlg();
+
+    void ShowDlg(const char *TextName, const char *GeneralName, bool left);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
+void _ZN11GUIDialogueC1Ev(struct GUIDialogue *self);
 
 void _ZN11GUIDialogueC2Ev(struct GUIDialogue *self);
+
+void _ZN11GUIDialogueD0Ev(struct GUIDialogue *self);
+
+void _ZN11GUIDialogueD1Ev(struct GUIDialogue *self);
 
 void _ZN11GUIDialogueD2Ev(struct GUIDialogue *self);
 
@@ -317,10 +562,12 @@ void _ZN11GUIDialogue7HideDlgEv(struct GUIDialogue *self);
 void _ZN11GUIDialogue7ShowDlgEPKcS1_b(struct GUIDialogue *self, const char *TextName,
                                       const char *GeneralName, bool left);
 
+__END_DECLS
+
 struct GUIBank;
 struct GUIActionInfo;
-struct GUIWarning {
-    GUIElement_field;
+
+__sub_struct(GUIWarning, GUIElement)
     struct GUIButtonEx *ButtonOK;
     struct GUIButton *ButtonCancle;
     struct ecTexture *Texture_warning_board;
@@ -328,9 +575,27 @@ struct GUIWarning {
     struct ecLabelText LabelText1;
     struct ecLabelText LabelText2;
     int WarningType;
-};
+#ifdef __cplusplus
+
+    bool OnEventERK5Event(const Event &event);
+
+    void OnRenderEv();
+
+    void OnUpdateEf(float time);
+
+    void InitERK7GUIRecti(const GUIRect &, int type);
+
+#endif
+__end_struct
+
+__BEGIN_DECLS
+void _ZN10GUIWarningC1Ev(struct GUIWarning *self);
 
 void _ZN10GUIWarningC2Ev(struct GUIWarning *self);
+
+void _ZN10GUIWarningD0Ev(struct GUIWarning *self);
+
+void _ZN10GUIWarningD1Ev(struct GUIWarning *self);
 
 void _ZN10GUIWarningD2Ev(struct GUIWarning *self);
 
@@ -342,8 +607,7 @@ void _ZN10GUIWarning8OnUpdateEf(struct GUIWarning *self, float time);
 
 void _ZN10GUIWarning4InitERK7GUIRecti(struct GUIWarning *self, const struct GUIRect *, int type);
 
-struct GUIEnd;
-
 __END_DECLS
+struct GUIEnd;
 
 #endif //EASYTECH_GAMEGUI_H

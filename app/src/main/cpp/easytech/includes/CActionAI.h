@@ -1,16 +1,19 @@
 #ifndef EASYTECH_CACTIONAI_H
 #define EASYTECH_CACTIONAI_H
 
-#include "CArea.h"
+#include "CScene.h"
 #include "cxxvector.h"
 
-__BEGIN_DECLS
-
 struct CActionNode {
-    int CardID;
+    enum CARD_ID CardID;
     int StartAreaID;
     int TargetAreaID;
-    int ActionType;
+    enum NodeType {
+        UseCardNode = 0x10010,
+        ArmyMoveNode = 0x10020,
+        ArmyAttackNode = 0x10030,
+        ArmyMoveFrontNode = 0x10050
+    } ActionType;
     int AlwaysZero;
     int ArmyIndex;
 };
@@ -24,11 +27,44 @@ struct CActionAI {
     char CurrentCountryNameShort[4];
     int TotalAIArmyAreaCount;
     int TurnBeginActiveAreaCount;
-    int Unused;
+    bool x2C;
+    bool x2D;
+    bool x2E;
+    bool x2F;
     bool Action;
     int CurrentCountryIndex;
+#ifdef __cplusplus
+
+    static CActionAI *Instance();
+
+    void InitAI();
+
+    void analyseCompositePower();
+
+    bool detectCards(CARD_ID);
+
+    void getAiPercent(int CountryIndex);
+
+    int getMaxId();
+
+    bool getMedal(int damage, CArea *TargetArea);
+
+    void moveAndAttack();
+
+    bool purChaseCard(CARD_ID);
+
+    void setActionNodeClear();
+
+    int setArmyAction(CArea *);
+
+    struct CActionNode *setCpuDriverbyId(int CountryIndex, int);
+
+    void sortArmyToFront();
+
+#endif
 };
 
+__BEGIN_DECLS
 struct CActionAI *_ZN9CActionAI8InstanceEv();
 
 void _ZN9CActionAID1Ev(struct CActionAI *self);
@@ -61,6 +97,7 @@ _ZN9CActionAI16setCpuDriverbyIdEii(struct CActionAI *self, int CountryIndex, int
 void _ZN9CActionAI15sortArmyToFrontEv(struct CActionAI *self);
 
 extern struct CActionAI *_ZN9CActionAI9_instanceE;
+__END_DECLS
 
 struct NODE {
     int ActionToNextAreaTargetId;
@@ -69,12 +106,10 @@ struct NODE {
     bool TargetIsPlayer;
 };
 
-#ifndef def_St6vector_4NODE
-#define def_St6vector_4NODE
-def__ZSt6vector(struct NODE, 4NODE)
-
-#endif
 struct CActionAssist {
+    enum Alliance {
+        Ally = 256, NotAlly = 512, Enemy = 768, Self = 1024
+    };
     int SearchNodeHead;
     int SearchNodeTail;
     bool SearchNodeVisited[1950];
@@ -83,10 +118,48 @@ struct CActionAssist {
     int TotalSeaAreaCount;
     int TargetNodeType;
     struct CActionNode ActionNode;
-    _ZSt6vector(4NODE) ActionToNextAreaTargetIdList;
+    vector(NODE) ActionToNextAreaTargetIdList;
     struct NODE TargetNode;
+#ifdef __cplusplus
+
+    static CActionAssist *Instance();
+
+    void actionToNextArea(int mode, int AreaID, int ArmyIndex, int);
+
+    bool aiCheckMoveable(int StartAreaID, int TargetAreaID, int ArmyIndex, int ArmyAreaID);
+
+    int calcAreaValue(CArea *);
+
+    int calcDraftType(bool, int TargetAreaID, CCountry *);
+
+    bool getAlliance(int AreaID_1, int AreaID_2, int mode);
+
+    int getNeighbor(int StartAreaID, int mode, int, char);
+
+    bool isAI(int AreaID);
+
+    bool isBuyCard(CardDef *);
+
+    bool purChaseAirStrikeCard();
+
+    bool purChaseCardsCard();
+
+    bool purChaseConstructCard();
+
+    bool purChaseDraftCard(bool navy);
+
+    bool purChaseFortCard();
+
+    bool purChaseSpecialCard();
+
+    int searchNode(int AreaID, int ArmyIndex);
+
+    int searchNodeByID(int AreaID, int ArmyIndex);
+
+#endif
 };
 
+__BEGIN_DECLS
 struct CActionAssist *_ZN13CActionAssist8InstanceEv();
 
 void _ZN13CActionAssistD1sEv(struct CActionAssist *self);
@@ -132,7 +205,6 @@ int _ZN13CActionAssist10searchNodeEii(struct CActionAssist *self, int AreaID, in
 int _ZN13CActionAssist14searchNodeByIDEii(struct CActionAssist *self, int AreaID, int ArmyIndex);
 
 extern struct CActionAssist *_ZN13CActionAssist9_instanceE;
-
 __END_DECLS
 
 #endif //EASYTECH_CACTIONAI_H

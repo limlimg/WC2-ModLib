@@ -1,11 +1,7 @@
-//ecLibrary.h
-//Low level classes
-//C placeholders of STL classes
-
 #ifndef EASYTECH_ECLIBRARY_H
 #define EASYTECH_ECLIBRARY_H
 
-#include "DECLS.h"
+#include "cxx.h"
 #include "cxxvector.h"
 #include "cxxlist.h"
 #include "cxxmap.h"
@@ -17,16 +13,42 @@ typedef unsigned int color_t;
 typedef unsigned long color_t;
 #endif
 
-#define _Z9TFreeList(type_name) struct _Z9TFreeListE##type_name##I
-#define def__Z9TFreeList(type, type_name) _Z9TFreeList(type_name) {\
-type *StorageSpace;\
-type **PointerList;\
-int TotalSize;\
-int RemainingSize;\
+#ifdef __cplusplus
+template<class T>
+struct TFreeList {
+    void *StorageSpace;
+    void **PointerList;
+    int TotalSize;
+    int RemainingSize;
 };
+#define TFreeList(type) TFreeList<type>
+#else
+struct TFreeList {
+    void *StorageSpace;
+    void **PointerList;
+    int TotalSize;
+    int RemainingSize;
+};
+#define TFreeList(type) struct TFreeList
+#endif
+
+#ifdef __cplusplus
+
+void ecGameUpdate(float time);
+
+const char *GetPath(const char *FileName, const char *);
+
+bool ecTextureLoad(const char *name, int &w, int &h, unsigned int &handler);
+
+bool ecPVRTextureLoad(const char *name, int &w, int &h, unsigned int &handler);
+
+bool ecETCTextureLoad(const char *name, int &w, int &h, unsigned int &handler);
+
+bool ecWEBPTextureLoad(const char *name, int &w, int &h, unsigned int &handler);
+
+#endif
 
 __BEGIN_DECLS
-
 void _Z12ecGameUpdatef(float time);
 
 const char *_Z7GetPathPKcS0_(const char *FileName, const char *);
@@ -38,6 +60,8 @@ bool _Z16ecPVRTextureLoadPKcRiS1_Rj(const char *name, int *w, int *h, unsigned i
 bool _Z16ecETCTextureLoadPKcRiS1_Rj(const char *name, int *w, int *h, unsigned int *handler);
 
 bool _Z17ecWEBPTextureLoadPKcRiS1_Rj(const char *name, int *w, int *h, unsigned int *handler);
+
+__END_DECLS
 
 struct ecTexture;
 
@@ -51,21 +75,36 @@ struct ecImageAttr {
     float refy;
 };
 
-#ifndef def__ZSt3map_Ss_P9ecTexture
-#define def__ZSt3map_Ss_P9ecTexture
-def__ZSt3map(string, Ss, struct ecTexture*, P9ecTexture)
-
-#endif
-#ifndef def__ZSt3map_Ss_P11ecImageAttr
-#define def__ZSt3map_Ss_P11ecImageAttr
-def__ZSt3map(string, Ss, struct ecImageAttr*, P11ecImageAttr)
-
-#endif
 struct ecTextureRes {
-    _ZSt3map(Ss, P9ecTexture) Texture;
-    _ZSt3map(Ss, P11ecImageAttr) Image;
+    map(string, ecTexture *) Texture;
+    map(string, ecImageAttr *) Image;
+#ifdef __cplusplus
+
+    ecImageAttr *
+    CreateImage(const char *name, const char *TextureName, float x, float y, float w, float h,
+                float refx, float refy);
+
+    void CreateImage(const char *name, ecTexture *, float x, float y, float w, float h, float refx,
+                     float refy);
+
+    ecTexture *CreateTexture(const char *name, bool pvr, bool pkm, bool webp);
+
+    ecImageAttr *GetImage(const char *name);
+
+    ecTexture *GetTexture(const char *name);
+
+    bool LoadRes(const char *name, bool shrink);
+
+    void Release();
+
+    void ReleaseTexture(ecTexture *);
+
+    void UnloadRes(const char *name);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN12ecTextureResC1Ev(struct ecTextureRes *self);
 
 void _ZN12ecTextureResC2Ev(struct ecTextureRes *self);
@@ -99,6 +138,8 @@ void _ZN12ecTextureRes7ReleaseEv(struct ecTextureRes *self);
 void _ZN12ecTextureRes14ReleaseTextureEP9ecTexture(struct ecTextureRes *self, struct ecTexture *);
 
 void _ZN12ecTextureRes9UnloadResEPKc(struct ecTextureRes *self, const char *name);
+
+__END_DECLS
 
 struct ecTextureRect {
     float x;
@@ -136,8 +177,40 @@ struct ecImage {
     float x70f_yaddh_divTextureH;
     int x74iBlendMode;
     bool x78b3Filp[3];
+#ifdef __cplusplus
+
+    void Init(ecImageAttr *);
+
+    void Init(ecTexture *, float x, float y, float w, float h);
+
+    void Render(float x, float y);
+
+    void Render(float x, float y, float w, float h);
+
+    void Render4V(float, float, float, float, float, float, float, float);
+
+    void Render4VC(float, float, float, float, float, float, float, float, int, float);
+
+    void RenderEx(float x, float y, float angle, float xFactor, float yFactor);
+
+    void RenderStretch(float, float, float, float);
+
+    void SetAlpha(float Alpha, int type);
+
+    void SetColor(unsigned long color, int type);
+
+    void SetFlip(bool, bool, bool);
+
+    void SetTexture(ecTexture *);
+
+    void SetTextureRect(const ecTextureRect &);
+
+    void SetTextureRect(float x, float y, float w, float h);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN7ecImageC1EP11ecImageAttr(struct ecImage *self, struct ecImageAttr *);
 
 void _ZN7ecImageC2EP11ecImageAttr(struct ecImage *self, struct ecImageAttr *);
@@ -195,21 +268,28 @@ _ZN7ecImage14SetTextureRectERK13ecTextureRect(struct ecImage *self, const struct
 
 void _ZN7ecImage14SetTextureRectEffff(struct ecImage *self, float x, float y, float w, float h);
 
+__END_DECLS
+
 struct ecCharImage;
 
-#ifndef def__ZSt3map_Kl_P11ecCharImage
-#define def__ZSt3map_Kl_P11ecCharImage
-def__ZSt3map(long const, Kl, struct ecCharImage*, P11ecCharImage)
-
-#endif
 struct ecUniFont {
-    _ZSt3map(Kl, P11ecCharImage) Encoding;
+    map(const long, ecCharImage*) Encoding;
     struct ecCharImage *CharImage;
     struct ecImage *FontImage;
     struct ecTexture *FontTexture;
     int FontHeight;
+#ifdef __cplusplus
+
+    void Init(const char *name, bool);
+
+    void Release();
+
+    ecCharImage *GetCharImage(wchar_t);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN9ecUniFontC1Ev(struct ecUniFont *self);
 
 void _ZN9ecUniFontC2Ev(struct ecUniFont *self);
@@ -224,18 +304,37 @@ void _ZN9ecUniFont7ReleaseEv(struct ecUniFont *self);
 
 struct ecCharImage *_ZN9ecUniFont12GetCharImageEt(struct ecUniFont *self, wchar_t);
 
-#ifndef def_St6vector_P11ecCharImage
-#define def_St6vector_P11ecCharImage
-def__ZSt6vector(struct ecCharImage*, P11ecCharImage)
+__END_DECLS
 
-#endif
 struct ecText {
-    _ZSt6vector(P11ecCharImage) TextWithFont;
+    vector(ecCharImage*) TextWithFont;
     struct ecUniFont *Font;
     float FontSize[2];
     color_t AlphaColor;
+#ifdef __cplusplus
+
+    void Init(ecUniFont *);
+
+    void DrawText(float x, float y, int line);
+
+    float GetHeight();
+
+    int GetNumLines();
+
+    float GetStringWidth(int line, bool SingleLine);
+
+    void SetAlpha(float alpha);
+
+    void SetColor(color_t);
+
+    void SetText(const char *text);
+
+    void SetText(const wchar_t *text);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN6ecTextC1Ev(struct ecText *self);
 
 void _ZN6ecTextC2Ev(struct ecText *self);
@@ -262,6 +361,8 @@ void _ZN6ecText7SetTextEPKc(struct ecText *self, const char *text);
 
 void _ZN6ecText7SetTextEPKt(struct ecText *self, const wchar_t *text);
 
+__END_DECLS
+
 struct ecLabelText {
     string TextString;
     int FontW;
@@ -271,8 +372,22 @@ struct ecLabelText {
     int SpaceH;
     struct ecTexture *TextTexture;
     struct ecImage *TextImage;
+#ifdef __cplusplus
+
+    void Init(const char *, int, int, int, int);
+
+    void DrawText(float x, float y);
+
+    void SetAlpha(float alpha);
+
+    void SetColor(color_t color);
+
+    void SetText(const char *text);
+
+#endif
 };
 
+__BEGIN_DECLS
 void _ZN11ecLabelTextC1Ev(struct ecLabelText *self);
 
 void _ZN11ecLabelTextC2Ev(struct ecLabelText *self);
@@ -291,24 +406,33 @@ void _ZN11ecLabelText8SetColorEm(struct ecLabelText *self, color_t color);
 
 void _ZN11ecLabelText7SetTextEPKc(struct ecLabelText *self, const char *text);
 
+__END_DECLS
+
 struct ecEffect;
 
 struct ecParticleSystem;
 
-#ifndef def_St4list_P8ecEffect
-#define def_St4list_P8ecEffect
-def__ZSt4list(struct ecEffect*, P8ecEffect)
+struct ecEffectManager {
+    list(ecEffect*) Effect;
+    TFreeList(ecParticleSystem) ParticleSystem;
+#ifdef __cplusplus
+
+    static ecEffectManager *Instance();
+
+    ecEffect *AddEffect(const char *name, bool);
+
+    ecEffect *CreateEffect(const char *name);
+
+    void RemoveAll();
+
+    void Render();
+
+    void Update(float time);
 
 #endif
-#ifndef def__Z9TFreeList_16ecParticleSystem
-#define def__Z9TFreeList_16ecParticleSystem
-def__Z9TFreeList(struct ecParticleSystem, 16ecParticleSystem)
-#endif
-struct ecEffectManager {
-    _ZSt4list(P8ecEffect) Effect;
-    _Z9TFreeList(16ecParticleSystem) ParticleSystem;
 };
 
+__BEGIN_DECLS
 struct ecEffectManager *_ZN15ecEffectManager8InstanceEv();
 
 void _ZN15ecEffectManagerC1Ev(struct ecEffectManager *self);
@@ -331,6 +455,8 @@ void _ZN15ecEffectManager6RenderEv(struct ecEffectManager *self);
 
 void _ZN15ecEffectManager6UpdateEf(struct ecEffectManager *self, float time);
 
+__END_DECLS
+
 struct ecLine;
 struct ecTriple;
 struct ecQuad;
@@ -342,8 +468,56 @@ struct ecGraphics {
     int eq0;
     int WidthMode;
     //Member Variables is incomplete
+#ifdef __cplusplus
+
+    static ecGraphics *Instance();
+
+    void Init(int, int, int, int, int);
+
+    void BindTexture(ecTexture *);
+
+    ecTexture *CreateTextureWithString(const char *, const char *, int, int, int, int);
+
+    void Fade(float);
+
+    void Flush();
+
+    void FreeTexture(ecTexture *);
+
+    ecTexture *LoadTexture(const char *name);
+
+    ecTexture *LoadPVRTexture(const char *name);
+
+    ecTexture *LoadETCTexture(const char *name);
+
+    ecTexture *LoadWEBPTexture(const char *name);
+
+    void RenderBegin();
+
+    void RenderCircle(float x, float y, float r, color_t color);
+
+    void RenderEndEv();
+
+    void RenderLine(const ecLine *);
+
+    void RenderQuad(const ecQuad *);
+
+    void RenderRect(float x, float y, float w, float h, unsigned long color);
+
+    void RenderTriple(const ecTriple *);
+
+    void SetBlendMode(int);
+
+    void SetOrientation(int);
+
+    void SetViewPoint(float x, float y, float scale);
+
+    void Shutdown();
+
+#endif
 };
 
+__BEGIN_DECLS
 struct ecGraphics *_ZN10ecGraphics8InstanceEv();
 
 void _ZN10ecGraphicsC1Ev(struct ecGraphics *self);
@@ -403,4 +577,3 @@ void _ZN10ecGraphics8ShutdownEv(struct ecGraphics *self);
 __END_DECLS
 
 #endif //EASYTECH_ECLIBRARY_H
-//End of File ecLibrary.h

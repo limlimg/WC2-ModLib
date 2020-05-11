@@ -915,13 +915,23 @@ __sub_struct(TiXmlDocument, TiXmlNode)
 __end_struct
 
 __BEGIN_DECLS
+void _ZN13TiXmlDocumentC1Ev(struct TiXmlDocument *self);
+
 void _ZN13TiXmlDocumentC2Ev(struct TiXmlDocument *self);
 
+void _ZN13TiXmlDocumentC1EPKc(struct TiXmlDocument *self, const char *documentName);
+
 void _ZN13TiXmlDocumentC2EPKc(struct TiXmlDocument *self, const char *documentName);
+
+void _ZN13TiXmlDocumentC1ERKS_(struct TiXmlDocument *self, const struct TiXmlDocument *copy);
 
 void _ZN13TiXmlDocumentC2ERKS_(struct TiXmlDocument *self, const struct TiXmlDocument *copy);
 
 void _ZN13TiXmlDocumentD0Ev(struct TiXmlDocument *self);
+
+void _ZN13TiXmlDocumentD1Ev(struct TiXmlDocument *self);
+
+void _ZN13TiXmlDocumentD2Ev(struct TiXmlDocument *self);
 
 __END_DECLS
 

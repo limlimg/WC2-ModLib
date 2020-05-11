@@ -108,13 +108,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN10CGameStateC1Ev(struct CGameState *self);
 
-void _ZN10CGameStateC2Ev(struct CGameState *self);
-
-void _ZN10CGameStateD0Ev(struct CGameState *self);
-
 void _ZN10CGameStateD1Ev(struct CGameState *self);
-
-void _ZN10CGameStateD2Ev(struct CGameState *self);
 
 void _ZN10CGameState7OnEnterEv(struct CGameState *self);
 
@@ -231,11 +225,7 @@ struct CFight {
 __BEGIN_DECLS
 void _ZN6CFightC1Ev(struct CFight *self);
 
-void _ZN6CFightC2Ev(struct CFight *self);
-
 void _ZN6CFightD1Ev(struct CFight *self);
-
-void _ZN6CFightD2Ev(struct CFight *self);
 
 void
 _ZN6CFight16AirStrikesAttackEP8CCountryii(struct CFight *self, struct CCountry *, int TargetAreaID,

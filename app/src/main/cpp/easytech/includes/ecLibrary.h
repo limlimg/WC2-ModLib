@@ -107,11 +107,7 @@ struct ecTextureRes {
 __BEGIN_DECLS
 void _ZN12ecTextureResC1Ev(struct ecTextureRes *self);
 
-void _ZN12ecTextureResC2Ev(struct ecTextureRes *self);
-
 void _ZN12ecTextureResD1Ev(struct ecTextureRes *self);
-
-void _ZN12ecTextureResD2Ev(struct ecTextureRes *self);
 
 struct ecImageAttr *
 _ZN12ecTextureRes11CreateImageEPKcS1_ffffff(struct ecTextureRes *self, const char *name,
@@ -213,25 +209,14 @@ struct ecImage {
 __BEGIN_DECLS
 void _ZN7ecImageC1EP11ecImageAttr(struct ecImage *self, struct ecImageAttr *);
 
-void _ZN7ecImageC2EP11ecImageAttr(struct ecImage *self, struct ecImageAttr *);
-
 void
 _ZN7ecImageC1EP9ecTextureffff(struct ecImage *self, struct ecTexture *, float x, float y, float w,
-                              float h);
-
-void
-_ZN7ecImageC2EP9ecTextureffff(struct ecImage *self, struct ecTexture *, float x, float y, float w,
                               float h);
 
 void _ZN7ecImageC1EP9ecTextureRK13ecTextureRect(struct ecImage *self, struct ecTexture *,
                                                 const struct ecTextureRect *);
 
-void _ZN7ecImageC2EP9ecTextureRK13ecTextureRect(struct ecImage *self, struct ecTexture *,
-                                                const struct ecTextureRect *);
-
 void _ZN7ecImageD1Ev(struct ecImage *self);
-
-void _ZN7ecImageD2Ev(struct ecImage *self);
 
 void _ZN7ecImage4InitEP11ecImageAttr(struct ecImage *self, struct ecImageAttr *);
 
@@ -292,11 +277,7 @@ struct ecUniFont {
 __BEGIN_DECLS
 void _ZN9ecUniFontC1Ev(struct ecUniFont *self);
 
-void _ZN9ecUniFontC2Ev(struct ecUniFont *self);
-
 void _ZN9ecUniFontD1Ev(struct ecUniFont *self);
-
-void _ZN9ecUniFontD2Ev(struct ecUniFont *self);
 
 void _ZN9ecUniFont4InitEPKcb(struct ecUniFont *self, const char *name);
 
@@ -337,11 +318,7 @@ struct ecText {
 __BEGIN_DECLS
 void _ZN6ecTextC1Ev(struct ecText *self);
 
-void _ZN6ecTextC2Ev(struct ecText *self);
-
 void _ZN6ecTextD1Ev(struct ecText *self);
-
-void _ZN6ecTextD2Ev(struct ecText *self);
 
 void _ZN6ecText4InitEP9ecUniFont(struct ecText *self, struct ecUniFont *);
 
@@ -390,11 +367,7 @@ struct ecLabelText {
 __BEGIN_DECLS
 void _ZN11ecLabelTextC1Ev(struct ecLabelText *self);
 
-void _ZN11ecLabelTextC2Ev(struct ecLabelText *self);
-
 void _ZN11ecLabelTextD1Ev(struct ecLabelText *self);
-
-void _ZN11ecLabelTextD2Ev(struct ecLabelText *self);
 
 void _ZN11ecLabelText4InitEPKciiii(struct ecLabelText *self, const char *, int, int, int, int);
 
@@ -437,11 +410,7 @@ struct ecEffectManager *_ZN15ecEffectManager8InstanceEv();
 
 void _ZN15ecEffectManagerC1Ev(struct ecEffectManager *self);
 
-void _ZN15ecEffectManagerC2Ev(struct ecEffectManager *self);
-
 void _ZN15ecEffectManagerD1Ev(struct ecEffectManager *self);
-
-void _ZN15ecEffectManagerD2Ev(struct ecEffectManager *self);
 
 struct ecEffect *
 _ZN15ecEffectManager9AddEffectEPKcb(struct ecEffectManager *self, const char *name, bool);
@@ -522,11 +491,7 @@ struct ecGraphics *_ZN10ecGraphics8InstanceEv();
 
 void _ZN10ecGraphicsC1Ev(struct ecGraphics *self);
 
-void _ZN10ecGraphicsC2Ev(struct ecGraphics *self);
-
 void _ZN10ecGraphicsD1Ev(struct ecGraphics *self);
-
-void _ZN10ecGraphicsD2Ev(struct ecGraphics *self);
 
 void _ZN10ecGraphics4InitEiiiii(struct ecGraphics *self, int, int, int, int, int);
 

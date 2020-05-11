@@ -144,11 +144,7 @@ struct CStateManager *_ZN13CStateManager8InstanceEv();
 
 void _ZN13CStateManagerC1Ev(struct CStateManager *self);
 
-void _ZN13CStateManagerC2Ev(struct CStateManager *self);
-
 void _ZN13CStateManagerD1Ev(struct CStateManager *self);
-
-void _ZN13CStateManagerD2Ev(struct CStateManager *self);
 
 void _ZN13CStateManager4InitEv(struct CStateManager *self);
 
@@ -223,11 +219,7 @@ struct CTouchInertia {
 __BEGIN_DECLS
 void _ZN13CTouchInertiaC1Ev(struct CTouchInertia *self);
 
-void _ZN13CTouchInertiaC2Ev(struct CTouchInertia *self);
-
 void _ZN13CTouchInertiaD1Ev(struct CTouchInertia *self);
-
-void _ZN13CTouchInertiaD2Ev(struct CTouchInertia *self);
 
 void _ZN13CTouchInertia4InitEv(struct CTouchInertia *self);
 

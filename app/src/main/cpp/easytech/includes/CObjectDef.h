@@ -161,11 +161,7 @@ struct CObjectDef *_ZN10CObjectDef8InstanceEv();
 
 void _ZN10CObjectDefC1Ev(struct CObjectDef *self);
 
-void _ZN10CObjectDefC2Ev(struct CObjectDef *self);
-
 void _ZN10CObjectDefD1Ev(struct CObjectDef *self);
-
-void _ZN10CObjectDefD2Ev(struct CObjectDef *self);
 
 void _ZN10CObjectDef4InitEv(struct CObjectDef *self);
 

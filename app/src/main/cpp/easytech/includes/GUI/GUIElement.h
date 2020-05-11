@@ -105,13 +105,7 @@ struct GUIElement {
 __BEGIN_DECLS
 void _ZN10GUIElementC1Ev(struct GUIElement *self);
 
-void _ZN10GUIElementC2Ev(struct GUIElement *self);
-
-void _ZN10GUIElementD0Ev(struct GUIElement *self);
-
 void _ZN10GUIElementD1Ev(struct GUIElement *self);
-
-void _ZN10GUIElementD2Ev(struct GUIElement *self);
 
 bool _ZN10GUIElement7OnEventERK5Event(struct GUIElement *self, const struct Event *event);
 
@@ -257,13 +251,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN9GUIButtonC1Ev(struct GUIButton *self);
 
-void _ZN9GUIButtonC2Ev(struct GUIButton *self);
-
-void _ZN9GUIButtonD0Ev(struct GUIButton *self);
-
 void _ZN9GUIButtonD1Ev(struct GUIButton *self);
-
-void _ZN9GUIButtonD2Ev(struct GUIButton *self);
 
 bool _ZN9GUIButton7OnEventERK5Event(struct GUIButton *self, const struct Event *);
 
@@ -309,13 +297,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN11GUIButtonExC1Ev(struct GUIButtonEx *self);
 
-void _ZN11GUIButtonExC2Ev(struct GUIButtonEx *self);
-
-void _ZN11GUIButtonExD0Ev(struct GUIButtonEx *self);
-
 void _ZN11GUIButtonExD1Ev(struct GUIButtonEx *self);
-
-void _ZN11GUIButtonExD2Ev(struct GUIButtonEx *self);
 
 void _ZN11GUIButtonEx8OnRenderEv(struct GUIButtonEx *self);
 
@@ -336,13 +318,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN14GUIRadioButtonC1Ev(struct GUIRadioButton *self);
 
-void _ZN14GUIRadioButtonC2Ev(struct GUIRadioButton *self);
-
-void _ZN14GUIRadioButtonD0Ev(struct GUIRadioButton *self);
-
 void _ZN14GUIRadioButtonD1Ev(struct GUIRadioButton *self);
-
-void _ZN14GUIRadioButtonD2Ev(struct GUIRadioButton *self);
 
 void _ZN14GUIRadioButton8OnRenderEv(struct GUIRadioButton *self);
 
@@ -366,13 +342,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN11GUILevelSelC1Ev(struct GUILevelSel *self);
 
-void _ZN11GUILevelSelC2Ev(struct GUILevelSel *self);
-
-void _ZN11GUILevelSelD0Ev(struct GUILevelSel *self);
-
 void _ZN11GUILevelSelD1Ev(struct GUILevelSel *self);
-
-void _ZN11GUILevelSelD2Ev(struct GUILevelSel *self);
 
 bool _ZN11GUILevelSel7OnEventERK5Event(struct GUILevelSel *self, const struct Event *);
 
@@ -440,13 +410,7 @@ struct GUIManager *_ZN10GUIManager8InstanceEv();
 
 void _ZN10GUIManagerC1Ev(struct GUIManager *self);
 
-void _ZN10GUIManagerC2Ev(struct GUIManager *self);
-
-void _ZN10GUIManagerD0Ev(struct GUIManager *self);
-
 void _ZN10GUIManagerD1Ev(struct GUIManager *self);
-
-void _ZN10GUIManagerD2Ev(struct GUIManager *self);
 
 bool _ZN10GUIManager7OnEventERK5Event(struct GUIManager *self, const struct Event *);
 

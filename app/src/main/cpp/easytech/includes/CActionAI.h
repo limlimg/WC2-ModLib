@@ -69,8 +69,6 @@ struct CActionAI *_ZN9CActionAI8InstanceEv();
 
 void _ZN9CActionAID1Ev(struct CActionAI *self);
 
-void _ZN9CActionAID2Ev(struct CActionAI *self);
-
 void _ZN9CActionAI6InitAIEv(struct CActionAI *self);
 
 void _ZN9CActionAI21analyseCompositePowerE(struct CActionAI *self);
@@ -163,8 +161,6 @@ __BEGIN_DECLS
 struct CActionAssist *_ZN13CActionAssist8InstanceEv();
 
 void _ZN13CActionAssistD1sEv(struct CActionAssist *self);
-
-void _ZN13CActionAssistD2Ev(struct CActionAssist *self);
 
 void _ZN13CActionAssist16actionToNextAreaEiiii(struct CActionAssist *self, int mode, int AreaID,
                                                int ArmyIndex, int);

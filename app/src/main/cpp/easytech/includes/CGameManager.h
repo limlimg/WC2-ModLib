@@ -166,11 +166,7 @@ struct CCountry {
 __BEGIN_DECLS
 void _ZN8CCountryC1Ev(struct CCountry *self);
 
-void _ZN8CCountryC2Ev(struct CCountry *self);
-
 void _ZN8CCountryD1Ev(struct CCountry *self);
-
-void _ZN8CCountryD2Ev(struct CCountry *self);
 
 void _ZN8CCountry4InitEPKcS1_(struct CCountry *self, const char *ID, const char *Name);
 
@@ -419,11 +415,7 @@ struct CGameManager {
 __BEGIN_DECLS
 void _ZN12CGameManagerC1Ev(struct CGameManager *self);
 
-void _ZN12CGameManagerC2Ev(struct CGameManager *self);
-
 void _ZN12CGameManagerD1Ev(struct CGameManager *self);
-
-void _ZN12CGameManagerD2Ev(struct CGameManager *self);
 
 void _ZN12CGameManager13BattleVictoryEv(struct CGameManager *self);
 

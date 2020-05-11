@@ -100,11 +100,7 @@ struct CGameRes {
 __BEGIN_DECLS
 void _ZN8CGameResC1Ev(struct CGameRes *self);
 
-void _ZN8CGameResC2Ev(struct CGameRes *self);
-
 void _ZN8CGameResD1Ev(struct CGameRes *self);
-
-void _ZN8CGameResD2Ev(struct CGameRes *self);
 
 void _ZN8CGameRes4LoadEv(struct CGameRes *self);
 

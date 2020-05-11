@@ -35,13 +35,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN6GUITaxC1Ev(struct GUITax *self);
 
-void _ZN6GUITaxC2Ev(struct GUITax *self);
-
-void _ZN6GUITaxD0Ev(struct GUITax *self);
-
 void _ZN6GUITaxD1Ev(struct GUITax *self);
-
-void _ZN6GUITaxD2Ev(struct GUITax *self);
 
 void _ZN6GUITax8OnRenderEv(struct GUITax *self);
 
@@ -71,13 +65,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN12GUISmallCardC1Ev(struct GUISmallCard *self);
 
-void _ZN12GUISmallCardC2Ev(struct GUISmallCard *self);
-
-void _ZN12GUISmallCardD0Ev(struct GUISmallCard *self);
-
 void _ZN12GUISmallCardD1Ev(struct GUISmallCard *self);
-
-void _ZN12GUISmallCardD2Ev(struct GUISmallCard *self);
 
 void _ZN12GUISmallCard8OnRenderEv(struct GUISmallCard *self);
 
@@ -111,13 +99,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN12GUIAttackBoxC1Ev(struct GUIAttackBox *self);
 
-void _ZN12GUIAttackBoxC2Ev(struct GUIAttackBox *self);
-
-void _ZN12GUIAttackBoxD0Ev(struct GUIAttackBox *self);
-
 void _ZN12GUIAttackBoxD1Ev(struct GUIAttackBox *self);
-
-void _ZN12GUIAttackBoxD2Ev(struct GUIAttackBox *self);
 
 bool _ZN12GUIAttackBox7OnEventERK5Event(struct GUIAttackBox *self, const struct Event *);
 
@@ -151,13 +133,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN11GUIPauseBoxC1Ev(struct GUIPauseBox *self);
 
-void _ZN11GUIPauseBoxC2Ev(struct GUIPauseBox *self);
-
-void _ZN11GUIPauseBoxD0Ev(struct GUIPauseBox *self);
-
 void _ZN11GUIPauseBoxD1Ev(struct GUIPauseBox *self);
-
-void _ZN11GUIPauseBoxD2Ev(struct GUIPauseBox *self);
 
 bool _ZN11GUIPauseBox7OnEventERK5Event(struct GUIPauseBox *self, const struct Event *);
 
@@ -222,13 +198,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN10GUIBuyCardC1Ev(struct GUIBuyCard *self);
 
-void _ZN10GUIBuyCardC2Ev(struct GUIBuyCard *self);
-
-void _ZN10GUIBuyCardD0Ev(struct GUIBuyCard *self);
-
 void _ZN10GUIBuyCardD1Ev(struct GUIBuyCard *self);
-
-void _ZN10GUIBuyCardD2Ev(struct GUIBuyCard *self);
 
 bool _ZN10GUIBuyCard7OnEventERK5Event(struct GUIBuyCard *self, const struct Event *);
 
@@ -279,13 +249,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN10GUIOptionsC1Ev(struct GUIOptions *self);
 
-void _ZN10GUIOptionsC2Ev(struct GUIOptions *self);
-
-void _ZN10GUIOptionsD0Ev(struct GUIOptions *self);
-
 void _ZN10GUIOptionsD1Ev(struct GUIOptions *self);
-
-void _ZN10GUIOptionsD2Ev(struct GUIOptions *self);
 
 bool _ZN10GUIOptions7OnEventERK5Event(struct GUIOptions *self, const struct Event *);
 
@@ -322,13 +286,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN7GUISaveC1Ev(struct GUISave *self);
 
-void _ZN7GUISaveC2Ev(struct GUISave *self);
-
-void _ZN7GUISaveD0Ev(struct GUISave *self);
-
 void _ZN7GUISaveD1Ev(struct GUISave *self);
-
-void _ZN7GUISaveD2Ev(struct GUISave *self);
 
 bool _ZN7GUISave7OnEventERK5Event(struct GUISave *self, const struct Event *);
 
@@ -377,13 +335,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN11GUIDefeatedC1Ev(struct GUIDefeated *self);
 
-void _ZN11GUIDefeatedC2Ev(struct GUIDefeated *self);
-
-void _ZN11GUIDefeatedD0Ev(struct GUIDefeated *self);
-
 void _ZN11GUIDefeatedD1Ev(struct GUIDefeated *self);
-
-void _ZN11GUIDefeatedD2Ev(struct GUIDefeated *self);
 
 bool _ZN11GUIDefeated7OnEventERK5Event(struct GUIDefeated *self, const struct Event *event);
 
@@ -418,13 +370,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN13GUIAIProgressC1Ev(struct GUIAIProgress *self);
 
-void _ZN13GUIAIProgressC2Ev(struct GUIAIProgress *self);
-
-void _ZN13GUIAIProgressD0Ev(struct GUIAIProgress *self);
-
 void _ZN13GUIAIProgressD1Ev(struct GUIAIProgress *self);
-
-void _ZN13GUIAIProgressD2Ev(struct GUIAIProgress *self);
 
 void _ZN13GUIAIProgress8OnRenderEv(struct GUIAIProgress *self);
 
@@ -446,13 +392,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN11GUIArmyItemC1Ev(struct GUIArmyItem *self);
 
-void _ZN11GUIArmyItemC2Ev(struct GUIArmyItem *self);
-
-void _ZN11GUIArmyItemD0Ev(struct GUIArmyItem *self);
-
 void _ZN11GUIArmyItemD1Ev(struct GUIArmyItem *self);
-
-void _ZN11GUIArmyItemD2Ev(struct GUIArmyItem *self);
 
 void _ZN11GUIArmyItem8OnRenderEv(struct GUIArmyItem *self);
 
@@ -485,13 +425,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN10GUISelArmyC1Ev(struct GUISelArmy *self);
 
-void _ZN10GUISelArmyC2Ev(struct GUISelArmy *self);
-
-void _ZN10GUISelArmyD0Ev(struct GUISelArmy *self);
-
 void _ZN10GUISelArmyD1Ev(struct GUISelArmy *self);
-
-void _ZN10GUISelArmyD2Ev(struct GUISelArmy *self);
 
 bool _ZN10GUISelArmy7OnEventERK5Event(struct GUISelArmy *self, const struct Event *event);
 
@@ -541,13 +475,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN11GUIDialogueC1Ev(struct GUIDialogue *self);
 
-void _ZN11GUIDialogueC2Ev(struct GUIDialogue *self);
-
-void _ZN11GUIDialogueD0Ev(struct GUIDialogue *self);
-
 void _ZN11GUIDialogueD1Ev(struct GUIDialogue *self);
-
-void _ZN11GUIDialogueD2Ev(struct GUIDialogue *self);
 
 bool _ZN11GUIDialogue7OnEventERK5Event(struct GUIDialogue *self, const struct Event *event);
 
@@ -591,13 +519,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN10GUIWarningC1Ev(struct GUIWarning *self);
 
-void _ZN10GUIWarningC2Ev(struct GUIWarning *self);
-
-void _ZN10GUIWarningD0Ev(struct GUIWarning *self);
-
 void _ZN10GUIWarningD1Ev(struct GUIWarning *self);
-
-void _ZN10GUIWarningD2Ev(struct GUIWarning *self);
 
 bool _ZN10GUIWarning7OnEventERK5Event(struct GUIWarning *self, const struct Event *event);
 

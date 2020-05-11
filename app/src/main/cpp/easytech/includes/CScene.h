@@ -68,11 +68,7 @@ struct CArmy {
 __BEGIN_DECLS
 void _ZN5CArmyC1Ev(struct CArmy *self);
 
-void _ZN5CArmyC2Ev(struct CArmy *self);
-
 void _ZN5CArmyD1Ev(struct CArmy *self);
-
-void _ZN5CArmyD2Ev(struct CArmy *self);
 
 void _ZN5CArmy4InitEP7ArmyDefP8CCountry(struct CArmy *self, struct ArmyDef *, struct CCountry *);
 
@@ -243,11 +239,7 @@ struct CArea {
 __BEGIN_DECLS
 void _ZN5CAreaC1Ev(struct CArea *self);
 
-void _ZN5CAreaC2Ev(struct CArea *self);
-
 void _ZN5CAreaD1Ev(struct CArea *self);
-
-void _ZN5CAreaD2Ev(struct CArea *self);
 
 void _ZN5CArea4InitEiRK8AreaInfo(struct CArea *self, int ID, const struct AreaInfo *);
 
@@ -363,8 +355,6 @@ struct CMedal {
 __BEGIN_DECLS
 void _ZN6CMedalC1Ev(struct CMedal *self);
 
-void _ZN6CMedalC2Ev(struct CMedal *self);
-
 void _ZN6CMedal4InitEff(struct CMedal *self, float x, float y);
 
 void _ZN6CMedal6RenderEv(struct CMedal *self);
@@ -390,11 +380,7 @@ struct CAreaMark {
 __BEGIN_DECLS
 void _ZN9CAreaMarkC1Ev(struct CAreaMark *self);
 
-void _ZN9CAreaMarkC2Ev(struct CAreaMark *self);
-
 void _ZN9CAreaMarkD1Ev(struct CAreaMark *self);
-
-void _ZN9CAreaMarkD2Ev(struct CAreaMark *self);
 
 void _ZN9CAreaMark4InitEi(struct CAreaMark *self, int MapID);
 
@@ -443,8 +429,6 @@ struct CCamera {
 
 __BEGIN_DECLS
 void _ZN7CCameraC1Ev(struct CCamera *self);
-
-void _ZN7CCameraC2Ev(struct CCamera *self);
 
 void _ZN7CCamera5ApplyEv(struct CCamera *self);
 
@@ -495,11 +479,7 @@ struct CBackground {
 __BEGIN_DECLS
 void _ZN11CBackgroundC1Ev(struct CBackground *self);
 
-void _ZN11CBackgroundC2Ev(struct CBackground *self);
-
 void _ZN11CBackgroundD1Ev(struct CBackground *self);
-
-void _ZN11CBackgroundD2Ev(struct CBackground *self);
 
 void _ZN11CBackground4InitEiiiiiffff(struct CBackground *self, int MapID, int TotalX, int TotalY,
                                      int TotalW, int TotalH, float EnableX, float EnableY,
@@ -554,11 +534,7 @@ struct CBomber {
 __BEGIN_DECLS
 void _ZN7CBomberC1Ev(struct CBomber *self);
 
-void _ZN7CBomberC2Ev(struct CBomber *self);
-
 void _ZN7CBomberD1Ev(struct CBomber *self);
-
-void _ZN7CBomberD2Ev(struct CBomber *self);
 
 void _ZN7CBomber4InitEv(struct CBomber *self);
 
@@ -729,11 +705,7 @@ struct CScene {
 __BEGIN_DECLS
 void _ZN6CSceneC1Ev(struct CScene *self);
 
-void _ZN6CSceneC2Ev(struct CScene *self);
-
 void _ZN6CSceneD1Ev(struct CScene *self);
-
-void _ZN6CSceneD2Ev(struct CScene *self);
 
 void _ZN6CScene4InitEPKci(struct CScene *self, const char *areasenable, int MapID);
 

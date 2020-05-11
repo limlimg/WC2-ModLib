@@ -27,11 +27,7 @@ struct CFightTextMgr {
 __BEGIN_DECLS
 void _ZN13CFightTextMgrC1Ev(struct CFightTextMgr *self);
 
-void _ZN13CFightTextMgrC2Ev(struct CFightTextMgr *self);
-
 void _ZN13CFightTextMgrD1Ev(struct CFightTextMgr *self);
-
-void _ZN13CFightTextMgrD2Ev(struct CFightTextMgr *self);
 
 void _ZN13CFightTextMgr4InitEv(struct CFightTextMgr *self);
 

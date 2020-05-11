@@ -29,13 +29,7 @@ __end_struct
 __BEGIN_DECLS
 void _ZN14GUICountryItemC1Ev(struct GUICountryItem *self);
 
-void _ZN14GUICountryItemC2Ev(struct GUICountryItem *self);
-
-void _ZN14GUICountryItemD0Ev(struct GUICountryItem *self);
-
 void _ZN14GUICountryItemD1Ev(struct GUICountryItem *self);
-
-void _ZN14GUICountryItemD2Ev(struct GUICountryItem *self);
 
 bool _ZN14GUICountryItem7OnEventERK5Event(struct GUICountryItem *self, const struct Event *);
 

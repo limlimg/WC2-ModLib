@@ -22,11 +22,7 @@ struct CGameSettings {
 __BEGIN_DECLS
 void _ZN13CGameSettingsC1Ev(struct CGameSettings *self);
 
-void _ZN13CGameSettingsC2Ev(struct CGameSettings *self);
-
 void _ZN13CGameSettingsD1Ev(struct CGameSettings *self);
-
-void _ZN13CGameSettingsD2Ev(struct CGameSettings *self);
 
 void _ZN13CGameSettings12LoadSettingsEv(struct CGameSettings *self);
 
@@ -87,11 +83,7 @@ struct CCommander {
 __BEGIN_DECLS
 void _ZN10CCommanderC1Ev(struct CCommander *self);
 
-void _ZN10CCommanderC2Ev(struct CCommander *self);
-
 void _ZN10CCommanderD1Ev(struct CCommander *self);
-
-void _ZN10CCommanderD2Ev(struct CCommander *self);
 
 void _ZN10CCommander8BuyMedalEi(struct CCommander *self, int medal);
 

@@ -61,7 +61,7 @@ struct CActionAssist {
     int TotalSeaAreaCount;
     int TargetNodeType;
     struct CActionNode ActionNode;
-    std::vector<NODE> ActionToNextAreaTargetIdList;
+    std::vector <NODE> ActionToNextAreaTargetIdList;
     struct NODE TargetNode;
 
     int calcAreaValue(CArea *area);

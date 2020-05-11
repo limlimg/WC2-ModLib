@@ -3,7 +3,7 @@
 //allow to set more areas
 //Fix AI rocket melee attack
 
-#include <cstdio>
+#include <cstring>
 #include "CScene.h"
 #include "CActionAI.h"
 #include "modObject.h"

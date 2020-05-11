@@ -8,7 +8,7 @@ struct CActionNode {
     enum CARD_ID CardID;
     int StartAreaID;
     int TargetAreaID;
-    enum NodeType {
+    enum ActionNodeType {
         UseCardNode = 0x10010,
         ArmyMoveNode = 0x10020,
         ArmyAttackNode = 0x10030,

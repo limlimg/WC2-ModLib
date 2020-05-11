@@ -3,8 +3,8 @@
 
 #include "CStateManager.h"
 #include "../GUI/GameGUI.h"
-#include "CGameManager.h"
-#include "cxxvector.h"
+#include "../CGameManager.h"
+#include "../cxxvector.h"
 
 __sub2_struct(CGameState, CBaseState, IEventReceiver)
     float FirstTouchStartPos[2];

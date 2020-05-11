@@ -32,11 +32,9 @@ add_library( # Sets the name of the library.
         easytech/src/CActionAI.cpp
         )
 
-set_target_properties(modlibeasytech PROPERTIES C_VISIBILITY_PRESET protected)
 set_target_properties(modlibeasytech PROPERTIES CXX_VISIBILITY_PRESET protected)
 
 target_include_directories(modlibeasytech PRIVATE easytech/includes)
-target_include_directories(modlibeasytech PRIVATE tinyxml)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by

@@ -17,7 +17,7 @@ android {
         externalNativeBuild {
             cmake {
                 arguments  '-DANDROID_TOOLCHAIN=gcc'
-//                cppFlags "-S"
+//                cFlags "-S"
             }
         }
     }

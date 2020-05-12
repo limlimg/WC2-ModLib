@@ -17,24 +17,25 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        code/AutoPicFormat.cpp
-        code/Camera.cpp
-        code/SelectArmy.cpp
-        code/AutoAndSkip.cpp
-        code/InGameLoad.cpp
-        code/CampaignSize.cpp
-        code/SelectCountry.cpp
-        code/MapExtension.cpp
-        code/bugfix.cpp
-        code/CustomGame.cpp
+        #code/AutoPicFormat.cpp
+        #code/Camera.cpp
+        #code/SelectArmy.cpp
+        #code/AutoAndSkip.cpp
+        #code/InGameLoad.cpp
+        #code/CampaignSize.cpp
+        #code/SelectCountry.cpp
+        #code/MapExtension.cpp
+        #code/bugfix.cpp
+        #code/CustomGame.cpp
 
-        easytech/src/${CMAKE_ANDROID_ARCH_ABI}/plt.c
-        easytech/src/CActionAI.cpp
+        easytech/src/lazy_binder.c
+        #easytech/src/CActionAI.cpp
         )
 
 set_target_properties(modlibeasytech PROPERTIES CXX_VISIBILITY_PRESET protected)
 
 target_include_directories(modlibeasytech PRIVATE easytech/includes)
+target_include_directories(modlibeasytech PRIVATE easytech/src/${CMAKE_ANDROID_ARCH_ABI})
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by

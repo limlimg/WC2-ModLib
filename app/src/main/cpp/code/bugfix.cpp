@@ -1,16 +1,16 @@
 //fix original game bugs
 //Fix: AI rocket melee attack
 
-#include "modObject.h"
+#include "aiCheckAttackable.h"
 
-bool mod::CActionAssist::aiCheckAttackable(int StartAreaID, int TargetAreaID, int ArmyIndex,
+bool CActionAssist::aiCheckAttackable(int StartAreaID, int TargetAreaID, int ArmyIndex,
                                            int ArmyAreaID) {
     if (this->getAlliance(ArmyAreaID, TargetAreaID, Ally))
         return false;
-    ::CArea *ArmyArea = g_Scene.GetArea(ArmyAreaID);
+    CArea *ArmyArea = g_Scene.GetArea(ArmyAreaID);
     if (ArmyArea->ArmyCount <= ArmyIndex)
         return false;
-    ::CArea *TargetArea = g_Scene.GetArea(TargetAreaID);
+    CArea *TargetArea = g_Scene.GetArea(TargetAreaID);
     if (TargetArea->ArmyCount <= 0)
         return false;
     CArmy *Army = ArmyArea->GetArmy(ArmyIndex);

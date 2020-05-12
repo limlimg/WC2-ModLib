@@ -11,7 +11,7 @@
 #define EASYMOD_EASYTECH_H
 
 #define easytech(func) func##_ptr
-#define def_easytech(func) extern typeof(&func) func##_ptr;
+#define def_easytech(func) extern typeof(&func) easytech(func);
 
 #define __easytech(func) #func"_ptr"
 

@@ -62,6 +62,9 @@ struct CArmy {
         return ((this->Cards >> CardID) & 1) != 0;
     }
 
+#ifdef extends_CArmy
+    extends_CArmy
+#endif
 #endif
 };
 
@@ -233,6 +236,9 @@ struct CArea {
 
     void UpgradeArmy(int ArmyIndex);
 
+#ifdef extends_CArea
+    extends_CArea
+#endif
 #endif
 };
 
@@ -349,6 +355,9 @@ struct CMedal {
 
     void Upate(float time);
 
+#ifdef extends_CMedal
+    extends_CMedal
+#endif
 #endif
 };
 
@@ -374,6 +383,9 @@ struct CAreaMark {
 
     short GetMark(int x, int y);
 
+#ifdef extends_CAreaMark
+    extends_CAreaMark
+#endif
 #endif
 };
 
@@ -424,6 +436,9 @@ struct CCamera {
 
     void Upate(float time);
 
+#ifdef extends_CCamera
+    extends_CCamera
+#endif
 #endif
 };
 
@@ -473,6 +488,9 @@ struct CBackground {
 
     void RenderBox(CCamera *camera, float x, float y, float w, float h);
 
+#ifdef extends_CBackground
+    extends_CBackground
+#endif
 #endif
 };
 
@@ -528,6 +546,9 @@ struct CBomber {
 
     void Update(float time);
 
+#ifdef extends_CBomber
+    extends_CBomber
+#endif
 #endif
 };
 
@@ -699,6 +720,9 @@ struct CScene {
 
     void Update(float time);
 
+#ifdef extends_CScene
+    extends_CScene
+#endif
 #endif
 };
 

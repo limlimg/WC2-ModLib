@@ -61,6 +61,10 @@ struct CActionAI {
 
     void sortArmyToFront();
 
+#ifdef extends_CActionAI
+    extends_CActionAI
+
+#endif
 #endif
 };
 
@@ -154,6 +158,10 @@ struct CActionAssist {
 
     int searchNodeByID(int AreaID, int ArmyIndex);
 
+#ifdef extends_CActionAssist
+    extends_CActionAssist
+
+#endif
 #endif
 };
 

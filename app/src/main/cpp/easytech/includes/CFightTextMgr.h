@@ -21,6 +21,9 @@ struct CFightTextMgr {
 
     void Update(float time);
 
+#ifdef extends_CFightTextMgr
+    extends_CFightTextMgr
+#endif
 #endif
 };
 

@@ -29,6 +29,9 @@ __sub_struct(GUITax, GUIElement)
 
     void SetMoney(int money);
 
+#ifdef extends_GUITax
+    extends_GUITax
+#endif
 #endif
 __end_struct
 
@@ -59,6 +62,9 @@ __sub_struct(GUISmallCard, GUIElement)
 
     void SetCard(CardDef *);
 
+#ifdef extends_GUISmallCard
+    extends_GUISmallCard
+#endif
 #endif
 __end_struct
 
@@ -93,6 +99,9 @@ __sub_struct(GUIAttackBox, GUIElement)
 
     void SetAttack(int StartAreaID, int TargetAreaID);
 
+#ifdef extends_GUIAttackBox
+    extends_GUIAttackBox
+#endif
 #endif
 __end_struct
 
@@ -127,6 +136,9 @@ __sub_struct(GUIPauseBox, GUIElement)
 
     void Init(const GUIRect &);
 
+#ifdef extends_GUIPauseBox
+    extends_GUIPauseBox
+#endif
 #endif
 __end_struct
 
@@ -192,6 +204,9 @@ __sub_struct(GUIBuyCard, GUIElement)
 
     void SetSelCardIntro();
 
+#ifdef extends_GUIBuyCard
+    extends_GUIBuyCard
+#endif
 #endif
 __end_struct
 
@@ -243,6 +258,9 @@ __sub_struct(GUIOptions, GUIElement)
 
     void Init(const GUIRect &);
 
+#ifdef extends_GUIOptions
+    extends_GUIOptions
+#endif
 #endif
 __end_struct
 
@@ -280,6 +298,9 @@ __sub_struct(GUISave, GUIElement)
 
     void SelItem(int index);
 
+#ifdef extends_GUISave
+    extends_GUISave
+#endif
 #endif
 __end_struct
 
@@ -329,6 +350,9 @@ __sub_struct(GUIDefeated, GUIElement)
 
     void ShowDefeated(CCountry *country);
 
+#ifdef extends_GUIDefeated
+    extends_GUIDefeated
+#endif
 #endif
 __end_struct
 
@@ -364,6 +388,9 @@ __sub_struct(GUIAIProgress, GUIElement)
 
     void SetCurCountryName(const char *CountryName);
 
+#ifdef extends_GUIAIProgress
+    extends_GUIAIProgress
+#endif
 #endif
 __end_struct
 
@@ -386,6 +413,9 @@ __sub_struct(GUIArmyItem, GUIButton)
 
     void OnRender();
 
+#ifdef extends_GUIArmyItem
+    extends_GUIArmyItem
+#endif
 #endif
 __end_struct
 
@@ -419,6 +449,9 @@ __sub_struct(GUISelArmy, GUIElement)
 
     void TargetArmy(int index);
 
+#ifdef extends_GUISelArmy
+    extends_GUISelArmy
+#endif
 #endif
 __end_struct
 
@@ -469,6 +502,9 @@ __sub_struct(GUIDialogue, GUIElement)
 
     void ShowDlg(const char *TextName, const char *GeneralName, bool left);
 
+#ifdef extends_GUIDialogue
+    extends_GUIDialogue
+#endif
 #endif
 __end_struct
 
@@ -513,6 +549,9 @@ __sub_struct(GUIWarning, GUIElement)
 
     void InitERK7GUIRecti(const GUIRect &, int type);
 
+#ifdef extends_GUIWarning
+    extends_GUIWarning
+#endif
 #endif
 __end_struct
 

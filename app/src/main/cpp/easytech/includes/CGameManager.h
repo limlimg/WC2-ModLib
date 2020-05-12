@@ -160,6 +160,9 @@ struct CCountry {
 
     void UseCard(CardDef *, int TargetAreaID, int ArmyIndex);
 
+#ifdef extends_CCountry
+    extends_CCountry
+#endif
 #endif
 };
 
@@ -409,6 +412,9 @@ struct CGameManager {
 
     void TurnEnd();
 
+#ifdef extends_CGameManager
+    extends_CGameManager
+#endif
 #endif
 };
 

@@ -1,76 +1,15 @@
-
-#include <vector>
-
-#define EASYTECH_CACTIONAI_H
-
-#include "CScene.h"
-#include "cxxvector.h"
-
-struct CActionNode {
-    int CardID;
-    int StartAreaID;
-    int TargetAreaID;
-    int ActionType;
-    int AlwaysZero;
-    int ArmyIndex;
-};
-
-struct CActionAI {
-    static CActionAI *Instance();
-
-    CActionAI();
-
-    ~CActionAI();
-
-    char CurrentCountryName[16];
-    struct CCountry *CurrentCountry;
-    int TurnBeginMoneyQuarter;
-    int TurnBeginIndustryQuarter;
-    int AIProgressPercentage;
-    char CurrentCountryNameShort[4];
-    int TotalAIArmyAreaCount;
-    int TurnBeginActiveAreaCount;
-    int Unused;
-    bool Action;
-    int CurrentCountryIndex;
-
-    void InitAI();
-
-    void setActionNodeClear();
-};
-
-struct NODE {
-    int ActionToNextAreaTargetId;
-    int TargetValue;
-    int ActionToNextAreaArmyIndex;
-    bool TargetIsPlayer;
-};
-
-struct CActionAssist {
-    static CActionAssist *Instance();
-
-    CActionAssist();
-
-    ~CActionAssist();
-
-    int SearchNodeHead;
-    int SearchNodeTail;
-    bool SearchNodeVisited[1950];
-    int SearchNodeQueue[512][2];
-    int GetNeighbourID[50];
-    int TotalSeaAreaCount;
-    int TargetNodeType;
-    struct CActionNode ActionNode;
-    std::vector <NODE> ActionToNextAreaTargetIdList;
-    struct NODE TargetNode;
-
-    int calcAreaValue(CArea *area);
-};
-
-extern struct CActionAssist *_ZN13CActionAssist9_instanceE;
-
 #include <cstring>
 #include "CScene.h"
+
+#define extends_CActionAI \
+CActionAI();\
+~CActionAI();
+
+#define extends_CActionAssist \
+CActionAssist();\
+~CActionAssist();
+
+#include <CActionAI.h>
 
 CActionAI *_ZN9CActionAI9_instanceE = NULL;
 

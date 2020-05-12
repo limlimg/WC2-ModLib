@@ -102,6 +102,9 @@ __sub2_struct(CGameState, CBaseState, IEventReceiver)
 
     void UpdateActionInfo();
 
+#ifdef extends_CGameState
+    extends_CGameState
+#endif
 #endif
 __end_struct
 
@@ -219,6 +222,9 @@ struct CFight {
 
     void SecondAttack();
 
+#ifdef extends_CFight
+    extends_CFight
+#endif
 #endif
 };
 

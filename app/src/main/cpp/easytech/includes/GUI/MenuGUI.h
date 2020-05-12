@@ -23,6 +23,9 @@ __sub_struct(GUICountryItem, GUIElement)
 
     void SetSelected(bool selected);
 
+#ifdef extends_GUICountryItem
+    extends_GUICountryItem
+#endif
 #endif
 __end_struct
 

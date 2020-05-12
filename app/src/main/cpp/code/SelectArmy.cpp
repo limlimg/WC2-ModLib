@@ -6,8 +6,11 @@
 #include "CStateManager/CGameState.h"
 #include "CGameManager.h"
 #include "CScene.h"
+
+#define extends_CGameRes \
+void RenderUIArmy(const char *CountryName, float x, float y, int ArmyType, int HP, int MaxHP, int Movement, int Cards, int Level, int CommonType, bool AI);
+
 #include "CGameRes.h"
-#include "modObject.h"
 
 //control the showing of the side bar
 void CGameState::TouchEnd(float x, float y, int index) {
@@ -127,7 +130,7 @@ bool GUISelArmy::OnEvent(const Event &event) {
 }
 
 //Show AI medal on sidebar
-unsigned long mod::CGameRes::HpColor(int HP, int MaxHP) {
+static unsigned long HpColor(int HP, int MaxHP) {
     int r, g, b;
     if (HP * 2 <= MaxHP) {
         r = 0;
@@ -142,9 +145,8 @@ unsigned long mod::CGameRes::HpColor(int HP, int MaxHP) {
 }
 
 void
-mod::CGameRes::RenderUIArmy(const char *CountryName, float x, float y, int ArmyType, int HP,
-                            int MaxHP,
-                            int Movement, int Cards, int Level, int CommonType, bool AI) {
+CGameRes::RenderUIArmy(const char *CountryName, float x, float y, int ArmyType, int HP, int MaxHP,
+                       int Movement, int Cards, int Level, int CommonType, bool AI) {
     ecImage *ArmyImage = this->GetArmyImage(CountryName, ArmyType, false);
     if (ArmyImage != NULL) {
         ArmyImage->SetColor(0xFFFFFFFF, -1);
@@ -179,17 +181,11 @@ void GUIArmyItem::OnRender() {
     this->GetAbsRect(rect);
     if (this->Army == NULL)
         return;
-    static_cast<mod::CGameRes &>(g_GameRes).RenderUIArmy(this->Army->Country->Name,
-                                                         rect.Pos[0] + rect.Size[0] * 0.5,
-                                                         rect.Pos[1] + rect.Size[1],
-                                                         this->Army->BasicAbilities->ID,
-                                                         this->Army->Hp,
-                                                         this->Army->GetMaxStrength(),
-                                                         this->Army->Movement, this->Army->Cards,
-                                                         (this->Army->Cards &
-                                                          (1 << CArmy::Commander))
-                                                         ? this->Army->Country->GetCommanderLevel()
-                                                         : this->Army->Level,
-                                                         this->Army->Country->Alliance,
-                                                         this->Army->Country->AI);
+    g_GameRes.RenderUIArmy(this->Army->Country->Name, rect.Pos[0] + rect.Size[0] * 0.5,
+                           rect.Pos[1] + rect.Size[1], this->Army->BasicAbilities->ID,
+                           this->Army->Hp, this->Army->GetMaxStrength(), this->Army->Movement,
+                           this->Army->Cards, (this->Army->Cards & (1 << CArmy::Commander))
+                                              ? this->Army->Country->GetCommanderLevel()
+                                              : this->Army->Level, this->Army->Country->Alliance,
+                           this->Army->Country->AI);
 }

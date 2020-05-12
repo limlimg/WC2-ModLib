@@ -71,6 +71,9 @@ struct CBaseState {
 
     void EnterForeground();
 
+#ifdef extends_CBaseState
+    extends_CBaseState
+#endif
 #endif
 };
 
@@ -136,6 +139,9 @@ struct CStateManager {
 
     void SetCurState(EState);
 
+#ifdef extends_CStateManager
+    extends_CStateManager
+#endif
 #endif
 };
 
@@ -213,6 +219,9 @@ struct CTouchInertia {
 
     void Update(float time);
 
+#ifdef extends_CTouchInertia
+    extends_CTouchInertia
+#endif
 #endif
 };
 

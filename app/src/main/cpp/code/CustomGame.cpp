@@ -1,9 +1,11 @@
 //Customize game rule
 
-#include "CScene.h"
-#include "CActionAI.h"
-#include "modObject.h"
 #include "CustomizableData.h"
+
+#define extends_CArea \
+bool CanContainArmy(CArmy *army);
+
+#include "aiCheckAttackable.h"
 
 bool CScene::CheckMoveable(int StartAreaID, int TargetAreaID, int ArmyIndex) {
     if (!this->CheckAdjacent(StartAreaID, TargetAreaID))
@@ -12,7 +14,7 @@ bool CScene::CheckMoveable(int StartAreaID, int TargetAreaID, int ArmyIndex) {
                                                       StartAreaID);
 }
 
-bool mod::CArea::CanContainArmy(CArmy *army) {
+bool CArea::CanContainArmy(CArmy *army) {
     if (this->ArmyCount >= 4)
         return false;
     int i, TroopCount = 0, NavyCount = 0;
@@ -50,11 +52,11 @@ CActionAssist::aiCheckMoveable(int StartAreaID, int TargetAreaID, int ArmyIndex,
     CArmy *Army = ArmyArea->GetArmy(ArmyIndex);
     if (Army->Movement <= 0)
         return false;
-    return static_cast<mod::CArea *>(TargetArea)->CanContainArmy(Army);
+    return TargetArea->CanContainArmy(Army);
 }
 
 bool CScene::CheckAttackable(int StartAreaID, int TargetAreaID, int ArmyIndex) {
-    if (!static_cast<mod::CActionAssist *>(CActionAssist::Instance())->aiCheckAttackable(
+    if (!CActionAssist::Instance()->aiCheckAttackable(
             StartAreaID, TargetAreaID, ArmyIndex, StartAreaID))
         return false;
     CArea *StartArea = g_Scene.GetArea(StartAreaID);

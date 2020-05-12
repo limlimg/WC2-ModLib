@@ -17,19 +17,19 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        #code/AutoPicFormat.cpp
-        #code/Camera.cpp
-        #code/SelectArmy.cpp
-        #code/AutoAndSkip.cpp
-        #code/InGameLoad.cpp
-        #code/CampaignSize.cpp
-        #code/SelectCountry.cpp
-        #code/MapExtension.cpp
-        #code/bugfix.cpp
-        #code/CustomGame.cpp
+        code/AutoPicFormat.cpp
+        code/Camera.cpp
+        code/SelectArmy.cpp
+        code/AutoAndSkip.cpp
+        code/InGameLoad.cpp
+        code/CampaignSize.cpp
+        code/SelectCountry.cpp
+        code/MapExtension.cpp
+        code/bugfix.cpp
+        code/CustomGame.cpp
 
         easytech/src/lazy_binder.c
-        #easytech/src/CActionAI.cpp
+        easytech/src/CActionAI.cpp
         )
 
 set_target_properties(modlibeasytech PROPERTIES CXX_VISIBILITY_PRESET protected)

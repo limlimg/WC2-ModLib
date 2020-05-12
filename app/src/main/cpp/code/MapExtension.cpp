@@ -5,8 +5,7 @@
 
 #include <cstring>
 #include "CScene.h"
-#include "CActionAI.h"
-#include "modObject.h"
+#include "aiCheckAttackable.h"
 
 float g_contenscalefactor = 2.0;
 
@@ -227,9 +226,7 @@ int CActionAssist::searchNode(int AreaID, int ArmyIndex) {
         if (visited)
             continue;
         if (!this->aiCheckMoveable(CurrentNodeAreaID, SearchArea->ID, ArmyIndex, AreaID)
-            && !static_cast<mod::CActionAssist *>(this)->aiCheckAttackable(CurrentNodeAreaID,
-                                                                           SearchArea->ID,
-                                                                           ArmyIndex, AreaID))
+            && !this->aiCheckAttackable(CurrentNodeAreaID, SearchArea->ID, ArmyIndex, AreaID))
             continue;
         if (!SearchArea->Sea
             && this->getAlliance(AreaID, SearchArea->ID, Ally)

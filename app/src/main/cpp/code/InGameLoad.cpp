@@ -3,13 +3,12 @@
 //don't close GUI after saving
 
 #include "easytech.h"
-#include "CStateManager/CGameState.h"
 #include "CGameManager.h"
-#include "modObject.h"
+#include "InGameLoad.h"
 
 static bool InGameLoad = false;
 
-void mod::CGameState::OpenSaveGUI(bool load) {
+void CGameState::OpenSaveGUI(bool load) {
     this->SaveGUI = new GUISave;
     _ZN7GUISaveC1Ev(this->SaveGUI);
     GUIRect rect = {0.0, 0.0, _ZN10ecGraphics8InstanceEv()->DisplaySize[0],
@@ -23,14 +22,14 @@ void mod::CGameState::OpenSaveGUI(bool load) {
 //in game save-load menu related input
 //don't close GUI after saving
 //bool CGameState::OnEvent(Event const &event);
-bool mod::CGameState::OpenLoadEvent(const Event &event) {
+bool CGameState::OpenLoadEvent(const Event &event) {
     this->PauseBoxGUI->Hide();
     this->OpenSaveGUI(true);
     InGameLoad = true;
     return false;
 }
 
-bool mod::CGameState::CloseLoadEvent(const Event &event) {
+bool CGameState::CloseLoadEvent(const Event &event) {
     if (InGameLoad) {
         GUIManager::Instance()->FadeOut(14, NULL);
     } else {
@@ -42,7 +41,7 @@ bool mod::CGameState::CloseLoadEvent(const Event &event) {
 
 def_easytech(_ZN10CGameState7OnEventERK5Event)
 
-bool mod::CGameState::CancelLoadEvent(const Event &event) {
+bool CGameState::CancelLoadEvent(const Event &event) {
     InGameLoad = false;
     return easytech(_ZN10CGameState7OnEventERK5Event)(this, &event);
 }

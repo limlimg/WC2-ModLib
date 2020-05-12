@@ -153,6 +153,9 @@ struct CObjectDef {
 
     void ReleaseUnitPositions();
 
+#ifdef extends_CObjectDef
+    extends_CObjectDef
+#endif
 #endif
 };
 

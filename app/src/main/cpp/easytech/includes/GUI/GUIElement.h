@@ -99,6 +99,9 @@ struct GUIElement {
 
     void Update(float time);
 
+#ifdef extends_GUIElement
+    extends_GUIElement
+#endif
 #endif
 };
 
@@ -245,6 +248,9 @@ __sub_struct(GUIButton, GUIElement)
 
     void SetTextOffset(float x, float y);
 
+#ifdef extends_GUIButton
+    extends_GUIButton
+#endif
 #endif
 __end_struct
 
@@ -291,6 +297,9 @@ __sub_struct(GUIButtonEx, GUIButton)
 
     void SetImageText(const char *, const char *);
 
+#ifdef extends_GUIButtonEx
+    extends_GUIButtonEx
+#endif
 #endif
 __end_struct
 
@@ -312,6 +321,9 @@ __sub_struct(GUIRadioButton, GUIButton)
 
     void OnRender();
 
+#ifdef extends_GUIRadioButton
+    extends_GUIRadioButton
+#endif
 #endif
 __end_struct
 
@@ -336,6 +348,9 @@ __sub_struct(GUILevelSel, GUIElement)
 
     void Init(const GUIRect &, int TotalLevel);
 
+#ifdef extends_GUILevelSel
+    extends_GUILevelSel
+#endif
 #endif
 __end_struct
 
@@ -402,6 +417,9 @@ __sub_struct(GUIManager, GUIElement)
 
     void Update(float time);
 
+#ifdef extends_GUIManager
+    extends_GUIManager
+#endif
 #endif
 __end_struct
 

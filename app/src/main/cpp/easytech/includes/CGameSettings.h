@@ -16,6 +16,9 @@ struct CGameSettings {
 
     void SaveSettings();
 
+#ifdef extends_CGameSettings
+    extends_CGameSettings
+#endif
 #endif
 };
 
@@ -77,6 +80,9 @@ struct CCommander {
 
     void UpgradeWarMedal(WARMEDAL_ID);
 
+#ifdef extends_CCommander
+    extends_CCommander
+#endif
 #endif
 };
 

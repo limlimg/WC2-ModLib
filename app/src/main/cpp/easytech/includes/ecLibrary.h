@@ -101,6 +101,9 @@ struct ecTextureRes {
 
     void UnloadRes(const char *name);
 
+#ifdef extends_ecTextureRes
+    extends_ecTextureRes
+#endif
 #endif
 };
 
@@ -203,6 +206,9 @@ struct ecImage {
 
     void SetTextureRect(float x, float y, float w, float h);
 
+#ifdef extends_ecImage
+    extends_ecImage
+#endif
 #endif
 };
 
@@ -271,6 +277,9 @@ struct ecUniFont {
 
     ecCharImage *GetCharImage(wchar_t);
 
+#ifdef extends_ecUniFont
+    extends_ecUniFont
+#endif
 #endif
 };
 
@@ -312,6 +321,9 @@ struct ecText {
 
     void SetText(const wchar_t *text);
 
+#ifdef extends_ecText
+    extends_ecText
+#endif
 #endif
 };
 
@@ -361,6 +373,9 @@ struct ecLabelText {
 
     void SetText(const char *text);
 
+#ifdef extends_ecLabelText
+    extends_ecLabelText
+#endif
 #endif
 };
 
@@ -402,6 +417,9 @@ struct ecEffectManager {
 
     void Update(float time);
 
+#ifdef extends_ecEffectManager
+    extends_ecEffectManager
+#endif
 #endif
 };
 
@@ -483,6 +501,9 @@ struct ecGraphics {
 
     void Shutdown();
 
+#ifdef extends_ecGraphics
+    extends_ecGraphics
+#endif
 #endif
 };
 

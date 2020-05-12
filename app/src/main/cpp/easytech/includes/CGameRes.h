@@ -94,6 +94,11 @@ struct CGameRes {
     RenderUIDefendArmy(const char *CountryName, float x, float y, int ArmyType, int HP, int MaxHP,
                        int Movement, int Cards, int Level, int CommonType, bool AI);
 
+#ifdef extends_CGameRes
+
+    extends_CGameRes
+
+#endif
 #endif
 };
 

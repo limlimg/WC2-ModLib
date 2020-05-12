@@ -15,11 +15,10 @@
 #include "CGameManager.h"
 #include "CScene.h"
 #include "CActionAI.h"
-#include "CStateManager/CGameState.h"
 #include "CFightTextMgr.h"
 #include "CGameSettings.h"
 #include "GUI/GUIElement.h"
-#include "modObject.h"
+#include "InGameLoad.h"
 
 static bool AIAction;
 static bool SkipMode;
@@ -253,12 +252,12 @@ bool CGameState::OnEvent(const Event &event) {
                     }
                     GUIPauseBox *PauseBox = this->PauseBoxGUI;
                     if (event.info.GUI.ptr == PauseBox->ButtonRestart) {
-                        return static_cast<mod::CGameState *>(this)->OpenLoadEvent(event);
+                        return this->OpenLoadEvent(event);
                     }
                     if (this->SaveGUI != NULL && event.info.GUI.ptr == this->SaveGUI->ButtonOK)
-                        return static_cast<mod::CGameState *>(this)->CloseLoadEvent(event);
+                        return this->CloseLoadEvent(event);
                     if (this->SaveGUI != NULL && event.info.GUI.ptr == this->SaveGUI->ButtonBack)
-                        return static_cast<mod::CGameState *>(this)->CancelLoadEvent(event);
+                        return this->CancelLoadEvent(event);
                     break;
                 }
                 default:

@@ -33,4 +33,4 @@ __attribute__((used)) static void bind_address(bind_info *info) {\
 
 #define bss(name, size) __attribute__((weak)) __attribute__((visibility("protected"))) char name[size];
 
-#include "bind_table.h"
+#include "bind_table"

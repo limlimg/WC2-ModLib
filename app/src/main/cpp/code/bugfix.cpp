@@ -1,7 +1,8 @@
 //fix original game bugs
 //Fix: AI rocket melee attack
 
-#include "aiCheckAttackable.h"
+#include "_CActionAI.h"
+#include "CActionAI.h"
 
 bool CActionAssist::aiCheckAttackable(int StartAreaID, int TargetAreaID, int ArmyIndex,
                                            int ArmyAreaID) {

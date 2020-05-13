@@ -1,5 +1,3 @@
-#include <cstring>
-#include "CScene.h"
 
 #define extends_CActionAI \
 CActionAI();\
@@ -9,7 +7,8 @@ CActionAI();\
 CActionAssist();\
 ~CActionAssist();
 
-#include <CActionAI.h>
+#include <cstring>
+#include "CActionAI.h"
 
 CActionAI *_ZN9CActionAI9_instanceE = NULL;
 

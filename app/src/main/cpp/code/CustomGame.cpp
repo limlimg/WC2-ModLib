@@ -1,11 +1,11 @@
 //Customize game rule
 
-#include "CustomizableData.h"
-
 #define extends_CArea \
 bool CanContainArmy(CArmy *army);
 
-#include "aiCheckAttackable.h"
+#include "_CActionAI.h"
+#include "CustomizableData.h"
+#include "CActionAI.h"
 
 bool CScene::CheckMoveable(int StartAreaID, int TargetAreaID, int ArmyIndex) {
     if (!this->CheckAdjacent(StartAreaID, TargetAreaID))

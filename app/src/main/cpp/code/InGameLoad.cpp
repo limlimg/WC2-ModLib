@@ -2,9 +2,9 @@
 //auto-save a new game
 //don't close GUI after saving
 
+#include "_CGameState.h"
 #include "easytech.h"
-#include "CGameManager.h"
-#include "InGameLoad.h"
+#include "CStateManager/CGameState.h"
 
 static bool InGameLoad = false;
 

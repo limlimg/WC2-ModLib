@@ -8,17 +8,14 @@
 //add player neutral country into defeat list
 //TODO: Fix AI bug caused by controlling player country
 
-#include <cstddef>
 #include <cmath>
 #include <malloc.h>
+#include "_CGameState.h"
 #include "easytech.h"
-#include "CGameManager.h"
-#include "CScene.h"
+#include "CStateManager/CGameState.h"
 #include "CActionAI.h"
 #include "CFightTextMgr.h"
 #include "CGameSettings.h"
-#include "GUI/GUIElement.h"
-#include "InGameLoad.h"
 
 static bool AIAction;
 static bool SkipMode;

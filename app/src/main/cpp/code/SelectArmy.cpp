@@ -1,15 +1,12 @@
 //Allow to check army stacks of other country
 //allow to use card on select army side bar
 
-#include <cmath>
-#include <cstddef>
-#include "CStateManager/CGameState.h"
-#include "CGameManager.h"
-#include "CScene.h"
-
 #define extends_CGameRes \
 void RenderUIArmy(const char *CountryName, float x, float y, int ArmyType, int HP, int MaxHP, int Movement, int Cards, int Level, int CommonType, bool AI);
 
+#include <cmath>
+#include <cstddef>
+#include "CStateManager/CGameState.h"
 #include "CGameRes.h"
 
 //control the showing of the side bar

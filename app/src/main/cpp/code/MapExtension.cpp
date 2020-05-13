@@ -4,8 +4,8 @@
 //Fix AI rocket melee attack
 
 #include <cstring>
-#include "CScene.h"
-#include "aiCheckAttackable.h"
+#include "_CActionAI.h"
+#include "CActionAI.h"
 
 float g_contenscalefactor = 2.0;
 

@@ -342,23 +342,23 @@ struct CGameManager {
 
     void EndTurn();
 
-    struct CCountry *FindCountry(const char *ID);
+    CCountry *FindCountry(const char *ID);
 
     void GameUpdate(float time);
 
-    struct CCountry *GetCountryByIndex(int index);
+    CCountry *GetCountryByIndex(int index);
 
-    struct CCountry *GetCurCountry();
+    CCountry *GetCurCountry();
 
-    struct DialogueDef *GetCurDialogue();
+    DialogueDef *GetCurDialogue();
 
     bool GetCurDialogueString(char *result);
 
-    struct DialogueDef GetDialogueByIndex(int index);
+    DialogueDef GetDialogueByIndex(int index);
 
-    struct CCountry *GetLocalPlayerCountry();
+    CCountry *GetLocalPlayerCountry();
 
-    struct CCountry *GetNewDefeatedCountry();
+    CCountry *GetNewDefeatedCountry();
 
     int GetNumCountries();
 
@@ -366,7 +366,7 @@ struct CGameManager {
 
     int GetNumVictoryStars();
 
-    struct CCountry *GetPlayerCountry();
+    CCountry *GetPlayerCountry();
 
     const char *GetPlayerCountryName(int index);
 
@@ -412,6 +412,7 @@ struct CGameManager {
 
     void TurnEnd();
 
+    operator CCountry *() { return this->GetCurCountry(); }
 #ifdef extends_CGameManager
     extends_CGameManager
 #endif
@@ -508,5 +509,17 @@ void _ZN12CGameManager7TurnEndEv(struct CGameManager *self);
 
 extern struct CGameManager g_GameManager;
 __END_DECLS
+
+#ifdef __cplusplus
+
+static inline bool operator==(CGameManager &manager, CCountry *country) {
+    return manager.GetCurCountry() == country;
+}
+
+static inline bool operator==(CCountry *country, CGameManager &manager) {
+    return manager == country;
+}
+
+#endif
 
 #endif //EASYTECH_CGAMEMANAGER_H

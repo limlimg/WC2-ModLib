@@ -58,7 +58,7 @@ void CGameState::TouchEnd(float x, float y, int index) {
             }
             //manipulating army
             if (SelectedArea->IsActive() &&
-                (SelectedArea->Country == g_GameManager.GetCurCountry())) {
+                (SelectedArea->Country == g_GameManager)) {
                 if (SelectedArea->ArmyDrafting || SelectedArea->ArmyMovingIn ||
                     SelectedArea->ArmyMovingToFront)
                     return;
@@ -107,7 +107,7 @@ bool GUISelArmy::OnEvent(const Event &event) {
             return true;
     } else if (event.type == Event::GUI) {
         if (event.info.GUI.type == Event::info::GUI::Button &&
-            g_Scene[this->AreaID]->Country == g_GameManager.GetCurCountry()) {
+            g_Scene[this->AreaID]->Country == g_GameManager) {
             int i;
             for (i = 0; i < 4; i++) {
                 if (event.info.GUI.ptr == this->ArmyItem[i]) {

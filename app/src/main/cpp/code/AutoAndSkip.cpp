@@ -3,7 +3,7 @@
 //battle animation is removed
 //Skip:
 //press end turn button while ai is playing to not watch
-//changes in the ownerships of areas are still displayed 
+//changes in the ownerships of areas are still displayed
 //Extra feature:
 //mark neutral countries as defeated to exclude them from turn cycle and win check
 //add player neutral country into defeat list
@@ -61,7 +61,7 @@ void CGameManager::InitBattle() {
 }
 
 void CGameManager::TurnBegin() {
-    CCountry *Country = this->GetCurCountry();
+    CCountry *Country = *this;
     if (Country == NULL)
         return;
     Country->TurnBegin();
@@ -88,7 +88,7 @@ void CGameManager::GameUpdate(float time) {
         return;
     if (this->Result)
         return;
-    CCountry *Country = this->GetCurCountry();
+    CCountry *Country = *this;
     if (Country == NULL)
         return;
     Country->Update(time);
@@ -110,7 +110,7 @@ void CGameManager::GameUpdate(float time) {
 }
 
 void CGameManager::Next() {
-    CCountry *Country = this->GetCurCountry();
+    CCountry *Country = *this;
     if (Country == NULL)
         return;
     if (!AIAction)
@@ -257,6 +257,7 @@ bool CGameState::OnEvent(const Event &event) {
                             g_Scene.NewRoundFlashing = false;
                             if (g_GameSettings.BattleAnimation) {
                                 AIAction = true;
+                                CActionAI::Instance()->InitAI();
                             } else {
                                 g_GameManager.EndTurn();
                                 CActionAI::Instance()->InitAI();

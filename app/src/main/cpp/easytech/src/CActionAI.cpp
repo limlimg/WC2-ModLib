@@ -35,7 +35,7 @@ void CActionAI::InitAI() {
     this->TurnBeginActiveAreaCount = 0;
     CActionAssist::Instance()->TotalSeaAreaCount = 0;
     int i;
-    for (i = 0; i < g_Scene.GetNumAreas(); i++) {
+    for (i = 0; i < g_Scene; i++) {
         CArea *area = g_Scene[i];
         if (area->Enable) {
             if (area->Sea)

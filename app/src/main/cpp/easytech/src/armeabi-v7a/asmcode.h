@@ -1,8 +1,6 @@
 #ifndef EASYMOD_ASMCODE_H
 #define EASYMOD_ASMCODE_H
 
-#include "easytech.h"
-
 #define ASMCODE_BIND \
 "push {r0-r3,r12,lr}\n\t"\
 "mov r0, r12\n\t"\
@@ -15,7 +13,7 @@
 "add r12, pc\n\t"\
 "ldr pc, [r12]\n\t"\
 ".align 2\n\t"\
-".long "__easytech(name)" - (. -4)\n\t"
+".long "sptr(name)" - (. -4)\n\t"
 
 #define ASMCODE_THN(name, offset) \
 "sub r0, #"#offset"\n\t"\

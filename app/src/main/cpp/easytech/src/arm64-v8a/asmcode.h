@@ -1,8 +1,6 @@
 #ifndef EASYMOD_ASMCODE_H
 #define EASYMOD_ASMCODE_H
 
-#include "easytech.h"
-
 #define ASMCODE_BIND \
 "SUB SP, SP, #0xA0\n\t"\
 "STP D7, D6, [SP, #0x0]\n\t"\
@@ -37,7 +35,7 @@
 "ldr x17, [x16]\n\t"\
 "ldr x8, [x16, x17]\n\t"\
 "br x8\n\t"\
-".quad "__easytech(name)" - ."
+".quad "sptr(name)" - ."
 
 #define ASMCODE_THN(name, offset) \
 "sub x0, x0, #"#offset"\n\t"\

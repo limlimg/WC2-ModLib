@@ -112,10 +112,12 @@ struct CActionAssist {
     enum Alliance {
         Ally = 256, NotAlly = 512, Enemy = 768, Self = 1024
     };
-    int SearchNodeHead;
-    int SearchNodeTail;
+    int SearchHead;
+    int SearchTail;
     bool SearchNodeVisited[1950];
-    int SearchNodeQueue[512][2];
+    struct SearchNode {
+        int AreaID, previous;
+    } SearchQueue[512];
     int GetNeighbourID[50];
     int TotalSeaAreaCount;
     int TargetNodeType;

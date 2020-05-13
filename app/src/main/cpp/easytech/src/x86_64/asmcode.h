@@ -1,8 +1,6 @@
 #ifndef EASYMOD_ASMCODE_H
 #define EASYMOD_ASMCODE_H
 
-#include "easytech.h"
-
 #define ASMCODE_BIND \
 "push %rax\n\t"\
 "push %rdi\n\t"\
@@ -44,7 +42,7 @@
 "lea 5(%rip), %rax\n\t"\
 "addq (%rax), %rax\n\t"\
 "jmp *(%rax)\n\t"\
-".quad "__easytech(name)" - ."
+".quad "sptr(name)" - ."
 
 #define ASMCODE_THN(name, offset) \
 "sub $"#offset", %rdi\n\t"\

@@ -728,6 +728,7 @@ struct CScene {
 
     CArea *operator[](int AreaID) { return this->GetArea(AreaID); }
 
+    operator unsigned int() { return this->GetNumAreas(); }
 #ifdef extends_CScene
     extends_CScene
 #endif

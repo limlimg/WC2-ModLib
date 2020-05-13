@@ -125,7 +125,7 @@ void CScene::InitAreaImage(int MapID) {
     MapSize[0] = this->AreaMark.Size[0] * 8.0;
     MapSize[1] = this->AreaMark.Size[1] * 8.0;
     int ZoneCount = (((int) MapSize[0] - 1) / 1000 + 1) * (((int) MapSize[1] - 1) / 1000 + 1);
-    int AreaCount = this->GetNumAreas();
+    int AreaCount = *this;
     bool *ZoneLoaded = new bool[ZoneCount];
     int i, LoadCount = 0;
     for (i = 0; i < ZoneCount; i++) {
@@ -210,20 +210,34 @@ void CScene::InitAreaImage(int MapID) {
 }
 
 //Extend area count
+static std::vector<bool> visited;
+
+int CActionAssist::searchNodeByID(int AreaID, int ArmyIndex) {
+    visited = std::vector<bool>(g_Scene, false);
+    SearchHead = -1;
+    SearchTail = 0;
+    SearchQueue[0].AreaID = AreaID;
+    SearchQueue[0].previous = -1;
+    visited[AreaID] = true;
+    do {
+        int TargetID = searchNode(AreaID, ArmyIndex);
+        if (TargetID != -1) {
+            int i;
+            for (i = SearchTail; SearchQueue[i].previous != 0; i = SearchQueue[i].previous)
+                continue;
+            return SearchQueue[i].AreaID;
+        }
+    } while (SearchHead < SearchTail);
+    return -1;
+}
+
 int CActionAssist::searchNode(int AreaID, int ArmyIndex) {
-    this->SearchNodeHead++;
-    int CurrentNodeAreaID = this->SearchNodeQueue[this->SearchNodeHead][0];
+    this->SearchHead++;
+    int CurrentNodeAreaID = this->SearchQueue[this->SearchHead].AreaID;
     int i;
     for (i = 0; i < g_Scene.GetNumAdjacentAreas(CurrentNodeAreaID); i++) {
         CArea *SearchArea = g_Scene.GetAdjacentArea(CurrentNodeAreaID, i);
-        int j;
-        bool visited = false;
-        for (j = 0; j < this->SearchNodeTail; j++)
-            if (SearchArea->ID == this->SearchNodeQueue[j][0]) {
-                visited = true;
-                break;
-            }
-        if (visited)
+        if (visited[SearchArea->ID])
             continue;
         if (!this->aiCheckMoveable(CurrentNodeAreaID, SearchArea->ID, ArmyIndex, AreaID)
             && !this->aiCheckAttackable(CurrentNodeAreaID, SearchArea->ID, ArmyIndex, AreaID))
@@ -232,10 +246,11 @@ int CActionAssist::searchNode(int AreaID, int ArmyIndex) {
             && this->getAlliance(AreaID, SearchArea->ID, Ally)
             && !this->getAlliance(AreaID, SearchArea->ID, Self))
             continue;
-        if (this->SearchNodeTail < 511)
-            this->SearchNodeTail += 1;
-        this->SearchNodeQueue[this->SearchNodeTail][0] = SearchArea->ID;
-        this->SearchNodeQueue[this->SearchNodeTail][1] = this->SearchNodeHead;
+        if (this->SearchTail < 511)
+            this->SearchTail += 1;
+        visited[SearchArea->ID] = true;
+        this->SearchQueue[this->SearchTail].AreaID = SearchArea->ID;
+        this->SearchQueue[this->SearchTail].previous = this->SearchHead;
         if (!this->getAlliance(AreaID, SearchArea->ID, Enemy))
             continue;
         if (g_Scene[AreaID]->GetArmy(ArmyIndex)->IsNavy()) {
@@ -246,7 +261,7 @@ int CActionAssist::searchNode(int AreaID, int ArmyIndex) {
                     this->TargetNodeType = 1;
                 return SearchArea->ID;
             }
-            if (SearchArea->AreaType == 2) {
+            if (SearchArea->AreaType == CArea::port) {
                 this->TargetNodeType = 2;
                 return SearchArea->ID;
             }

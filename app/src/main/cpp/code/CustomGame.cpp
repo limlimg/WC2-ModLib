@@ -43,8 +43,8 @@ bool CArea::CanContainArmy(CArmy *army) {
 
 bool
 CActionAssist::aiCheckMoveable(int StartAreaID, int TargetAreaID, int ArmyIndex, int ArmyAreaID) {
-    CArea *ArmyArea = g_Scene.GetArea(ArmyAreaID);
-    CArea *TargetArea = g_Scene.GetArea(TargetAreaID);
+    CArea *ArmyArea = g_Scene[ArmyAreaID];
+    CArea *TargetArea = g_Scene[TargetAreaID];
     if (ArmyArea->Country != TargetArea->Country && TargetArea->ArmyCount != 0)
         return false;
     if (ArmyArea->ArmyCount <= ArmyIndex)
@@ -59,7 +59,7 @@ bool CScene::CheckAttackable(int StartAreaID, int TargetAreaID, int ArmyIndex) {
     if (!CActionAssist::Instance()->aiCheckAttackable(
             StartAreaID, TargetAreaID, ArmyIndex, StartAreaID))
         return false;
-    CArea *StartArea = g_Scene.GetArea(StartAreaID);
+    CArea *StartArea = g_Scene[StartAreaID];
     ArmyDef::ArmyType ArmyType = StartArea->GetArmy(ArmyIndex)->BasicAbilities->ID;
     if (ArmyType == ArmyDef::Rocket) {
         int i;

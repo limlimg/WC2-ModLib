@@ -36,7 +36,7 @@ void CActionAI::InitAI() {
     CActionAssist::Instance()->TotalSeaAreaCount = 0;
     int i;
     for (i = 0; i < g_Scene.GetNumAreas(); i++) {
-        CArea *area = g_Scene.GetArea(i);
+        CArea *area = g_Scene[i];
         if (area->Enable) {
             if (area->Sea)
                 CActionAssist::Instance()->TotalSeaAreaCount += 1;
@@ -69,5 +69,5 @@ int CActionAssist::calcAreaValue(CArea *area) {
     const int InstalltionAdd[] = {0, 20, 15, 10};
     return _ZN5CArea10GetRealTaxEv(area) * 2 + _ZN5CArea11GetIndustryEv(area) * 3 +
            ((area->AreaType < 5) ? TypeAdd[area->AreaType] : 0) +
-           ((area->InstalltionType < 4) ? InstalltionAdd[area->InstalltionType] : 0);
+           ((area->InstallationType < 4) ? InstalltionAdd[area->InstallationType] : 0);
 }

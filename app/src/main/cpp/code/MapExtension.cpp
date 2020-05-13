@@ -173,7 +173,7 @@ void CScene::InitAreaImage(int MapID) {
     }
     //Validation
     for (i = 0; i < AreaCount; i++) {
-        if (g_Scene.GetArea(i)->Enable && this->ZoneImage[i] == NULL) {
+        if (g_Scene[i]->Enable && this->ZoneImage[i] == NULL) {
             //Retry failed load
             for (i = 0; i < ZoneCount; i++) {
                 if (!ZoneLoaded[i]) {
@@ -238,7 +238,7 @@ int CActionAssist::searchNode(int AreaID, int ArmyIndex) {
         this->SearchNodeQueue[this->SearchNodeTail][1] = this->SearchNodeHead;
         if (!this->getAlliance(AreaID, SearchArea->ID, Enemy))
             continue;
-        if (g_Scene.GetArea(AreaID)->GetArmy(ArmyIndex)->IsNavy()) {
+        if (g_Scene[AreaID]->GetArmy(ArmyIndex)->IsNavy()) {
             if (!SearchArea->Sea) {
                 if (SearchArea->ArmyCount > 0)
                     this->TargetNodeType = 3;

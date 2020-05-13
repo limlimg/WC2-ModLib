@@ -91,7 +91,7 @@ void CGameState::SelectArea(int AreaID) {
     g_Scene.SelectArea(AreaID);
     this->TaxGUI->SetArea(AreaID);
     this->TaxGUI->Show();
-    if (g_Scene.GetArea(AreaID)->ArmyCount > 1) {
+    if (g_Scene[AreaID]->ArmyCount > 1) {
         this->SelArmyGUI->SetArea(AreaID);
         this->SelArmyGUI->UseCard = false;
         this->SelArmyGUI->Show();
@@ -107,7 +107,7 @@ bool GUISelArmy::OnEvent(const Event &event) {
             return true;
     } else if (event.type == Event::GUI) {
         if (event.info.GUI.type == Event::info::GUI::Button &&
-            g_Scene.GetArea(this->AreaID)->Country == g_GameManager.GetCurCountry()) {
+            g_Scene[this->AreaID]->Country == g_GameManager.GetCurCountry()) {
             int i;
             for (i = 0; i < 4; i++) {
                 if (event.info.GUI.ptr == this->ArmyItem[i]) {

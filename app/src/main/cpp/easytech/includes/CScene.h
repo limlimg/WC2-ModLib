@@ -114,16 +114,22 @@ struct SaveAreaInfo;
 
 struct CArea {
     int ID;
-    int AreaType;
+    enum AreaType {
+        normal, capital, port, large_city, normal_city
+    } AreaType;
     int Tax;
     float ArmyPos[2];
     float ConstructionPos[2];
     float InstalltionPos[2];
     bool Enable;
     bool Sea;
-    int ConstructionType;
+    enum ConstructionType {
+        NoConstruction, city, insudtry, airport
+    } ConstructionType;
     int ConstructionLevel;
-    int InstalltionType;
+    enum InstallationType {
+        NoInstallation, fort, entrenchment, antiaircraft, radar
+    } InstallationType;
     struct CCountry *Country;
     struct CArmy *Army[4];
     int ArmyCount;
@@ -719,6 +725,8 @@ struct CScene {
     void UnselectArea();
 
     void Update(float time);
+
+    CArea *operator[](int AreaID) { return this->GetArea(AreaID); }
 
 #ifdef extends_CScene
     extends_CScene

@@ -8,10 +8,10 @@ bool CActionAssist::aiCheckAttackable(int StartAreaID, int TargetAreaID, int Arm
                                            int ArmyAreaID) {
     if (this->getAlliance(ArmyAreaID, TargetAreaID, Ally))
         return false;
-    CArea *ArmyArea = g_Scene.GetArea(ArmyAreaID);
+    CArea *ArmyArea = g_Scene[ArmyAreaID];
     if (ArmyArea->ArmyCount <= ArmyIndex)
         return false;
-    CArea *TargetArea = g_Scene.GetArea(TargetAreaID);
+    CArea *TargetArea = g_Scene[TargetAreaID];
     if (TargetArea->ArmyCount <= 0)
         return false;
     CArmy *Army = ArmyArea->GetArmy(ArmyIndex);

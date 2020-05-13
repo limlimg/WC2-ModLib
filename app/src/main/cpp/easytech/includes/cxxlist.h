@@ -11,11 +11,15 @@ struct list {
     void *_M_prev;
 
     bool empty() {
-        return ((std::list<T> *) this)->empty();
+        return reinterpret_cast<std::list<T> *>(this)->empty();
     }
 
     void push_back(T &e) {
-        ((std::list<T> *) this)->push_back(e);
+        reinterpret_cast<std::list<T> *>(this)->push_back(e);
+    }
+
+    void remove(T &e) {
+        reinterpret_cast<std::list<T> *>(this)->remove(e);
     }
 };
 

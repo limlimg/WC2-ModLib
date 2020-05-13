@@ -3,6 +3,7 @@
 //battle animation is removed
 //Skip:
 //press end turn button while ai is playing to not watch
+//changes in the ownerships of areas are still displayed 
 //Extra feature:
 //mark neutral countries as defeated to exclude them from turn cycle and win check
 //add player neutral country into defeat list
@@ -19,6 +20,7 @@
 
 static bool AIAction;
 static bool SkipMode;
+static bool DisplayAreaChange;
 
 //Initialize Auto and Skip flags
 //Also: mark neutral countries as defeated to exclude them from turn cycle and win check
@@ -157,6 +159,7 @@ bool CCountry::IsLocalPlayer() {
 }
 
 //Skip is implemented here
+//Render game scene when the ownership of any area changes
 void CGameState::Update(float time) {
     if (this->IdleTimerEnabled) {
         this->IdleTimer -= time;
@@ -207,7 +210,25 @@ void CGameState::Update(float time) {
             break;
         if (!g_Scene.IsBombing())
             g_GameManager.GameUpdate(time);
-    } while (SkipMode);
+    } while (SkipMode && !DisplayAreaChange);
+    DisplayAreaChange = false;
+}
+
+//Capture area ownership change
+void CCountry::RemoveArea(int AreaID) {
+    DisplayAreaChange = true;
+    this->AreaIDList.remove(AreaID);
+    if (g_Scene[AreaID]->AreaType == CArea::capital)
+        this->CapitalIDList.remove(AreaID);
+}
+
+void CCountry::AddArea(int AreaID) {
+    DisplayAreaChange = true;
+    if (!this->FindArea(AreaID)) {
+        this->AreaIDList.push_back(AreaID);
+        if (g_Scene[AreaID]->AreaType == CArea::capital)
+            this->CapitalIDList.push_back(AreaID);
+    }
 }
 
 //Press end turn button

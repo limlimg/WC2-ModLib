@@ -28,14 +28,25 @@ add_library( # Sets the name of the library.
         code/bugfix.cpp
         code/CustomGame.cpp
 
-        easytech/src/lazy_binder.c
         easytech/src/CActionAI.cpp
         )
 
 set_target_properties(modlibeasytech PROPERTIES CXX_VISIBILITY_PRESET protected)
 
 target_include_directories(modlibeasytech PRIVATE easytech/includes)
-target_include_directories(modlibeasytech PRIVATE easytech/src/${CMAKE_ANDROID_ARCH_ABI})
+
+add_library(easytech
+        STATIC
+        IMPORTED)
+
+set_target_properties( # Specifies the target library.
+        easytech
+
+        # Specifies the parameter you want to define.
+        PROPERTIES IMPORTED_LOCATION
+
+        # Provides the path to the library you want to import.
+        "${CMAKE_CURRENT_SOURCE_DIR}/easytech/src/${CMAKE_ANDROID_ARCH_ABI}/libeasytech.a")
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -68,3 +79,10 @@ target_include_directories(modlibeasytech PRIVATE easytech/src/${CMAKE_ANDROID_A
 # included in the NDK.
 #        ${OpenGL-lib}
 #        )
+
+target_link_libraries( # Specifies the target library.
+        modlibeasytech
+
+        # Links the target library to the library
+        easytech
+        )

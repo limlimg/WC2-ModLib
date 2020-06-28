@@ -10,7 +10,7 @@
 #ifndef EASYMOD_EASYTECH_H
 #define EASYMOD_EASYTECH_H
 
-#define easytech(func) easytech_##func##_
+#define easytech(func) easytech##func
 #ifdef __cplusplus
 #define def_easytech(func) extern "C" typeof(func) easytech(func);
 #else
